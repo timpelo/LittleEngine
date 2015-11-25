@@ -1,0 +1,51 @@
+README
+
+    File : PRODUCTBACKLOG.txt
+    Time-stamp : 2015-11-13T16.10 Jani Timonen
+    Description: Contains general information about the product and
+                 releases.
+
+GENERAL INFO
+
+    Product name     : MyEngine
+    Developer        : Jani Timonen <jani.timonen@cs.tamk.fi>
+    Device target(s) : Windows
+    Price            : FREE
+
+DESCRIPTION OF THE PRODUCT
+
+    Game engine running with Java 8. Developer can use this engine to
+    to make simple 2d engine. Engine uses only native Java libraries.
+    Engine contains basic 2d drawing and collision detection. It also
+    has simple physics engine for 2d game. Engine can handle sound files.
+    Engine support tiled maps and has own 2d dynamic light.
+
+FILES
+
+    All release directories has same structure as 2015-12-18-release-3
+
+    MyEngine/
+    |
+    +-- README.txt
+    |
+    +-- PRODUCTBACKLOG.txt
+    |
+    +-- 2015-11-27-release-1/
+    |
+    +-- 2015-12-04-release-2/
+    |
+    +-- 2015-12-18-release-3/
+        |
+        +-- RELEASENOTES.txt
+        |
+        +-- bin/
+        |
+        +-- src/4A00CN39-timone-jani.zip   // whole project
+        |
+        +-- doc/
+        |
+        +-- res/
+        |
+        +-- classes/
+
+End of file.
