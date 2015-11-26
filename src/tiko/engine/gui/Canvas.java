@@ -41,7 +41,7 @@ public class Canvas extends JPanel implements Dimensional {
 
     /**
      * Draws all components form list.
-     * <p>
+     *
      * Draws all components from list by using camera position and creating
      * illusion of camera movement.
      *

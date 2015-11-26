@@ -20,7 +20,7 @@ public abstract class SaveManager {
     String filename;
 
     /**
-     * Default directory where file will be saved or loaded
+     * Default directory where file will be saved or loaded.
      */
     String defaultDirectory = "save/";
 
@@ -31,7 +31,6 @@ public abstract class SaveManager {
      */
     public SaveManager(String filename) {
         this.filename = filename;
-
     }
 
     /**
@@ -53,13 +52,11 @@ public abstract class SaveManager {
             System.out.println("Save was not successful");
             e.printStackTrace();
         }
-
-
     }
 
     /**
      * Loads given filename from default directory.
-     * <p>
+     *
      * Loads file and returns values in two dimensional String array.
      *
      * @param filename name of file.
@@ -79,14 +76,12 @@ public abstract class SaveManager {
                 SaveObject loadObject = (SaveObject) obj;
                 loadArray = loadObject.toArray();
             }
-
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Load was not successful");
             e.printStackTrace();
         }
 
         return loadArray;
-
     }
 
     /**

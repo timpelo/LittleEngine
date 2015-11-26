@@ -9,8 +9,8 @@ import java.awt.event.*;
  * @version 1.0
  * @since 1.8
  */
-public abstract class InputAdapter implements MouseListener,
-        KeyListener, MouseWheelListener {
+public abstract class InputAdapter implements MouseListener, KeyListener,
+        MouseWheelListener {
 
     /**
      * Called when key is typed.
@@ -18,9 +18,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of key event.
      */
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public abstract void keyTyped(KeyEvent e);
 
     /**
      * Called when key is pressed.
@@ -28,9 +26,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of key event.
      */
     @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
+    public abstract void keyPressed(KeyEvent e);
 
     /**
      * Called when key is released.
@@ -38,9 +34,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of key event.
      */
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public abstract void keyReleased(KeyEvent e);
 
     /**
      * Called when mouse is clicked.
@@ -48,9 +42,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of mouse event.
      */
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public abstract void mouseClicked(MouseEvent e);
 
     /**
      * Called when mouse is pressed.
@@ -58,9 +50,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e ontains info of mouse event.
      */
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public abstract void mousePressed(MouseEvent e);
 
     /**
      * Called when mouse is released.
@@ -68,9 +58,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e ontains info of mouse event.
      */
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public abstract void mouseReleased(MouseEvent e);
 
     /**
      * Called when mouse enters component.
@@ -78,9 +66,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of mouse event.
      */
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public abstract void mouseEntered(MouseEvent e);
 
     /**
      * Called when mouse exits from component.
@@ -88,9 +74,7 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of mouse event.
      */
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public abstract void mouseExited(MouseEvent e);
 
     /**
      * Called when mouse wheel is moved.
@@ -98,8 +82,5 @@ public abstract class InputAdapter implements MouseListener,
      * @param e Contains info of mouse wheel event.
      */
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-
-
-    }
+    public abstract void mouseWheelMoved(MouseWheelEvent e);
 }

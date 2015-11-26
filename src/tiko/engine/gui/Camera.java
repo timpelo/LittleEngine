@@ -1,11 +1,10 @@
 package tiko.engine.gui;
 
-
 import java.awt.*;
 
 /**
  * Camera object used in game screen.
- * <p>
+ *
  * Camera is used in game screen. It can be moved in screen with automatic
  * detection of world borders. It won't move over world borders.
  *
@@ -68,7 +67,7 @@ public class Camera {
 
     /**
      * Moves camera in x-axis.
-     * <p>
+     *
      * Camera will automatically detect given world borders and won't move
      * over them.
      *
@@ -87,7 +86,7 @@ public class Camera {
 
     /**
      * Moves camera in y-axis.
-     * <p>
+     *
      * Camera will automatically detect given world borders and won't move
      * over them.
      *

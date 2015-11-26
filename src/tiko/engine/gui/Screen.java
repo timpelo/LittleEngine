@@ -2,7 +2,6 @@ package tiko.engine.gui;
 
 import tiko.engine.gameobject.GameObject;
 
-
 /**
  * Screen contains canvas where objects are drawn.
  *
@@ -50,7 +49,8 @@ public abstract class Screen {
     }
 
     /**
-     * Running method which will be called in every render
+     * Executes in every render.
+     *
      */
     public abstract void run();
 

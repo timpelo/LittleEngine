@@ -1,6 +1,5 @@
 package tiko.engine.gameobject;
 
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -156,6 +155,8 @@ public class GameObject implements Drawable {
     }
 
     /**
+     * Draws texture of GameObject to screen.
+     *
      * @see Drawable
      */
     @Override
@@ -165,8 +166,9 @@ public class GameObject implements Drawable {
     }
 
     /**
-     * @see Drawable
+     *  Destroys texture of GameObject.
      *
+     * @see Drawable
      */
     @Override
     public void destroyTexture() {

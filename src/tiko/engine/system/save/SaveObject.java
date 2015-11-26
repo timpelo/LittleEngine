@@ -16,16 +16,17 @@ public class SaveObject implements Serializable {
      * SerialVersionUID used for serialization.
      */
     private static final long serialVersionUID = 1L;
+
     /**
      * ArrayList containing all save information.
-     * <p>
+     *
      * Contains data in form HEADER:VALUE
      */
     ArrayList<String> list;
 
     /**
      * Default constructor.
-     * <p>
+     *
      * Uses given two dimensional array to form ArrayList for saving.
      *
      * @param saveList save values in two dimensional array.
@@ -63,7 +64,6 @@ public class SaveObject implements Serializable {
                 } else {
                     temp += s.charAt(i);
                 }
-
             }
 
             value = temp;
@@ -73,6 +73,5 @@ public class SaveObject implements Serializable {
         }
 
         return result;
-
     }
 }

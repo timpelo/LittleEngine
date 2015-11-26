@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Screen manager handles all screens in the game.
- * <p>
+ *
  * Screen manager keeps all screens in list. Object contains info of
  * world height and width. It also contains main game window. Creates default
  * camera for added screens.
@@ -22,22 +22,27 @@ public class ScreenManager {
      * Height of game world. This is public variable.
      */
     public int WORLD_HEIGHT = 0;
+
     /**
      * Width of game world. This is public variable.
      */
     public int WORLD_WIDTH = 0;
+
     /**
      * Main game window.
      */
     private JFrame frame;
+
     /**
      * List containing all screens.
      */
     private ArrayList<Screen> screenList;
+
     /**
      * Game itself where this manager is located.
      */
     private GameAdapter game;
+
     /**
      * Default camera used for new screens.
      */
@@ -115,7 +120,7 @@ public class ScreenManager {
     }
 
     /**
-     * Set bounds for game world.
+     * Sets bounds for game world.
      *
      * @param width  width of game world.
      * @param height height of game world.

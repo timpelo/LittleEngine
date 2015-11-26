@@ -4,7 +4,7 @@ import tiko.engine.gui.ScreenManager;
 
 /**
  * GameAdapter for handling game running.
- * <p>
+ *
  * This class starts new thread used for handling game running.
  *
  * @author Jani Timonen
@@ -12,6 +12,10 @@ import tiko.engine.gui.ScreenManager;
  * @since 1.8
  */
 public abstract class GameAdapter implements Runnable {
+
+    /**
+     * ScreenManager for the game.
+     */
     private ScreenManager screenManager = null;
 
     /**
@@ -34,14 +38,14 @@ public abstract class GameAdapter implements Runnable {
     }
 
     /**
-     * Called when game starts running.
+     * Executes when game starts running.
      */
     public void start() {
 
     }
 
     /**
-     * Called when game has started.
+     * Executes when game has started.
      */
     public void run() {
 
