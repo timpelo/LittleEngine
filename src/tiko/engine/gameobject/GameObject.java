@@ -1,10 +1,13 @@
 package tiko.engine.gameobject;
 
+import tiko.engine.system.physics.PhysicsBody;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Game object used to draw different objects to game screen.
@@ -38,6 +41,8 @@ public class GameObject implements Drawable {
      */
     private int speed = 3;
 
+    private Optional<PhysicsBody> physicsBody;
+
     /**
      * Constructor for this class using BufferedImage as texture.
      *
@@ -61,6 +66,7 @@ public class GameObject implements Drawable {
     public GameObject(int x, int y, String textureSource) {
         this.x = x;
         this.y = y;
+        physicsBody = Optional.ofNullable(null);
 
         try {
             BufferedImage texture = ImageIO.read(new File(textureSource));
@@ -163,6 +169,14 @@ public class GameObject implements Drawable {
     public void draw(Graphics2D g2, int camreaX, int cameraY) {
 
         g2.drawImage(getTexture(), getX() - camreaX, getY() - cameraY, null);
+    }
+
+    public void setPhysicsBody(PhysicsBody physicsBody) {
+        this.physicsBody = Optional.ofNullable(physicsBody);
+    }
+
+    public Optional<PhysicsBody> getPhysicsBody() {
+        return physicsBody;
     }
 
     /**
