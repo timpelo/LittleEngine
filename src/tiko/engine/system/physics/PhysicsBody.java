@@ -13,14 +13,15 @@ import java.awt.*;
  */
 public class PhysicsBody {
 
-    private Shape collider;
+    private Collider collider;
     private int mass;
     private int drag;
     private int bounciness;
     private boolean kinetic;
     private int angle;
+    private String layer;
 
-    public PhysicsBody(Shape collider,
+    public PhysicsBody(Collider collider,
                        int mass,
                        int drag,
                        int bounciness,
@@ -30,7 +31,18 @@ public class PhysicsBody {
         this.drag = drag;
         this. bounciness = bounciness;
         this.kinetic = kinetic;
+        layer = "default";
         angle = 0;
 
+    }
+
+    public boolean checkCollision(Collider other) {
+        boolean collision = false;
+
+        if(other.getCollider().intersects(collider.getCollider().getBounds())) {
+            collision = true;
+        }
+
+        return collision;
     }
 }
