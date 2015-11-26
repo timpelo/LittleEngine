@@ -23,9 +23,11 @@ public class DemoGame extends GameAdapter {
     public void run() {
 
         while(true) {
-            activeScreen.run();
-            doStep(10);
-            activeScreen = getScreenManager().getActiveScreen();
+            if(activeScreen != null) {
+                activeScreen.run();
+                doStep(10);
+                activeScreen = getScreenManager().getActiveScreen();
+            }
         }
 
     }

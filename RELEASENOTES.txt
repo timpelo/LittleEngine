@@ -1,0 +1,59 @@
+RELEASE NOTES
+
+    File       : RELEASENOTES.txt
+    Time-stamp : 2015-11-27T10:00 Jani Timonen
+
+    Description: Release notes for release 1.
+
+VIDEO PRESENTATION ABOUT THE RELEASE
+
+    // If you have something visible in UI, add a
+    // screencast or video about your app. Explain the
+    // features and also explain the same things as in general info (below)
+    // Video can be public or private. If private, provide password.
+    //
+    // Screencast is mandatory in the last release
+    URL: <http://www.vimeo.com/xyz>
+    PW: <passwd>
+
+GENERAL INFO
+
+    Release 1 is the first release of LittleEngine. It still has some minor
+    bugs with threading. These problems will be fixed for release 2. There is
+    also some code for future features which are not yet functional.
+
+PLANNED FEATURES FROM PRODUCT BACKLOG
+
+    Following features where planned for this release:
+
+    - Game canvas can be created.
+    - Possibility to use multiple game screens.
+    - Possibility to add user input for game.
+    - Objects can be drawn to game canvas.
+    - Possibility to make camera which moves in the world.
+    - Possibility to add persistent high score and progression.
+
+IMPLEMENTED FEATURES
+
+    - Game canvas can be created.
+    - Possibility to use multiple game screens.
+    - Possibility to add user input for game.
+    - Objects can be drawn to game canvas.
+    - Possibility to make camera which moves in the world.
+    - Possibility to add persistent high score and progression.
+
+FEATURES NOT IMPLEMENTED
+
+    - Everything planned was implemented.
+
+PLANNED FEATURES FOR NEXT RELEASE
+
+    - Support for tiled maps.
+    - Simple collision detection for 2d objects.
+    - Possibility to add sounds.
+    - Developer can make transitions between screens.
+
+    Product backlog (PRODUCTBACKLOG.txt) has been updated to
+    correspond to the new situation.
+
+End of file.
