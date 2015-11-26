@@ -41,6 +41,9 @@ public class GameObject implements Drawable {
      */
     private int speed = 3;
 
+    /**
+     * Optional PhysicsBody for physic calculations.
+     */
     private Optional<PhysicsBody> physicsBody;
 
     /**
@@ -171,10 +174,20 @@ public class GameObject implements Drawable {
         g2.drawImage(getTexture(), getX() - camreaX, getY() - cameraY, null);
     }
 
+    /**
+     * Sets PhysicBody for object.
+     *
+     * @param physicsBody PhysicBody for this object
+     */
     public void setPhysicsBody(PhysicsBody physicsBody) {
         this.physicsBody = Optional.ofNullable(physicsBody);
     }
 
+    /**
+     * Return PhysicBody of object.
+     *
+     * @return  PhysicBody of this object
+     */
     public Optional<PhysicsBody> getPhysicsBody() {
         return physicsBody;
     }

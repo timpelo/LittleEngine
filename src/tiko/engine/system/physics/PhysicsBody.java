@@ -1,12 +1,12 @@
 package tiko.engine.system.physics;
 
-import java.awt.*;
-import java.awt.geom.Area;
-
 /**
- * Class short description
+ * Object used for physic calculations.
  *
- * Class long descroption
+ * Object can be used for physics calculations. It contains data for physics
+ * like mass, drag and bounciness. It also contains collider for checking
+ * collision with other collider. PhysicsBody can have layer for enhanced
+ * collision detection.
  *
  * @author Jani Timonen
  * @version 1.0
@@ -14,14 +14,47 @@ import java.awt.geom.Area;
  */
 public class PhysicsBody {
 
+    /**
+     * Collider used to check collision with other objects.
+     */
     private Collider collider;
+
+    /**
+     * Mass used for physics calculations.
+     */
     private int mass;
+
+    /**
+     * Drag used for physics calculations.
+     */
     private int drag;
+
+    /**
+     * Bounciness used for physics calculations.
+     */
     private int bounciness;
+
+    /**
+     * Boolean to represent does different forces apply to this PhysicsBody.
+     */
     private boolean kinetic;
-    private int angle;
+
+    /**
+     * Layer of this PhysicsBody. Used for enhanced collision detection (NYI)
+     */
     private String layer;
 
+    /**
+     * Default constructor.
+     *
+     * Constructor to set all different values for PhysicsBody
+     *
+     * @param collider Collider used for collision detection.
+     * @param mass Mass of the object.
+     * @param drag Drag of the object.
+     * @param bounciness Bounciness of the object.
+     * @param kinetic Is this object kinetic?
+     */
     public PhysicsBody(Collider collider,
                        int mass,
                        int drag,
@@ -33,10 +66,15 @@ public class PhysicsBody {
         this. bounciness = bounciness;
         this.kinetic = kinetic;
         layer = "default";
-        angle = 0;
-
     }
 
+    /**
+     * Checks collision with other collider.
+     *
+     * @param other other Collider.
+     * @return true - these two colliders do collide, false - these two
+     * colliders do not collide.
+     */
     public boolean checkCollision(Collider other) {
 
         boolean result = false;
