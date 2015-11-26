@@ -1,6 +1,7 @@
 package tiko.engine.system.physics;
 
 import java.awt.*;
+import java.awt.geom.Area;
 
 /**
  * Class short description
@@ -37,12 +38,15 @@ public class PhysicsBody {
     }
 
     public boolean checkCollision(Collider other) {
-        boolean collision = false;
 
-        if(other.getCollider().intersects(collider.getCollider().getBounds())) {
-            collision = true;
+        boolean result = false;
+
+        if(collider.getCollider().getBounds().intersects(
+                other.getCollider().getBounds()
+        )) {
+            result = true;
         }
 
-        return collision;
+        return result;
     }
 }
