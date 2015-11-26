@@ -1,7 +1,7 @@
 PRODUCT BACKLOG
 
     File       : PRODUCTBACKLOG.txt
-    Time-stamp : 2015-11-27T10:00 Jani Timonen
+    Time-stamp : 2015-11-26T20:00 Jani Timonen
     Description: Product Backlog is the master list of all functionality desired in
                  the product.
 
@@ -28,7 +28,6 @@ PRODUCT BACKLOG WITH RELEASES
     - Dynamic 2d light for physics engine.
     - Enhanced 2d physics for collision detection (bouncing and gravity).
     - Animations for game objects.
-    - Default menu assets.
     - Layers for collision detection.
     - Developer has access to two example games.
     - Developer has access to screencast of demo game.

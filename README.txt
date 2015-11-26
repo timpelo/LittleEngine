@@ -1,7 +1,7 @@
 README
 
-    File : PRODUCTBACKLOG.txt
-    Time-stamp : 2015-11-27T10:00 Jani Timonen
+    File : README.txt
+    Time-stamp : 2015-11-26T20:00 Jani Timonen
     Description: Contains general information about the product and
                  releases.
 
