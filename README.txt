@@ -24,7 +24,7 @@ FILES
 
     All release directories has the same structure as 2015-12-18-release-3
 
-    MyEngine/
+    LittleEngine/
     |
     +-- README.txt
     |
@@ -40,12 +40,10 @@ FILES
         |
         +-- bin/
         |
-        +-- src/4A00CN39-timone-jani.zip   // whole project
+        +-- src/4A00CN39-timonen-jani.zip   // whole project
         |
         +-- doc/
         |
         +-- res/
-        |
-        +-- classes/
 
 End of file.
