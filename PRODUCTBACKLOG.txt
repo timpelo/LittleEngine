@@ -30,5 +30,7 @@ PRODUCT BACKLOG WITH RELEASES
     - Animations for game objects.
     - Default menu assets.
     - Layers for collision detection.
+    - Developer has access to two example games.
+    - Developer has access to screencast of demo game.
 
 End of file.
