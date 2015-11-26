@@ -7,57 +7,56 @@ import java.util.ArrayList;
 
 /**
  * Screen manager handles all screens in the game.
- *
+ * <p>
  * Screen manager keeps all screens in list. Object contains info of
  * world height and width. It also contains main game window. Creates default
  * camera for added screens.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class ScreenManager {
 
     /**
+     * Height of game world. This is public variable.
+     */
+    public int WORLD_HEIGHT = 0;
+    /**
+     * Width of game world. This is public variable.
+     */
+    public int WORLD_WIDTH = 0;
+    /**
      * Main game window.
      */
     private JFrame frame;
-
     /**
      * List containing all screens.
      */
     private ArrayList<Screen> screenList;
-
     /**
      * Game itself where this manager is located.
      */
     private GameAdapter game;
-
     /**
      * Default camera used for new screens.
      */
     private Camera camera;
 
     /**
-     * Height of game world. This is public variable.
-     */
-    public int WORLD_HEIGHT = 0;
-
-    /**
-     * Width of game world. This is public variable.
-     */
-    public int WORLD_WIDTH = 0;
-
-    /**
      * Constructor for this class.
      *
-     * @param worldWith width of game world.
+     * @param worldWith   width of game world.
      * @param worldHeight height of game world.
-     * @param width width of game window.
-     * @param height height of game window.
-     * @param game game where this manager is located.
+     * @param width       width of game window.
+     * @param height      height of game window.
+     * @param game        game where this manager is located.
      */
-    public ScreenManager(int worldWith, int worldHeight, int width, int height, GameAdapter game) {
+    public ScreenManager(int worldWith,
+                         int worldHeight,
+                         int width,
+                         int height,
+                         GameAdapter game) {
         this.game = game;
         setWorldBounds(worldWith, worldHeight);
 
@@ -73,7 +72,7 @@ public class ScreenManager {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
+
         game.begin(this);
     }
 
@@ -105,7 +104,7 @@ public class ScreenManager {
     public Screen getActiveScreen() {
         Screen activeScreen = null;
 
-        for (Screen src: screenList) {
+        for (Screen src : screenList) {
 
             if (src.getActive()) {
                 activeScreen = src;
@@ -118,7 +117,7 @@ public class ScreenManager {
     /**
      * Set bounds for game world.
      *
-     * @param width width of game world.
+     * @param width  width of game world.
      * @param height height of game world.
      */
     public void setWorldBounds(int width, int height) {
@@ -133,7 +132,7 @@ public class ScreenManager {
      */
     public void changeScreen(int i) {
 
-        for(Screen screen: screenList) {
+        for (Screen screen : screenList) {
             screen.setActive(false);
         }
 

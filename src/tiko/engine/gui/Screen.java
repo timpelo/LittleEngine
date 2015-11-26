@@ -10,8 +10,8 @@ import tiko.engine.gameobject.GameObject;
  * right place in game screen.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public abstract class Screen {
 
@@ -74,6 +74,16 @@ public abstract class Screen {
     }
 
     /**
+     * Returns active status of this screen.
+     *
+     * @return true - activated screen, false - unactivated screen.
+     */
+    public boolean getActive() {
+
+        return active;
+    }
+
+    /**
      * Changes active status of this screen.
      *
      * @param active true - activated screen, false - unactivated screen.
@@ -84,16 +94,6 @@ public abstract class Screen {
         canvas.setVisible(active);
         canvas.setFocusable(active);
         canvas.requestFocusInWindow();
-    }
-
-    /**
-     * Returns active status of this screen.
-     *
-     * @return true - activated screen, false - unactivated screen.
-     */
-    public boolean getActive() {
-
-        return active;
     }
 
     /**

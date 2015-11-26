@@ -4,13 +4,13 @@ import java.io.*;
 
 /**
  * Class which can handle saving and loading data from persistent storage.
- *
+ * <p>
  * Class can write and load SaveObjects from given location. Default directory
  * is set to root/save but it can be changed.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public abstract class SaveManager {
 
@@ -39,7 +39,7 @@ public abstract class SaveManager {
      *
      * @param saveArray array of save data ([header][value]).
      */
-    public void saveToFile(String[][] saveArray){
+    public void saveToFile(String[][] saveArray) {
 
         try {
             FileOutputStream save =
@@ -59,15 +59,15 @@ public abstract class SaveManager {
 
     /**
      * Loads given filename from default directory.
-     *
+     * <p>
      * Loads file and returns values in two dimensional String array.
      *
      * @param filename name of file.
      * @return saved values in two dimensional String array.
      */
-    public String[][] loadFromFime(String filename) {
+    public String[][] loadFromFile(String filename) {
         String[][] loadArray = null;
-        try{
+        try {
             FileInputStream load =
                     new FileInputStream(new File(defaultDirectory + filename));
 
@@ -75,7 +75,7 @@ public abstract class SaveManager {
 
             Object obj = in.readObject();
 
-            if(obj instanceof SaveObject) {
+            if (obj instanceof SaveObject) {
                 SaveObject loadObject = (SaveObject) obj;
                 loadArray = loadObject.toArray();
             }

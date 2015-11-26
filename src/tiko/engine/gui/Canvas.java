@@ -9,13 +9,13 @@ import java.util.LinkedList;
 
 /**
  * Canvas used to draw all game objects to the screen.
- *
+ * <p>
  * Canvas holds all objects for drawing. It also draws all objects to the
  * screen.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class Canvas extends JPanel implements Dimensional {
 
@@ -41,7 +41,7 @@ public class Canvas extends JPanel implements Dimensional {
 
     /**
      * Draws all components form list.
-     *
+     * <p>
      * Draws all components from list by using camera position and creating
      * illusion of camera movement.
      *
@@ -55,7 +55,7 @@ public class Canvas extends JPanel implements Dimensional {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.black);
 
-        for(Drawable o: objectList) {
+        for (Drawable o : objectList) {
             o.draw(g2, host.getCamera().getX(),
                     host.getCamera().getY());
         }

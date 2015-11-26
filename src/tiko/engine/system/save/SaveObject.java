@@ -7,26 +7,25 @@ import java.util.ArrayList;
  * Class which keeps saved information.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class SaveObject implements Serializable {
-
-    /**
-     * ArrayList containing all save information.
-     *
-     * Contains data in form HEADER:VALUE
-     */
-    ArrayList<String> list;
 
     /**
      * SerialVersionUID used for serialization.
      */
     private static final long serialVersionUID = 1L;
+    /**
+     * ArrayList containing all save information.
+     * <p>
+     * Contains data in form HEADER:VALUE
+     */
+    ArrayList<String> list;
 
     /**
      * Default constructor.
-     *
+     * <p>
      * Uses given two dimensional array to form ArrayList for saving.
      *
      * @param saveList save values in two dimensional array.
@@ -34,7 +33,7 @@ public class SaveObject implements Serializable {
     public SaveObject(String[][] saveList) {
         list = new ArrayList<>();
 
-        for(int i = 0; i < saveList.length; i++) {
+        for (int i = 0; i < saveList.length; i++) {
 
             String saveString = saveList[i][0] + ":" + saveList[i][1];
             list.add(saveString);
@@ -50,15 +49,15 @@ public class SaveObject implements Serializable {
         String[][] result = new String[list.size()][2];
         int index = 0;
 
-        for(String s: list) {
+        for (String s : list) {
             String header = "";
             String value;
             String temp = "";
             s.trim();
 
-            for(int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); i++) {
 
-                if(s.charAt(i) == ':') {
+                if (s.charAt(i) == ':') {
                     header = temp;
                     temp = "";
                 } else {

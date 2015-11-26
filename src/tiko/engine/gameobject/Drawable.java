@@ -6,15 +6,15 @@ import java.awt.*;
  * Interface to determine drawable objects.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public interface Drawable {
 
     /**
      * Draw object using Graphics2D object according camera position.
      *
-     * @param g2 Graphics2D object used for drawing.
+     * @param g2      Graphics2D object used for drawing.
      * @param cameraX camera position in x-axis.
      * @param cameraY camera position in y-axis.
      */

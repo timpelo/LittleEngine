@@ -9,13 +9,13 @@ import java.io.IOException;
 
 /**
  * Game object used to draw different objects to game screen.
- *
+ * <p>
  * Object has texture for drawing. It also has position in x- and y-axis. It
  * has default speed which can be changed.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class GameObject implements Drawable {
 
@@ -42,8 +42,8 @@ public class GameObject implements Drawable {
     /**
      * Constructor for this class using BufferedImage as texture.
      *
-     * @param x position in x-axis.
-     * @param y position in y-axis.
+     * @param x       position in x-axis.
+     * @param y       position in y-axis.
      * @param texture texuter used for drawing.
      */
     public GameObject(int x, int y, BufferedImage texture) {
@@ -55,8 +55,8 @@ public class GameObject implements Drawable {
     /**
      * Constructor for this class using source for texture.
      *
-     * @param x position in x-axis.
-     * @param y position in y-axis.
+     * @param x             position in x-axis.
+     * @param y             position in y-axis.
      * @param textureSource source for texture.
      */
     public GameObject(int x, int y, String textureSource) {
@@ -166,6 +166,7 @@ public class GameObject implements Drawable {
 
     /**
      * @see Drawable
+     *
      */
     @Override
     public void destroyTexture() {

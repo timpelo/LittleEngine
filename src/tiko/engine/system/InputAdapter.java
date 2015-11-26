@@ -6,10 +6,11 @@ import java.awt.event.*;
  * InputAdapter used to get player input from game.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
-public abstract class InputAdapter implements MouseListener, KeyListener, MouseWheelListener {
+public abstract class InputAdapter implements MouseListener,
+        KeyListener, MouseWheelListener {
 
     /**
      * Called when key is typed.

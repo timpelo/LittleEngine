@@ -1,18 +1,17 @@
 package tiko.engine.gui;
 
 
-
 import java.awt.*;
 
 /**
  * Camera object used in game screen.
- *
+ * <p>
  * Camera is used in game screen. It can be moved in screen with automatic
  * detection of world borders. It won't move over world borders.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class Camera {
 
@@ -49,13 +48,13 @@ public class Camera {
     /**
      * Constructor for this object.
      *
-     * @param worldSizeX world width.
-     * @param worldSizeY world height.
-     * @param cameraWidth camera view area with.
+     * @param worldSizeX   world width.
+     * @param worldSizeY   world height.
+     * @param cameraWidth  camera view area with.
      * @param cameraHeight camera view area height.
      */
-    public Camera (int worldSizeX, int worldSizeY,
-                   int cameraWidth, int cameraHeight) {
+    public Camera(int worldSizeX, int worldSizeY,
+                  int cameraWidth, int cameraHeight) {
 
         offsetMaxX = worldSizeX - cameraWidth;
         offsetMaxY = worldSizeY - cameraHeight;
@@ -69,7 +68,7 @@ public class Camera {
 
     /**
      * Moves camera in x-axis.
-     *
+     * <p>
      * Camera will automatically detect given world borders and won't move
      * over them.
      *
@@ -77,10 +76,9 @@ public class Camera {
      */
     public void moveCameraX(int x) {
 
-        if(x < 0) {
+        if (x < 0) {
             this.x = 0;
-        }
-        else if(x > offsetMaxX) {
+        } else if (x > offsetMaxX) {
             this.x = offsetMaxX;
         } else {
             this.x = x;
@@ -89,17 +87,16 @@ public class Camera {
 
     /**
      * Moves camera in y-axis.
-     *
+     * <p>
      * Camera will automatically detect given world borders and won't move
      * over them.
      *
      * @param y new position of camera in x-axis.
      */
     public void moveCameraY(int y) {
-        if(y < 0) {
+        if (y < 0) {
             this.y = 0;
-        }
-        else if(y > offsetMaxY) {
+        } else if (y > offsetMaxY) {
             this.y = offsetMaxY;
         } else {
             this.y = y;
