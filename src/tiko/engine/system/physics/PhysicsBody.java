@@ -87,4 +87,52 @@ public class PhysicsBody {
 
         return result;
     }
+
+    public Collider getCollider() {
+        return collider;
+    }
+
+    public void setCollider(Collider collider) {
+        this.collider = collider;
+    }
+
+    public String getLayer() {
+        return layer;
+    }
+
+    public void setLayer(String layer) {
+        this.layer = layer;
+    }
+
+    public boolean isKinetic() {
+        return kinetic;
+    }
+
+    public void setKinetic(boolean kinetic) {
+        this.kinetic = kinetic;
+    }
+
+    public int getBounciness() {
+        return bounciness;
+    }
+
+    public void setBounciness(int bounciness) {
+        this.bounciness = bounciness;
+    }
+
+    public int getDrag() {
+        return drag;
+    }
+
+    public void setDrag(int drag) {
+        this.drag = drag;
+    }
+
+    public int getMass() {
+        return mass;
+    }
+
+    public void setMass(int mass) {
+        this.mass = mass;
+    }
 }

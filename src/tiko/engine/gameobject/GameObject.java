@@ -1,5 +1,6 @@
 package tiko.engine.gameobject;
 
+import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
 
 import javax.imageio.ImageIO;
@@ -95,6 +96,11 @@ public class GameObject implements Drawable {
      */
     public void setX(int x) {
         this.x = x;
+
+        if(physicsBody.isPresent()) {
+            PhysicsBody body = physicsBody.get();
+            body.getCollider().setX(x);
+        }
     }
 
     /**
@@ -113,6 +119,11 @@ public class GameObject implements Drawable {
      */
     public void setY(int y) {
         this.y = y;
+
+        if(physicsBody.isPresent()) {
+            PhysicsBody body = physicsBody.get();
+            body.getCollider().setY(y);
+        }
     }
 
     /**
@@ -169,9 +180,23 @@ public class GameObject implements Drawable {
      * @see Drawable
      */
     @Override
-    public void draw(Graphics2D g2, int camreaX, int cameraY) {
+    public void draw(Graphics2D g2, int cameraX, int cameraY) {
 
-        g2.drawImage(getTexture(), getX() - camreaX, getY() - cameraY, null);
+        g2.drawImage(getTexture(), getX() - cameraX, getY() - cameraY, null);
+
+        //PRINT FOR DEBUGGING!
+        System.out.println("drawn " + this + " at " + getX() + ", " + getY());
+
+        if(physicsBody.isPresent()) {
+
+            PhysicsBody body = physicsBody.get();
+
+            /*System.out.println("drawn " + this + "at "
+                    + body.getCollider().getX() + ", "
+                    + body.getCollider().getY());*/
+
+            System.out.println(body);
+        }
     }
 
     /**

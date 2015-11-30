@@ -6,6 +6,8 @@ import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
 import tiko.engine.system.InputAdapter;
+import tiko.engine.system.physics.Collider;
+import tiko.engine.system.physics.PhysicsBody;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -34,6 +36,17 @@ public class GameScreen extends Screen {
         this.host = host;
 
         player = new GameObject(100, 100, "assets/car.png");
+
+        PhysicsBody playerBody = new PhysicsBody(
+                new Collider(new Rectangle(100, 100, 100, 100)),
+                0,
+                0,
+                0,
+                false
+        );
+
+        player.setPhysicsBody(playerBody);
+
         bg = new GameObject(0, 0, "assets/bg.jpg");
 
         addObject(bg);

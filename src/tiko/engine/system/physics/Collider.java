@@ -14,33 +14,55 @@ public class Collider {
     /**
      * Shape to represent area of collider.
      */
-    private Shape collider;
+    private Rectangle collider;
 
     /**
      * Default constructor.
      *
-     * @param collider Shape to represent are of collider.
+     * @param collider Rectangle to represent are of collider.
      */
-    public Collider(Shape collider) {
+    public Collider(Rectangle collider) {
 
         this.collider = collider;
     }
 
     /**
-     * Returns area of this collider as Shape.
+     * Returns area of this collider as Rectangle.
      *
-     * @return area of this collider as Shape.
+     * @return area of this collider as Rectangle.
      */
-    public Shape getCollider() {
+    public Rectangle getCollider() {
         return collider;
     }
 
     /**
-     * Sets area of this collider as Shape.
+     * Sets area of this collider as Rectangle.
      *
-     * @param collider area of this collider as Shape.
+     * @param collider area of this collider as Rectangle.
      */
-    public void setCollider(Shape collider) {
+    public void setCollider(Rectangle collider) {
         this.collider = collider;
+    }
+
+    public void setX(int x) {
+        collider.setRect(x,
+                collider.getY(),
+                collider.getWidth(),
+                collider.getHeight());
+    }
+
+    public double getX() {
+        return collider.getX();
+    }
+
+    public void setY(double y) {
+        collider.setRect(collider.getY(),
+                y,
+                collider.getWidth(),
+                collider.getHeight());
+    }
+
+    public double getY() {
+        return collider.getY();
     }
 }
