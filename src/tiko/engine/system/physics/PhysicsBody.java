@@ -65,6 +65,7 @@ public class PhysicsBody {
         this.drag = drag;
         this. bounciness = bounciness;
         this.kinetic = kinetic;
+        this.collider = collider;
         layer = "default";
     }
 

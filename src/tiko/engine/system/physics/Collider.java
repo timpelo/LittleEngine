@@ -45,21 +45,15 @@ public class Collider {
     }
 
     public void setX(int x) {
-        collider.setRect(x,
-                collider.getY(),
-                collider.getWidth(),
-                collider.getHeight());
+        collider.setLocation(x, (int) collider.getY());
     }
 
     public double getX() {
         return collider.getX();
     }
 
-    public void setY(double y) {
-        collider.setRect(collider.getY(),
-                y,
-                collider.getWidth(),
-                collider.getHeight());
+    public void setY(int y) {
+        collider.setLocation((int) collider.getX(), y);
     }
 
     public double getY() {

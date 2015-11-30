@@ -184,6 +184,7 @@ public class GameObject implements Drawable {
 
         g2.drawImage(getTexture(), getX() - cameraX, getY() - cameraY, null);
 
+
         //PRINT FOR DEBUGGING!
         System.out.println("drawn " + this + " at " + getX() + ", " + getY());
 
@@ -191,11 +192,10 @@ public class GameObject implements Drawable {
 
             PhysicsBody body = physicsBody.get();
 
-            /*System.out.println("drawn " + this + "at "
+            System.out.println("collider drawn " + this + "at "
                     + body.getCollider().getX() + ", "
-                    + body.getCollider().getY());*/
+                    + body.getCollider().getY());
 
-            System.out.println(body);
         }
     }
 
