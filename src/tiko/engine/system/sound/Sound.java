@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class Sound {
     private File soundFile;
-    private boolean loop = true;
+    private boolean loop = false;
 
     public Sound(File soundFile) {
         this.soundFile = soundFile;

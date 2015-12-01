@@ -35,7 +35,15 @@ public class SoundManager {
         soundList.add(new Sound(path));
     }
 
+    public void addSound(Sound sound) {
+        soundList.add(sound);
+    }
+
     public void playSound(int index) {
         soundList.get(index).play();
+    }
+
+    public Sound getSound(int index) {
+        return soundList.get(index);
     }
 }
