@@ -22,14 +22,15 @@ public class Sound {
     }
 
     public Sound(String path) {
-        soundFile = new File("sound/" + path);
+        soundFile = new File("assets/sound/" + path);
     }
 
     public void play() {
 
         try {
             // Loads playable clip.
-            final Clip clip = (Clip) AudioSystem.getLine(new Line.Info(Clip.class));
+            final Clip clip = (Clip)AudioSystem.getLine(
+                    new Line.Info(Clip.class));
 
             // Adds listener which closes clip after it is played.
             clip.addLineListener((e) -> {

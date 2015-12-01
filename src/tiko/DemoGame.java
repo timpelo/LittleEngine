@@ -27,9 +27,9 @@ public class DemoGame extends GameAdapter {
 
         while(true) {
             if(activeScreen != null) {
+                activeScreen = getScreenManager().getActiveScreen();
                 activeScreen.run();
                 doStep(10);
-                activeScreen = getScreenManager().getActiveScreen();
             }
         }
 
@@ -40,8 +40,8 @@ public class DemoGame extends GameAdapter {
 
         MainMenu menu = new MainMenu(getScreenManager(), this);
         GameScreen gameScreen = new GameScreen(getScreenManager(), this);
-        soundManager.addSound("clint.wav");
-        Sound bgSound = new Sound("car.wav");
+        soundManager.addSound("indy.wav");
+        Sound bgSound = new Sound("bg.wav");
         bgSound.setLoop(true);
         soundManager.addSound(bgSound);
 

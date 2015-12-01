@@ -186,7 +186,7 @@ public class GameObject implements Drawable {
 
 
         //PRINT FOR DEBUGGING!
-        System.out.println("drawn " + this + " at " + getX() + ", " + getY());
+        /*System.out.println("drawn " + this + " at " + getX() + ", " + getY());
 
         if(physicsBody.isPresent()) {
 
@@ -196,7 +196,7 @@ public class GameObject implements Drawable {
                     + body.getCollider().getX() + ", "
                     + body.getCollider().getY());
 
-        }
+        }*/
     }
 
     /**

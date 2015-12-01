@@ -36,7 +36,7 @@ public class GameScreen extends Screen {
         super(screenManager);
         this.host = host;
 
-        player = new GameObject(100, 100, "assets/car.png");
+        player = new GameObject(100, 100, "assets/hat.png");
         bomb = new GameObject(600, 600, "assets/bomb.png");
 
 
