@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class SoundManager {
 
-    ArrayList<Clip> soundList;
+    ArrayList<Sound> soundList;
     GameAdapter host;
 
     public SoundManager(GameAdapter host) {
@@ -27,25 +27,10 @@ public class SoundManager {
     }
 
     public void addSound(Clip sound) {
-        soundList.add(sound);
+        soundList.add(new Sound(sound));
     }
 
     public void addSound(String path) {
-
-        URL url = this.getClass().getClassLoader().getResource("sound/" + path);
-        Clip clip = null;
-        try{
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            clip = AudioSystem.getClip();
-        } catch (IOException |
-                UnsupportedAudioFileException |
-                LineUnavailableException e) {
-
-        }
-
-        if(clip != null) {
-            soundList.add(clip);
-        }
-
+        soundList.add(new Sound(path));
     }
 }
