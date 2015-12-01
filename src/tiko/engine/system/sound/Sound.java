@@ -15,6 +15,7 @@ import java.net.URL;
  */
 public class Sound {
     private Clip clip;
+    private boolean loop = false;
 
     public Sound(Clip clip) {
         this.clip = clip;
@@ -35,5 +36,13 @@ public class Sound {
         if(clip != null) {
             this.clip = clip;
         }
+    }
+
+    public void play() {
+        clip.start();
+    }
+
+    public void setLoop(boolean loop) {
+        this.loop = loop;
     }
 }
