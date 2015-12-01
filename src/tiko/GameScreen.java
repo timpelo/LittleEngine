@@ -6,6 +6,8 @@ import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
 import tiko.engine.system.InputAdapter;
+import tiko.engine.system.physics.Collider;
+import tiko.engine.system.physics.PhysicsBody;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,6 +20,7 @@ public class GameScreen extends Screen {
     DemoGame host;
     GameObject player;
     GameObject bg;
+    GameObject bomb;
 
     boolean rightPressed = false;
     boolean leftPressed = false;
@@ -34,10 +37,33 @@ public class GameScreen extends Screen {
         this.host = host;
 
         player = new GameObject(100, 100, "assets/car.png");
+        bomb = new GameObject(600, 600, "assets/bomb.png");
+
+
+        PhysicsBody playerBody = new PhysicsBody(
+                new Collider(new Rectangle(100, 100, 100, 100)),
+                0,
+                0,
+                0,
+                false
+        );
+
+        PhysicsBody bombBody = new PhysicsBody(
+                new Collider(new Rectangle(600, 600, 100, 100)),
+                0,
+                0,
+                0,
+                false
+        );
+
+        player.setPhysicsBody(playerBody);
+        bomb.setPhysicsBody(bombBody);
+
         bg = new GameObject(0, 0, "assets/bg.jpg");
 
         addObject(bg);
         addObject(player);
+        addObject(bomb);
 
         getCanvas().addKeyListener(new InputAdapter() {
             @Override
@@ -86,6 +112,13 @@ public class GameScreen extends Screen {
 
     @Override
     public void run() {
+
+        if(player.getPhysicsBody().get().checkCollision(bomb.getPhysicsBody()
+                .get().getCollider())) {
+            System.out.println("BUM!!!");
+        }
+
+
         if(rightPressed) {
             player.setX(player.getX() + player.getSpeed());
             Camera camera = host.activeScreen.getCamera();

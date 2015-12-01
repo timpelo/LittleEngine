@@ -37,7 +37,7 @@ public abstract class InputAdapter implements MouseListener, KeyListener {
      * @param e Contains info of key event.
      */
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e){
 
     }
 
@@ -47,7 +47,7 @@ public abstract class InputAdapter implements MouseListener, KeyListener {
      * @param e Contains info of mouse event.
      */
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e){
 
     }
 
@@ -57,7 +57,7 @@ public abstract class InputAdapter implements MouseListener, KeyListener {
      * @param e ontains info of mouse event.
      */
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e){
 
     }
 
@@ -67,7 +67,7 @@ public abstract class InputAdapter implements MouseListener, KeyListener {
      * @param e ontains info of mouse event.
      */
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e){
 
     }
 
@@ -77,7 +77,7 @@ public abstract class InputAdapter implements MouseListener, KeyListener {
      * @param e Contains info of mouse event.
      */
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e){
 
     }
 

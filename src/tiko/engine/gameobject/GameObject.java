@@ -1,10 +1,14 @@
 package tiko.engine.gameobject;
 
+import tiko.engine.system.physics.Collider;
+import tiko.engine.system.physics.PhysicsBody;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Game object used to draw different objects to game screen.
@@ -39,6 +43,11 @@ public class GameObject implements Drawable {
     private int speed = 3;
 
     /**
+     * Optional PhysicsBody for physic calculations.
+     */
+    private Optional<PhysicsBody> physicsBody;
+
+    /**
      * Constructor for this class using BufferedImage as texture.
      *
      * @param x       position in x-axis.
@@ -61,6 +70,7 @@ public class GameObject implements Drawable {
     public GameObject(int x, int y, String textureSource) {
         this.x = x;
         this.y = y;
+        physicsBody = Optional.ofNullable(null);
 
         try {
             BufferedImage texture = ImageIO.read(new File(textureSource));
@@ -86,6 +96,11 @@ public class GameObject implements Drawable {
      */
     public void setX(int x) {
         this.x = x;
+
+        if(physicsBody.isPresent()) {
+            PhysicsBody body = physicsBody.get();
+            body.getCollider().setX(x);
+        }
     }
 
     /**
@@ -104,6 +119,11 @@ public class GameObject implements Drawable {
      */
     public void setY(int y) {
         this.y = y;
+
+        if(physicsBody.isPresent()) {
+            PhysicsBody body = physicsBody.get();
+            body.getCollider().setY(y);
+        }
     }
 
     /**
@@ -160,9 +180,41 @@ public class GameObject implements Drawable {
      * @see Drawable
      */
     @Override
-    public void draw(Graphics2D g2, int camreaX, int cameraY) {
+    public void draw(Graphics2D g2, int cameraX, int cameraY) {
 
-        g2.drawImage(getTexture(), getX() - camreaX, getY() - cameraY, null);
+        g2.drawImage(getTexture(), getX() - cameraX, getY() - cameraY, null);
+
+
+        //PRINT FOR DEBUGGING!
+        System.out.println("drawn " + this + " at " + getX() + ", " + getY());
+
+        if(physicsBody.isPresent()) {
+
+            PhysicsBody body = physicsBody.get();
+
+            System.out.println("collider drawn " + this + "at "
+                    + body.getCollider().getX() + ", "
+                    + body.getCollider().getY());
+
+        }
+    }
+
+    /**
+     * Sets PhysicBody for object.
+     *
+     * @param physicsBody PhysicBody for this object
+     */
+    public void setPhysicsBody(PhysicsBody physicsBody) {
+        this.physicsBody = Optional.ofNullable(physicsBody);
+    }
+
+    /**
+     * Return PhysicBody of object.
+     *
+     * @return  PhysicBody of this object
+     */
+    public Optional<PhysicsBody> getPhysicsBody() {
+        return physicsBody;
     }
 
     /**

@@ -1,7 +1,7 @@
 README
 
-    File : PRODUCTBACKLOG.txt
-    Time-stamp : 2015-11-27T10:00 Jani Timonen
+    File : README.txt
+    Time-stamp : 2015-11-26T20:00 Jani Timonen
     Description: Contains general information about the product and
                  releases.
 
@@ -24,7 +24,7 @@ FILES
 
     All release directories has the same structure as 2015-12-18-release-3
 
-    MyEngine/
+    LittleEngine/
     |
     +-- README.txt
     |
@@ -40,12 +40,10 @@ FILES
         |
         +-- bin/
         |
-        +-- src/4A00CN39-timone-jani.zip   // whole project
+        +-- src/4A00CN39-timonen-jani.zip   // whole project
         |
         +-- doc/
         |
         +-- res/
-        |
-        +-- classes/
 
 End of file.
