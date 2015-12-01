@@ -2,9 +2,7 @@ package tiko.engine.system.sound;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Class short description
@@ -17,7 +15,7 @@ import java.net.URL;
  */
 public class Sound {
     private File soundFile;
-    private boolean loop = false;
+    private boolean loop = true;
 
     public Sound(File soundFile) {
         this.soundFile = soundFile;
@@ -30,14 +28,21 @@ public class Sound {
     public void play() {
 
         try {
+            // Loads playable clip.
             final Clip clip = (Clip) AudioSystem.getLine(new Line.Info(Clip.class));
 
+            // Adds listener which closes clip after it is played.
             clip.addLineListener((e) -> {
                     if(e.getType() == LineEvent.Type.STOP) {
-                        clip.close();
+                        if(!loop) {
+                            clip.close();
+                        } else {
+                            play();
+                        }
                     }
             });
 
+            // Opens clip for audio stream and plays it.
             clip.open(AudioSystem.getAudioInputStream(soundFile));
             clip.start();
 
