@@ -3,6 +3,7 @@ package tiko.engine.system.sound;
 import tiko.engine.system.GameAdapter;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,11 +27,15 @@ public class SoundManager {
         soundList = new ArrayList<>();
     }
 
-    public void addSound(Clip sound) {
-        soundList.add(new Sound(sound));
+    public void addSound(File soundFile) {
+        soundList.add(new Sound(soundFile));
     }
 
     public void addSound(String path) {
         soundList.add(new Sound(path));
+    }
+
+    public void playSound(int index) {
+        soundList.get(index).play();
     }
 }

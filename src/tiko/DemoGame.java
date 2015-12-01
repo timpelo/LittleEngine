@@ -5,6 +5,7 @@ package tiko;
 
 import tiko.engine.gui.Screen;
 import tiko.engine.system.GameAdapter;
+import tiko.engine.system.sound.SoundManager;
 
 
 /**
@@ -13,10 +14,11 @@ import tiko.engine.system.GameAdapter;
 public class DemoGame extends GameAdapter {
 
     Screen activeScreen;
+    SoundManager soundManager;
 
 
     public DemoGame() {
-
+        soundManager = new SoundManager(this);
     }
 
     @Override
@@ -37,7 +39,8 @@ public class DemoGame extends GameAdapter {
 
         MainMenu menu = new MainMenu(getScreenManager(), this);
         GameScreen gameScreen = new GameScreen(getScreenManager(), this);
-
+        soundManager.addSound("clint.wav");
+        soundManager.playSound(0);
         getScreenManager().addScreen(menu);
         getScreenManager().changeScreen(0);
         getScreenManager().addScreen(gameScreen);

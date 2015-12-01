@@ -1,6 +1,8 @@
 package tiko.engine.system.sound;
 
 import javax.sound.sampled.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -14,32 +16,38 @@ import java.net.URL;
  * @since 1.8
  */
 public class Sound {
-    private Clip clip;
+    private File soundFile;
     private boolean loop = false;
 
-    public Sound(Clip clip) {
-        this.clip = clip;
+    public Sound(File soundFile) {
+        this.soundFile = soundFile;
     }
 
     public Sound(String path) {
-        URL url = this.getClass().getClassLoader().getResource("sound/" + path);
-        Clip clip = null;
-        try{
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            clip = AudioSystem.getClip();
-        } catch (IOException |
-                UnsupportedAudioFileException |
-                LineUnavailableException e) {
-
-        }
-
-        if(clip != null) {
-            this.clip = clip;
-        }
+        soundFile = new File("sound/" + path);
     }
 
     public void play() {
-        clip.start();
+
+        try {
+            final Clip clip = (Clip) AudioSystem.getLine(new Line.Info(Clip.class));
+
+            clip.addLineListener((e) -> {
+                    if(e.getType() == LineEvent.Type.STOP) {
+                        clip.close();
+                    }
+            });
+
+            clip.open(AudioSystem.getAudioInputStream(soundFile));
+            clip.start();
+
+        } catch (LineUnavailableException e) {
+            System.out.println("Line is unavailable");
+        } catch (UnsupportedAudioFileException e) {
+            System.out.println("Sound file is not supported");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setLoop(boolean loop) {
