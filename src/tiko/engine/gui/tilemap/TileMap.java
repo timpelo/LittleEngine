@@ -1,5 +1,8 @@
 package tiko.engine.gui.tilemap;
 
+import tiko.engine.gameobject.GameObject;
+import tiko.engine.gui.Screen;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -30,7 +33,8 @@ public class TileMap {
     public void loadTiles(String path) {
 
         try{
-            BufferedReader reader = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(
+                    new FileReader(path + "tiles/map.tl"));
 
             String line;
 
@@ -67,16 +71,32 @@ public class TileMap {
                         temp = "";
                         break;
                     case 2:
-
                         try{
-                            image = ImageIO.read(new File(temp + ".png"));
+                            System.out.println(temp);
+                            image = ImageIO.read(new File(
+                                    "assets/tiles/" + temp.trim() + ".png"));
+                            temp = "";
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                 }
+
+                counter++;
             }
         }
-
+        //System.out.println(image);
         return new Tile(x, y, image);
+    }
+
+    public void drawMap(Screen screen) {
+
+        for(Tile tile: tileList) {
+            screen.addObject(new GameObject(
+                    tile.getX(),
+                    tile.getY(),
+                    tile.getImage()));
+        }
+
+        screen.getCanvas().repaint();
     }
 }

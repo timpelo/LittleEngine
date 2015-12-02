@@ -16,14 +16,17 @@ import tiko.engine.gui.tilemap.TileMap;
 public class ChessBoard extends Screen {
 
     private TileMap board;
+    DemoGame game;
 
-    public ChessBoard(ScreenManager mgr) {
+    public ChessBoard(ScreenManager mgr, DemoGame game) {
         super(mgr);
+        this.game = game;
 
         board = new TileMap(500, 500);
-
+        board.loadTiles("assets/");
+        board.drawMap(this);
+        System.out.println("Graphics" + getCanvas().getGraphics());
     }
-
 
     @Override
     public void run() {
