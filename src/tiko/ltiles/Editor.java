@@ -105,13 +105,8 @@ public class Editor extends JFrame {
         }
 
         if(success) {
-            int index = 0;
 
-            while(!(assetWheel.getValueAt(0, index) instanceof BufferedImage)) {
-                index++;
-            }
-
-            assetWheel.setValueAt(tile, 0, index);
+            assetWheel.setValueAt(tile, 0, 0);
         }
 
     }
