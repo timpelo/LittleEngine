@@ -11,10 +11,5 @@ import javax.swing.*;
  * @version 1.0
  * @since 1.8
  */
-public class LTiles{
-
-    public static void main(String[] args) {
-
-        Editor editor = new Editor("LTiles v.10");
-    }
+public class EditorArea extends JScrollPane {
 }
