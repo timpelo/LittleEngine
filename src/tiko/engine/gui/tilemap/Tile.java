@@ -1,5 +1,7 @@
 package tiko.engine.gui.tilemap;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Class short description
  * <p>
@@ -11,6 +13,13 @@ package tiko.engine.gui.tilemap;
  */
 public class Tile {
 
-    private int height;
-    private int width;
+    private int x;
+    private int y;
+    BufferedImage image;
+
+    public Tile(int x, int y, BufferedImage image) {
+        this.x = x;
+        this.y = y;
+        this.image = image;
+    }
 }
