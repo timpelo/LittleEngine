@@ -25,7 +25,7 @@ public class ChessBoard extends Screen {
         board = new TileMap(500, 500);
         board.loadTiles("assets/");
         board.drawMap(this);
-        System.out.println("Graphics" + getCanvas().getGraphics());
+
     }
 
     @Override

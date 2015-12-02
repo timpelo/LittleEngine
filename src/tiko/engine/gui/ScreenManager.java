@@ -73,7 +73,7 @@ public class ScreenManager {
                 0);
 
         screenList = new ArrayList<>();
-        frame = new JFrame("EnigmaEngine v1.0");
+        frame = new JFrame("LittleEngine v1.1");
         frame.setBounds(0, 0, width, height);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
