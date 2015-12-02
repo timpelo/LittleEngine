@@ -68,7 +68,9 @@ public class ScreenManager {
         camera = new Camera(WORLD_WIDTH,
                 WORLD_HEIGHT,
                 width,
-                height);
+                height,
+                0,
+                0);
 
         screenList = new ArrayList<>();
         frame = new JFrame("EnigmaEngine v1.0");

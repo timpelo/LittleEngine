@@ -112,5 +112,7 @@ public abstract class Screen {
      */
     public void setCamera(Camera camera) {
         this.camera = camera;
+        this.camera.moveCameraX(camera.getX());
+        this.camera.moveCameraY(camera.getY());
     }
 }

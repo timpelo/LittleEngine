@@ -47,22 +47,23 @@ public class Camera {
     /**
      * Constructor for this object.
      *
-     * @param worldSizeX   world width.
-     * @param worldSizeY   world height.
+     * @param worldSizeWidth   world width.
+     * @param worldSizeHeight   world height.
      * @param cameraWidth  camera view area with.
      * @param cameraHeight camera view area height.
      */
-    public Camera(int worldSizeX, int worldSizeY,
-                  int cameraWidth, int cameraHeight) {
+    public Camera(int worldSizeWidth, int worldSizeHeight,
+                  int cameraWidth, int cameraHeight,
+                  int positionX, int positionY) {
 
-        offsetMaxX = worldSizeX - cameraWidth;
-        offsetMaxY = worldSizeY - cameraHeight;
+        offsetMaxX = worldSizeWidth - cameraWidth;
+        offsetMaxY = worldSizeHeight - cameraHeight;
 
         this.cameraHeight = cameraHeight;
         this.cameraWidth = cameraWidth;
 
-        x = 0;
-        y = 0;
+        x = positionX;
+        y = positionY;
     }
 
     /**

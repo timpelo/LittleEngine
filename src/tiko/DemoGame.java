@@ -3,6 +3,7 @@ package tiko;
 
 
 
+import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.system.GameAdapter;
 import tiko.engine.system.sound.Sound;
@@ -26,11 +27,14 @@ public class DemoGame extends GameAdapter {
     public void run() {
 
         while(true) {
-            if(activeScreen != null) {
+
+            while(activeScreen == null) {
+                activeScreen = getScreenManager().getActiveScreen();
+            }
                 activeScreen = getScreenManager().getActiveScreen();
                 activeScreen.run();
                 doStep(10);
-            }
+
         }
 
     }
@@ -40,19 +44,19 @@ public class DemoGame extends GameAdapter {
 
         MainMenu menu = new MainMenu(getScreenManager(), this);
         GameScreen gameScreen = new GameScreen(getScreenManager(), this);
+
         soundManager.addSound("indy.wav");
         Sound bgSound = new Sound("bg.wav");
         bgSound.setLoop(true);
         soundManager.addSound(bgSound);
-
         soundManager.playSound(1);
         soundManager.playSound(0);
+
         getScreenManager().addScreen(menu);
         getScreenManager().changeScreen(0);
         getScreenManager().addScreen(gameScreen);
+        gameScreen.setCamera(new Camera(2000, 1000, 1280, 720, 0, 650));
+
         activeScreen = getScreenManager().getActiveScreen();
-
-
-
     }
 }

@@ -36,12 +36,13 @@ public class GameScreen extends Screen {
         super(screenManager);
         this.host = host;
 
-        player = new GameObject(100, 100, "assets/hat.png");
+
+        player = new GameObject(100,650, "assets/hat.png");
         bomb = new GameObject(600, 600, "assets/bomb.png");
 
 
         PhysicsBody playerBody = new PhysicsBody(
-                new Collider(new Rectangle(100, 100, 100, 100)),
+                new Collider(new Rectangle(100, 650, 100, 100)),
                 0,
                 0,
                 0,
