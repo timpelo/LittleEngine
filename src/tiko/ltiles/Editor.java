@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -122,7 +124,7 @@ public class Editor extends JFrame {
                 File file = fc.getSelectedFile();
                 tile = ImageIO.read(file);
                 success = true;
-                assetList.add(new Tile(0, 0, tile));
+                assetList.add(new Tile(0, 0, tile, file.getName()));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -140,7 +142,22 @@ public class Editor extends JFrame {
         fc.showSaveDialog(this);
 
         if(e.getSource() == save) {
+            File file = fc.getSelectedFile();
 
+            try(BufferedWriter writer = new BufferedWriter(
+                    new FileWriter(file))) {
+
+                for(Tile tile: editorArea.getTileList()) {
+                    String tileInfo = tile.getX() + ":" +
+                            tile.getY() + ":" +
+                            tile.getFilename() + ":";
+                    writer.write(tileInfo);
+                    writer.newLine();
+                }
+
+            } catch (IOException ex) {
+
+            }
         }
     }
 

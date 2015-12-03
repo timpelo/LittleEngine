@@ -85,7 +85,8 @@ public class EditorArea extends JPanel{
         Tile added = new Tile(
                 x,
                 y,
-                host.getSelectedTile().getImage()
+                host.getSelectedTile().getImage(),
+                host.getSelectedTile().getFilename()
         );
 
         tileList.add(added);
@@ -107,10 +108,6 @@ public class EditorArea extends JPanel{
 
             Point point = new Point(e.getX(), e.getY());
 
-            System.out.println("---DEBUGGIN----");
-            System.out.println(rect.getBounds());
-            System.out.println(point.getLocation());
-
             if(rect.contains(point)) {
                 selectedTile = tile;
                 found = true;
@@ -120,5 +117,10 @@ public class EditorArea extends JPanel{
             index++;
         }
 
+    }
+
+    public LinkedList<Tile> getTileList() {
+
+        return tileList;
     }
 }

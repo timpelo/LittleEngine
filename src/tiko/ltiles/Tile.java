@@ -18,6 +18,14 @@ public class Tile {
     private int x;
     private int y;
     BufferedImage image;
+    private String filename = "";
+
+    public Tile(int x, int y, BufferedImage image, String filename) {
+        this.x = x;
+        this.y = y;
+        this.image = image;
+        this.filename = filename;
+    }
 
     public Tile(int x, int y, BufferedImage image) {
         this.x = x;
@@ -47,5 +55,9 @@ public class Tile {
 
     public void setImage(BufferedImage image) {
         this.image = image;
+    }
+
+    public String getFilename() {
+        return filename;
     }
 }
