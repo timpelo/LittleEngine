@@ -34,7 +34,7 @@ public class TileMap {
 
         try{
             BufferedReader reader = new BufferedReader(
-                    new FileReader(path + "tiles/tile.map"));
+                    new FileReader(path + "tile-map/tile.map"));
 
             String line;
 
@@ -74,7 +74,7 @@ public class TileMap {
                         try{
                             System.out.println(temp);
                             image = ImageIO.read(new File(
-                                    "assets/tiles/" + temp.trim()));
+                                    "assets/tile-map/" + temp.trim()));
                             temp = "";
                         } catch (IOException e) {
                             e.printStackTrace();

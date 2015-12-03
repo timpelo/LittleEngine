@@ -1,5 +1,6 @@
 package tiko;
 
+import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
 import tiko.engine.gui.tilemap.TileMap;
@@ -21,7 +22,7 @@ public class ChessBoard extends Screen {
     public ChessBoard(ScreenManager mgr, DemoGame game) {
         super(mgr);
         this.game = game;
-
+        addObject(new GameObject(0, 0, "assets/mountain.jpg"));
         board = new TileMap(500, 500);
         board.loadTiles("assets/");
         board.drawMap(this);
