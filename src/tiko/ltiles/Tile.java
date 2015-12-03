@@ -60,4 +60,12 @@ public class Tile {
     public String getFilename() {
         return filename;
     }
+
+    public int getRealX() {
+        return x - (image.getWidth() / 2);
+    }
+
+    public int getRealY() {
+        return y - (image.getHeight() / 2);
+    }
 }

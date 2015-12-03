@@ -22,7 +22,7 @@ public class EditorArea extends JPanel{
     private Editor host;
     private LinkedList<Tile> tileList;
     private Tile selectedTile;
-    boolean moveTool = false;
+    private boolean moveTool = false;
 
     public EditorArea(Editor host) {
         this.host = host;
@@ -122,5 +122,13 @@ public class EditorArea extends JPanel{
     public LinkedList<Tile> getTileList() {
 
         return tileList;
+    }
+
+    public void setMoveTool(boolean moveTool) {
+        this.moveTool = moveTool;
+    }
+
+    public boolean getMoveTool() {
+        return moveTool;
     }
 }

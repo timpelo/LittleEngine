@@ -38,7 +38,7 @@ public class Editor extends JFrame {
     JTable assetWheel;
     LinkedList<Tile> assetList;
     int selectedTile = 0;
-    int index = 0;
+    int listIndex = 0;
 
     public Editor(String title) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -60,7 +60,7 @@ public class Editor extends JFrame {
         open.addActionListener(e -> addTile(e));
         save.addActionListener(e -> saveFile(e));
         moveTool.addActionListener(
-                e -> editorArea.moveTool = !editorArea.moveTool);
+                e -> editorArea.setMoveTool((!editorArea.getMoveTool())));
         menu.add(load);
         menu.add(save);
         menu.add(open);
@@ -131,8 +131,8 @@ public class Editor extends JFrame {
         }
 
         if(success) {
-            assetWheel.setValueAt(index, 0, 0);
-            index++;
+            assetWheel.setValueAt(listIndex + 1, 0, listIndex);
+            listIndex++;
         }
 
     }
@@ -148,8 +148,9 @@ public class Editor extends JFrame {
                     new FileWriter(file))) {
 
                 for(Tile tile: editorArea.getTileList()) {
-                    String tileInfo = tile.getX() + ":" +
-                            tile.getY() + ":" +
+                    String tileInfo =
+                            tile.getRealX() + ":" +
+                            tile.getRealY() + ":" +
                             tile.getFilename() + ":";
                     writer.write(tileInfo);
                     writer.newLine();
@@ -168,7 +169,7 @@ public class Editor extends JFrame {
             final JTable target = (JTable)e.getSource();
             final int row = target.getSelectedRow();
             final int col = target.getSelectedColumn();
-            final int index = (int)target.getValueAt(row, col);
+            final int index = (int)target.getValueAt(row, col) - 1;
             selectedTile = index;
             System.out.println("Selected tile is" + index);
         }
