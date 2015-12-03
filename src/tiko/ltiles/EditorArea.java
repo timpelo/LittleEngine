@@ -1,6 +1,9 @@
 package tiko.ltiles;
 
+import tiko.engine.gui.tilemap.*;
+
 import javax.swing.*;
+import java.util.LinkedList;
 
 /**
  * Class short description
@@ -12,4 +15,7 @@ import javax.swing.*;
  * @since 1.8
  */
 public class EditorArea extends JScrollPane {
+
+    private LinkedList<Tile> tileList;
+
 }

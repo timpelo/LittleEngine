@@ -55,9 +55,17 @@ public class Editor extends JFrame {
         menu.add(save);
         menu.add(open);
 
-        //Create tile list
+        // Create tile list.
         assets = new JScrollPane();
-        assetWheel = new JTable(1, 30);
+
+        // Create non editable table.
+        assetWheel = new JTable(1, 30) {
+            private static final long serialVersionUID = 1L;
+
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         assetWheel.setRowHeight(50);
         assets.add(assetWheel);
 
