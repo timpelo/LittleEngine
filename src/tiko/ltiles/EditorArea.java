@@ -106,7 +106,7 @@ public class EditorArea extends JPanel{
 
     private void selectTile(MouseEvent e) {
         boolean found = false;
-        int index = 0;
+        int index = tileList.size() - 1;
         while(!found && index != tileList.size()) {
             Tile tile = tileList.get(index);
             System.out.println("tile:"  + tile);
@@ -125,7 +125,7 @@ public class EditorArea extends JPanel{
                 System.out.println("selected" + selectedTile);
             }
 
-            index++;
+            index--;
         }
 
     }
