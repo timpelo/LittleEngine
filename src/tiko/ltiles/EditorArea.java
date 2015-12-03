@@ -30,11 +30,11 @@ public class EditorArea extends JPanel{
         setFocusable(true);
         addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
 
                 if (moveTool) {
-                    selectedTile = selectTile(e);
+                    selectTile(e);
                 } else {
                     addTile(e.getX(), e.getY());
                 }
@@ -48,8 +48,7 @@ public class EditorArea extends JPanel{
         addMouseMotionListener(new MouseAdapter() {
 
             public void mouseDragged(MouseEvent e) {
-                System.out.println("Mouse dragged to " + e.getX() + ", " + e
-                        .getY());
+                System.out.println(selectedTile);
                 if(selectedTile != null) {
                     selectedTile.setY(e.getY());
                     selectedTile.setX(e.getX());
@@ -93,28 +92,33 @@ public class EditorArea extends JPanel{
         repaint();
     }
 
-    private Tile selectTile(MouseEvent e) {
-        Tile result = null;
+    private void selectTile(MouseEvent e) {
         boolean found = false;
         int index = 0;
         while(!found && index != tileList.size()) {
             Tile tile = tileList.get(index);
             System.out.println("tile:"  + tile);
             Rectangle rect = new Rectangle(
-                    tile.getX(),
-                    tile.getY(),
+                    tile.getX() - (tile.getImage().getWidth() / 2),
+                    tile.getY() - (tile.getImage().getHeight() / 2),
                     tile.getImage().getWidth(),
                     tile.getImage().getHeight()
             );
 
-            if(rect.contains(e.getX(), e.getY())) {
+            Point point = new Point(e.getX(), e.getY());
+
+            System.out.println("---DEBUGGIN----");
+            System.out.println(rect.getBounds());
+            System.out.println(point.getLocation());
+
+            if(rect.contains(point)) {
                 selectedTile = tile;
                 found = true;
+                System.out.println("selected" + selectedTile);
             }
 
             index++;
         }
-        System.out.println(result);
-        return result;
+
     }
 }
