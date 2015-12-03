@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class Editor extends JFrame {
     EditorArea editorArea;
     JTable assetWheel;
     LinkedList<Tile> assetList;
+    int selectedTile = 0;
+    int index = 0;
 
     public Editor(String title) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,10 +71,17 @@ public class Editor extends JFrame {
             }
         };
         assetWheel.setRowHeight(50);
+        assetWheel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                pickTile(e);
+            }
+        });
         assets.add(assetWheel);
 
         //Create editor area
-        editorArea = new EditorArea();
+        editorArea = new EditorArea(this);
         editorArea.setBounds(0, 0, 2000, 2000);
 
         //Add all components to window
@@ -84,7 +95,7 @@ public class Editor extends JFrame {
     public void loadFile(ActionEvent e) {
 
         final JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(this);
+        fc.showOpenDialog(this);
 
         if(e.getSource() == load) {
             File file = fc.getSelectedFile();
@@ -94,7 +105,7 @@ public class Editor extends JFrame {
 
     public void addTile(ActionEvent e) {
         boolean success = false;
-        BufferedImage tile = null;
+        BufferedImage tile;
 
         final JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
@@ -113,8 +124,8 @@ public class Editor extends JFrame {
         }
 
         if(success) {
-
-            assetWheel.setValueAt(tile, 0, 0);
+            assetWheel.setValueAt(index, 0, 0);
+            index++;
         }
 
     }
@@ -126,5 +137,23 @@ public class Editor extends JFrame {
         if(e.getSource() == save) {
 
         }
+    }
+
+    public void pickTile(MouseEvent e) {
+
+        if(e.getClickCount() == 1) {
+
+            final JTable target = (JTable)e.getSource();
+            final int row = target.getSelectedRow();
+            final int col = target.getSelectedColumn();
+            final int index = (int)target.getValueAt(row, col);
+            selectedTile = index;
+            System.out.println("Selected tile is" + index);
+        }
+
+    }
+
+    public Tile getSelectedTile() {
+        return assetList.get(selectedTile);
     }
 }
