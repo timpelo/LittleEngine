@@ -68,4 +68,9 @@ public class Tile {
     public int getRealY() {
         return y - (image.getHeight() / 2);
     }
+
+    public void destroy() {
+        image.flush();
+        image = null;
+    }
 }

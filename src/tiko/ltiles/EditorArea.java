@@ -22,7 +22,9 @@ public class EditorArea extends JPanel{
     private Editor host;
     private LinkedList<Tile> tileList;
     private Tile selectedTile;
-    private boolean moveTool = false;
+
+    //0 - add, 1 - select, 2 - delete
+    private int tool= 0;
 
     public EditorArea(Editor host) {
         this.host = host;
@@ -33,10 +35,19 @@ public class EditorArea extends JPanel{
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
 
-                if (moveTool) {
-                    selectTile(e);
-                } else {
-                    addTile(e.getX(), e.getY());
+                switch (tool) {
+                    case 1:
+                        selectTile(e);
+                        break;
+                    case 2:
+                        selectTile(e);
+                        tileList.remove(selectedTile);
+                        repaint();
+                        break;
+                    case 0:
+                        addTile(e.getX(), e.getY());
+                        break;
+
                 }
             }
 
@@ -124,11 +135,7 @@ public class EditorArea extends JPanel{
         return tileList;
     }
 
-    public void setMoveTool(boolean moveTool) {
-        this.moveTool = moveTool;
-    }
-
-    public boolean getMoveTool() {
-        return moveTool;
+    public void setTool(int tool) {
+        this.tool = tool;
     }
 }
