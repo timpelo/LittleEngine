@@ -30,6 +30,7 @@ public class Editor extends JFrame {
     JButton load;
     JButton save;
     JButton open;
+    JButton moveTool;
     JScrollPane assets;
     EditorArea editorArea;
     JTable assetWheel;
@@ -51,13 +52,17 @@ public class Editor extends JFrame {
         load = new JButton("Load");
         save = new JButton("Save");
         open = new JButton("Add tile");
+        moveTool = new JButton("Move Tool");
 
         load.addActionListener(e -> loadFile(e));
         open.addActionListener(e -> addTile(e));
         save.addActionListener(e -> saveFile(e));
+        moveTool.addActionListener(
+                e -> editorArea.moveTool = !editorArea.moveTool);
         menu.add(load);
         menu.add(save);
         menu.add(open);
+        menu.add(moveTool);
 
         // Create tile list.
         assets = new JScrollPane();

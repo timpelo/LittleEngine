@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Area;
 import java.util.LinkedList;
 
 /**
@@ -21,7 +22,7 @@ public class EditorArea extends JPanel{
     private Editor host;
     private LinkedList<Tile> tileList;
     private Tile selectedTile;
-    private boolean moveTool = false;
+    boolean moveTool = false;
 
     public EditorArea(Editor host) {
         this.host = host;
@@ -32,20 +33,28 @@ public class EditorArea extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
-                if(moveTool) {
-                    selectedTile = selectTile();
+                if (moveTool) {
+                    selectedTile = selectTile(e);
                 } else {
                     addTile(e.getX(), e.getY());
                 }
             }
 
-            public void mouseMoved(MouseEvent e) {
-
-
-            }
-
             public void mouseReleased(MouseEvent e) {
+                selectedTile = null;
+            }
+        });
 
+        addMouseMotionListener(new MouseAdapter() {
+
+            public void mouseDragged(MouseEvent e) {
+                System.out.println("Mouse dragged to " + e.getX() + ", " + e
+                        .getY());
+                if(selectedTile != null) {
+                    selectedTile.setY(e.getY());
+                    selectedTile.setX(e.getX());
+                    repaint();
+                }
 
             }
         });
@@ -84,10 +93,28 @@ public class EditorArea extends JPanel{
         repaint();
     }
 
-    private Tile selectTile() {
+    private Tile selectTile(MouseEvent e) {
         Tile result = null;
+        boolean found = false;
+        int index = 0;
+        while(!found && index != tileList.size()) {
+            Tile tile = tileList.get(index);
+            System.out.println("tile:"  + tile);
+            Rectangle rect = new Rectangle(
+                    tile.getX(),
+                    tile.getY(),
+                    tile.getImage().getWidth(),
+                    tile.getImage().getHeight()
+            );
 
+            if(rect.contains(e.getX(), e.getY())) {
+                selectedTile = tile;
+                found = true;
+            }
 
+            index++;
+        }
+        System.out.println(result);
         return result;
     }
 }
