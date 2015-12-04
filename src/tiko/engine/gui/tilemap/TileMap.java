@@ -15,8 +15,9 @@ import java.util.ArrayList;
  * and drawing.
  *
  * @author Jani
- * @since 1.8
  * @version 1.0
+ * @since 1.8
+ *
  */
 public class TileMap {
 
@@ -45,11 +46,10 @@ public class TileMap {
         tileList = new ArrayList<>();
         this.width = width;
         this.height = height;
-
     }
 
     /**
-     * Load tiles for map.
+     * Loads tiles for map.
      *
      * Load tiles from file. File has to be in certain location.
      * (asset-map/assets.map). It can be done with editor.
@@ -64,7 +64,7 @@ public class TileMap {
 
             String line;
 
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 tileList.add(createTile(line));
             }
         } catch (IOException e) {
@@ -90,7 +90,7 @@ public class TileMap {
         for (int i = 0; i < tileInfo.length(); i++) {
 
             // Checks characters
-            if(tileInfo.charAt(i) != ':') {
+            if (tileInfo.charAt(i) != ':') {
                 temp += tileInfo.charAt(i);
             } else {
 
@@ -108,7 +108,7 @@ public class TileMap {
                         try{
                             System.out.println(temp);
                             image = ImageIO.read(new File(
-                                    "assets/tile-map/" + temp.trim()));
+                                    "assets/asset-map/" + temp.trim()));
                             temp = "";
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -118,7 +118,7 @@ public class TileMap {
                 counter++;
             }
         }
-        //System.out.println(image);
+        // System.out.println(image);
         return new Tile(x, y, image);
     }
 
@@ -131,12 +131,13 @@ public class TileMap {
      */
     public void drawMap(Screen screen) {
 
-        for(Tile tile: tileList) {
+        for (Tile tile: tileList) {
             screen.addObject(new GameObject(
                     tile.getX(),
                     tile.getY(),
                     tile.getImage()));
         }
+
         screen.getCanvas().repaint();
     }
 }

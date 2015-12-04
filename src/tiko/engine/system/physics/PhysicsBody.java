@@ -80,7 +80,7 @@ public class PhysicsBody {
 
         boolean result = false;
 
-        if(collider.getCollider().getBounds().intersects(
+        if (collider.getCollider().getBounds().intersects(
                 other.getCollider().getBounds()
         )) {
             result = true;
@@ -110,7 +110,7 @@ public class PhysicsBody {
     /**
      * Gets layer of this PhysicsBody.
      *
-     * @return
+     * @return layer name as String.
      */
     public String getLayer() {
         return layer;
@@ -135,9 +135,9 @@ public class PhysicsBody {
     }
 
     /**
-     * Returns if this PhysicsBody is kinetic.
+     * Sets if this PhysicsBody is kinetic.
      *
-     * @return true - kinetic, false - not kinetic.
+     * @param kinetic true - kinetic, false - not kinetic.
      */
     public void setKinetic(boolean kinetic) {
         this.kinetic = kinetic;

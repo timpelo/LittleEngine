@@ -9,11 +9,11 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Class short description
- * <p>
- * Class long descroption
+ * Sound manager to handle all sounds in game.
  *
- * @author Jani
+ * Stores and handles all sounds. Can play and add sounds to list.
+ *
+ * @author Jani Timonen
  * @version 1.0
  * @since 1.8
  */

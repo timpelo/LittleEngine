@@ -6,8 +6,8 @@ import java.awt.*;
  * Collider to check collisions.
  *
  * @author Jani Timonen
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class Collider {
 

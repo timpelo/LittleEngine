@@ -224,7 +224,7 @@ public class Editor extends JFrame {
     /**
      * Saves map to file.
      *
-     * Saves created map to file. Name of file should be asset.map so
+     * Saves created map to file. Name of file should be assets.map so
      * LittleEngine can read file and generate it to map.
      *
      * @param e ActionEvent from button.

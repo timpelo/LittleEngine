@@ -9,7 +9,7 @@ import java.io.IOException;
  * <p>
  * Class long descroption
  *
- * @author Jani
+ * @author Jani Timonen
  * @version 1.0
  * @since 1.8
  */

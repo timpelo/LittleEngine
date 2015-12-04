@@ -51,6 +51,8 @@ public class Camera {
      * @param worldSizeHeight   world height.
      * @param cameraWidth  camera view area with.
      * @param cameraHeight camera view area height.
+     * @param positionX camera x-position in world.
+     * @param positionY camera y-position in world.
      */
     public Camera(int worldSizeWidth, int worldSizeHeight,
                   int cameraWidth, int cameraHeight,

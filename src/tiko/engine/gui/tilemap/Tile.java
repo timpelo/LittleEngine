@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
  * Class contains x and y
  *
  * @author Jani
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class Tile {
 
