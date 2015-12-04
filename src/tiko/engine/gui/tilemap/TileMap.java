@@ -9,20 +9,38 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Class short description
- * <p>
- * Class long descroption
+ * AssetMap used to locate and draw assets from file.
+ *
+ * AssetMap contains all infor for assets. It contains info of position
+ * and drawing.
  *
  * @author Jani
- * @version 1.0
  * @since 1.8
+ * @version 1.0
  */
 public class TileMap {
 
+    /**
+     * Width of asset map.
+     */
     private int width;
+
+    /**
+     * Height of asset map.
+     */
     private int height;
+
+    /**
+     * List containing all assets in map.
+     */
     private ArrayList<Tile> tileList;
 
+    /**
+     * Default constructor.
+     *
+     * @param width width of map
+     * @param height height of map
+     */
     public TileMap(int width, int height) {
         tileList = new ArrayList<>();
         this.width = width;
@@ -30,11 +48,19 @@ public class TileMap {
 
     }
 
+    /**
+     * Load tiles for map.
+     *
+     * Load tiles from file. File has to be in certain location.
+     * (asset-map/assets.map). It can be done with editor.
+     *
+     * @param path path to asset-map folder.
+     */
     public void loadTiles(String path) {
 
         try{
             BufferedReader reader = new BufferedReader(
-                    new FileReader(path + "tile-map/tile.map"));
+                    new FileReader(path + "asset-map/assets.map"));
 
             String line;
 
@@ -46,6 +72,14 @@ public class TileMap {
         }
     }
 
+    /**
+     * Creates tile with given asset info String.
+     *
+     * String has to be in form x:y:image: This stores assets to list.
+     *
+     * @param tileInfo tile info in form x:y:image:.
+     * @return created Asset.
+     */
     public Tile createTile(String tileInfo) {
         int x = 0;
         int y = 0;
@@ -88,6 +122,13 @@ public class TileMap {
         return new Tile(x, y, image);
     }
 
+    /**
+     * Draws assets from list.
+     *
+     * Gets location and image of asset and draws it to screen.
+     *
+     * @param screen screen where assets will be drawn.
+     */
     public void drawMap(Screen screen) {
 
         for(Tile tile: tileList) {
@@ -96,7 +137,6 @@ public class TileMap {
                     tile.getY(),
                     tile.getImage()));
         }
-
         screen.getCanvas().repaint();
     }
 }

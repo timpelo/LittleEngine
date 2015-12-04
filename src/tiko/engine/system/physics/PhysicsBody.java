@@ -89,50 +89,110 @@ public class PhysicsBody {
         return result;
     }
 
+    /**
+     * Returns collider of PhysicsBody.
+     *
+     * @return Collider of PhysicsBody
+     */
     public Collider getCollider() {
         return collider;
     }
 
+    /**
+     * Returns sets collider of PhysicsBody.
+     *
+     * @param collider Collider of PhysicsBody
+     */
     public void setCollider(Collider collider) {
         this.collider = collider;
     }
 
+    /**
+     * Gets layer of this PhysicsBody.
+     *
+     * @return
+     */
     public String getLayer() {
         return layer;
     }
 
+    /**
+     * Sets layer of this PhysicsBody.
+     *
+     * @param layer layer of this PhysicsBody
+     */
     public void setLayer(String layer) {
         this.layer = layer;
     }
 
+    /**
+     * Returns is this PhysicsBody is kinetic.
+     *
+     * @return true - kinetic, false - not kinetic.
+     */
     public boolean isKinetic() {
         return kinetic;
     }
 
+    /**
+     * Returns if this PhysicsBody is kinetic.
+     *
+     * @return true - kinetic, false - not kinetic.
+     */
     public void setKinetic(boolean kinetic) {
         this.kinetic = kinetic;
     }
 
+    /**
+     * Returns bounciness of this PhysicsBody.
+     *
+     * @return bounciness of this PhysicsBody.
+     */
     public int getBounciness() {
         return bounciness;
     }
 
+    /**
+     * Sets bounciness of this PhysicsBody.
+     *
+     * @param bounciness bounciness of PhysicsBody.
+     */
     public void setBounciness(int bounciness) {
         this.bounciness = bounciness;
     }
 
+    /**
+     * Returns drag of this PhysicsBody.
+     *
+     * @return drag of this PhysicsBody.
+     */
     public int getDrag() {
         return drag;
     }
 
+    /**
+     * Sets drag of this PhysicsBody.
+     *
+     * @param drag drag of this PhysicsBody.
+     */
     public void setDrag(int drag) {
         this.drag = drag;
     }
 
+    /**
+     * Returns mass of this PhysicsBody.
+     *
+     * @return  mass of this PhysicsBody.
+     */
     public int getMass() {
         return mass;
     }
 
+    /**
+     * Sets mass of this PhysicsBody.
+     *
+     * @param mass mass of this PhysicsBody.
+     */
     public void setMass(int mass) {
         this.mass = mass;
     }
