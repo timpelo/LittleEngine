@@ -22,6 +22,9 @@ GENERAL INFO
     LittleEngine). It also has some minor bugs like menu bar not appearing
     before resizing of editor window.
 
+    Editor still is misusing word "tile" in many variables and class names.
+    These will be fixed for next release.
+
 PLANNED FEATURES FROM PRODUCT BACKLOG
 
     Following features where planned for this release:
@@ -48,6 +51,8 @@ PLANNED FEATURES FOR NEXT RELEASE
     - Dynamic 2d light for physics engine.
     - Enhanced 2d physics for collision detection (bouncing and gravity).
     - Animations for game objects.
+    - Fix editor variable and class names.
+    - Map editor shows names of assets.
     - Layers for collision detection.
     - Developer has access to two example games.
     - Developer has access to screencast of demo game.
