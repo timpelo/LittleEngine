@@ -1,10 +1,7 @@
 package tiko.ltiles;
 
-import org.omg.SendingContext.RunTime;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -17,31 +14,98 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 /**
- * Class short description
- * <p>
- * Class long descroption
+ * Editor contains all components for editing premade level maps for
+ * LittleEngine.
+ *
+ * Class contains all buttons and panels for editor. It has menu for loading,
+ * saving and adding assets. Menu also contains buttons for different tools.
+ * This class also handles saving. Loading premade map is not yet functional.
  *
  * @author Jani
- * @version 1.0
  * @since 1.8
+ * @version 1.0
  */
 public class Editor extends JFrame {
 
+    /**
+     * Layout manager used for editor.
+     */
     BorderLayout layout;
+
+    /**
+     * Menu panel
+     */
     JPanel menu;
+
+    /**
+     * Load button
+     */
     JButton load;
+
+    /**
+     * Save button
+     */
     JButton save;
+
+    /**
+     * Open asset button
+     */
     JButton open;
+
+    /**
+     * Move Tool button
+     */
     JButton moveTool;
+
+    /**
+     * Delete Tool button
+     */
     JButton deleteTool;
+
+    /**
+     * Add asset button
+     */
     JButton addTool;
+
+    /**
+     * Asset menu
+     */
     JScrollPane assets;
+
+    /**
+     * Editor area used for drawing.
+     */
     EditorArea editorArea;
+
+    /**
+     * Asset wheel for showing all loaded assets.
+     */
     JTable assetWheel;
+
+    /**
+     * List containing all loaded assets
+     */
     LinkedList<Tile> assetList;
+
+    /**
+     * Index of selected asset in list.
+     */
     int selectedTile = 0;
+
+    /**
+     * Amount of loaded assets.
+     */
     int listIndex = 0;
 
+    /**
+     * Default constructor.
+     *
+     * Creates all components for editor. Creates listeners for buttons. Sets
+     * asset wheel so it cannot be edited manually. Also adds titles and
+     * bounds for all components and adds all components to this frame.
+     *
+     * @param title title for editor.
+     */
     public Editor(String title) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(title);
@@ -55,7 +119,7 @@ public class Editor extends JFrame {
         menu = new JPanel();
         load = new JButton("Load");
         save = new JButton("Save");
-        open = new JButton("Add tile");
+        open = new JButton("Add asset");
         moveTool = new JButton("Move Tool");
         deleteTool = new JButton("Delete Tool");
         addTool = new JButton("Add Tool");
@@ -106,6 +170,11 @@ public class Editor extends JFrame {
         setFocusable(true);
     }
 
+    /**
+     * Loads file for premade map (NYI)
+     *
+     * @param e ActionEvent from button.
+     */
     public void loadFile(ActionEvent e) {
 
         final JFileChooser fc = new JFileChooser();
@@ -117,6 +186,14 @@ public class Editor extends JFrame {
 
     }
 
+    /**
+     * Adds asset to asset wheel and asset list.
+     *
+     * Opens file chooser. Selected asset (image file) will be added to list
+     * and asset wheel.
+     *
+     * @param e ActionEvent from button.
+     */
     public void addTile(ActionEvent e) {
         boolean success = false;
         BufferedImage tile;
@@ -144,6 +221,14 @@ public class Editor extends JFrame {
 
     }
 
+    /**
+     * Saves map to file.
+     *
+     * Saves created map to file. Name of file should be asset.map so
+     * LittleEngine can read file and generate it to map.
+     *
+     * @param e ActionEvent from button.
+     */
     public void saveFile(ActionEvent e) {
         final JFileChooser fc = new JFileChooser();
         fc.showSaveDialog(this);
@@ -169,6 +254,12 @@ public class Editor extends JFrame {
         }
     }
 
+    /**
+     * Picks asset to selected tile for editor. Selected asset is stored as
+     * index number.
+     *
+     * @param e MouseEvent from mouse click.
+     */
     public void pickTile(MouseEvent e) {
 
         if(e.getClickCount() == 1) {
@@ -180,9 +271,13 @@ public class Editor extends JFrame {
             selectedTile = index;
             System.out.println("Selected tile is" + index);
         }
-
     }
 
+    /**
+     * Returns index number of selected asset in list.
+     *
+     * @return index number of selected asset in list.
+     */
     public Tile getSelectedTile() {
         return assetList.get(selectedTile);
     }
