@@ -22,8 +22,8 @@ import java.util.LinkedList;
  * This class also handles saving. Loading premade map is not yet functional.
  *
  * @author Jani
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class Editor extends JFrame {
 
@@ -33,42 +33,42 @@ public class Editor extends JFrame {
     BorderLayout layout;
 
     /**
-     * Menu panel
+     * Menu panel.
      */
     JPanel menu;
 
     /**
-     * Load button
+     * Load button.
      */
     JButton load;
 
     /**
-     * Save button
+     * Save button.
      */
     JButton save;
 
     /**
-     * Open asset button
+     * Open asset button.
      */
     JButton open;
 
     /**
-     * Move Tool button
+     * Move Tool button.
      */
     JButton moveTool;
 
     /**
-     * Delete Tool button
+     * Delete Tool button.
      */
     JButton deleteTool;
 
     /**
-     * Add asset button
+     * Add asset button.
      */
     JButton addTool;
 
     /**
-     * Asset menu
+     * Asset menu.
      */
     JScrollPane assets;
 
@@ -83,7 +83,7 @@ public class Editor extends JFrame {
     JTable assetWheel;
 
     /**
-     * List containing all loaded assets
+     * List containing all loaded assets.
      */
     LinkedList<Tile> assetList;
 
@@ -115,7 +115,7 @@ public class Editor extends JFrame {
         setLayout(layout);
         assetList = new LinkedList<>();
 
-        //Create menu bar and buttons.
+        // Create menu bar and buttons.
         menu = new JPanel();
         load = new JButton("Load");
         save = new JButton("Save");
@@ -142,8 +142,19 @@ public class Editor extends JFrame {
 
         // Create non editable table.
         assetWheel = new JTable(1, 30) {
+
+            /**
+             * Serialization UID.
+             */
             private static final long serialVersionUID = 1L;
 
+            /**
+             * Executes when table cell is selected.
+             *
+             * @param row row of cell
+             * @param column column of cell
+             * @return true - allow editing, false - prevent editing.
+             */
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -158,11 +169,11 @@ public class Editor extends JFrame {
         });
         assets.add(assetWheel);
 
-        //Create editor area
+        // Create editor area
         editorArea = new EditorArea(this);
         editorArea.setBounds(0, 0, 2000, 2000);
 
-        //Add all components to window
+        // Add all components to window
         add(editorArea, layout.CENTER);
         add(menu, layout.NORTH);
         add(assetWheel, layout.SOUTH);
@@ -171,7 +182,7 @@ public class Editor extends JFrame {
     }
 
     /**
-     * Loads file for premade map (NYI)
+     * Loads file for premade map (NYI).
      *
      * @param e ActionEvent from button.
      */
@@ -180,10 +191,9 @@ public class Editor extends JFrame {
         final JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
 
-        if(e.getSource() == load) {
+        if (e.getSource() == load) {
             File file = fc.getSelectedFile();
         }
-
     }
 
     /**
@@ -201,8 +211,7 @@ public class Editor extends JFrame {
         final JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
 
-
-        if(e.getSource() == open) {
+        if (e.getSource() == open) {
 
             try {
                 File file = fc.getSelectedFile();
@@ -214,11 +223,10 @@ public class Editor extends JFrame {
             }
         }
 
-        if(success) {
+        if (success) {
             assetWheel.setValueAt(listIndex + 1, 0, listIndex);
             listIndex++;
         }
-
     }
 
     /**
@@ -233,13 +241,13 @@ public class Editor extends JFrame {
         final JFileChooser fc = new JFileChooser();
         fc.showSaveDialog(this);
 
-        if(e.getSource() == save) {
+        if (e.getSource() == save) {
             File file = fc.getSelectedFile();
 
             try(BufferedWriter writer = new BufferedWriter(
                     new FileWriter(file))) {
 
-                for(Tile tile: editorArea.getTileList()) {
+                for (Tile tile: editorArea.getTileList()) {
                     String tileInfo =
                             tile.getRealX() + ":" +
                             tile.getRealY() + ":" +
@@ -247,7 +255,6 @@ public class Editor extends JFrame {
                     writer.write(tileInfo);
                     writer.newLine();
                 }
-
             } catch (IOException ex) {
 
             }
@@ -255,14 +262,15 @@ public class Editor extends JFrame {
     }
 
     /**
-     * Picks asset to selected tile for editor. Selected asset is stored as
-     * index number.
+     * Picks asset to selected tile for editor.
+     *
+     * Selected asset is stored as index number.
      *
      * @param e MouseEvent from mouse click.
      */
     public void pickTile(MouseEvent e) {
 
-        if(e.getClickCount() == 1) {
+        if (e.getClickCount() == 1) {
 
             final JTable target = (JTable)e.getSource();
             final int row = target.getSelectedRow();

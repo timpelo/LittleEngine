@@ -8,9 +8,9 @@ import java.awt.image.BufferedImage;
  * Asset class contains all info about asset. It contains location and
  * texture for asset. Also have name which is used for save file.
  *
- * @author Jani
- * @since 1.8
+ * @author Jani Timonen
  * @version 1.0
+ * @since 1.8
  */
 public class Tile {
 
@@ -139,7 +139,7 @@ public class Tile {
     }
 
     /**
-     * Destroy texture of this asset.
+     * Destroys texture of this asset.
      */
     public void destroy() {
         image.flush();

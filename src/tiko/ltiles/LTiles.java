@@ -3,14 +3,14 @@ package tiko.ltiles;
 /**
  * Launcher class for editor.
  *
- * @author Jani
- * @since 1.8
+ * @author Jani Timonen
  * @version 1.0
+ * @since 1.8
  */
 public class LTiles{
 
     /**
-     * Main method for launcher.
+     * Contains main method for launching the editor.
      *
      * @param args String array containing command line parameters.
      */

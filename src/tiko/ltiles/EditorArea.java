@@ -13,8 +13,8 @@ import java.util.LinkedList;
  * selected tile. It handles tool selector for editor.
  *
  * @author Jani
- * @since 1.8
  * @version 1.0
+ * @since 1.8
  */
 public class EditorArea extends JPanel{
 
@@ -34,11 +34,11 @@ public class EditorArea extends JPanel{
     private Tile selectedTile;
 
     /**
-     * Index represents selected tool
+     * Index of selected tool.
      *
      * 0 - add, 1 - select, 2 - delete
      */
-    private int tool= 0;
+    private int tool = 0;
 
     /**
      * Default constructor.
@@ -72,10 +72,14 @@ public class EditorArea extends JPanel{
                     case 0:
                         addTile(e.getX(), e.getY());
                         break;
-
                 }
             }
 
+            /**
+             * Executes when mouse button is released.
+             *
+             * @param e MouseEvent containing data from action.
+             */
             public void mouseReleased(MouseEvent e) {
                 selectedTile = null;
             }
@@ -83,14 +87,19 @@ public class EditorArea extends JPanel{
 
         addMouseMotionListener(new MouseAdapter() {
 
+            /**
+             * Executes when mouse is dragged.
+             *
+             * @param e MouseEvent containing data from action.
+             */
             public void mouseDragged(MouseEvent e) {
                 System.out.println(selectedTile);
-                if(selectedTile != null) {
+
+                if (selectedTile != null) {
                     selectedTile.setY(e.getY());
                     selectedTile.setX(e.getX());
                     repaint();
                 }
-
             }
         });
     }
@@ -106,7 +115,8 @@ public class EditorArea extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for(Tile tile: tileList){
+        for (Tile tile: tileList) {
+
             g.drawImage(
                     tile.getImage(),
                     tile.getX() - (tile.getImage().getWidth() / 2),
@@ -157,7 +167,8 @@ public class EditorArea extends JPanel{
     private void selectTile(MouseEvent e) {
         boolean found = false;
         int index = tileList.size() - 1;
-        while(!found && index != tileList.size()) {
+
+        while (!found && index != tileList.size()) {
             Tile tile = tileList.get(index);
             System.out.println("tile:"  + tile);
             Rectangle rect = new Rectangle(
@@ -169,7 +180,7 @@ public class EditorArea extends JPanel{
 
             Point point = new Point(e.getX(), e.getY());
 
-            if(rect.contains(point)) {
+            if (rect.contains(point)) {
                 selectedTile = tile;
                 found = true;
                 System.out.println("selected" + selectedTile);
@@ -177,7 +188,6 @@ public class EditorArea extends JPanel{
 
             index--;
         }
-
     }
 
     /**
