@@ -97,7 +97,7 @@ public class GameObject implements Drawable {
     public void setX(int x) {
         this.x = x;
 
-        if(physicsBody.isPresent()) {
+        if (physicsBody.isPresent()) {
             PhysicsBody body = physicsBody.get();
             body.getCollider().setX(x);
         }
@@ -120,7 +120,7 @@ public class GameObject implements Drawable {
     public void setY(int y) {
         this.y = y;
 
-        if(physicsBody.isPresent()) {
+        if (physicsBody.isPresent()) {
             PhysicsBody body = physicsBody.get();
             body.getCollider().setY(y);
         }
@@ -183,20 +183,6 @@ public class GameObject implements Drawable {
     public void draw(Graphics2D g2, int cameraX, int cameraY) {
 
         g2.drawImage(getTexture(), getX() - cameraX, getY() - cameraY, null);
-
-
-        //PRINT FOR DEBUGGING!
-        /*System.out.println("drawn " + this + " at " + getX() + ", " + getY());
-
-        if(physicsBody.isPresent()) {
-
-            PhysicsBody body = physicsBody.get();
-
-            System.out.println("collider drawn " + this + "at "
-                    + body.getCollider().getX() + ", "
-                    + body.getCollider().getY());
-
-        }*/
     }
 
     /**
@@ -209,7 +195,7 @@ public class GameObject implements Drawable {
     }
 
     /**
-     * Return PhysicBody of object.
+     * Returns PhysicBody of object.
      *
      * @return  PhysicBody of this object
      */
@@ -218,7 +204,7 @@ public class GameObject implements Drawable {
     }
 
     /**
-     *  Destroys texture of GameObject.
+     * Destroys texture of GameObject.
      *
      * @see Drawable
      */

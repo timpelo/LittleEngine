@@ -1,7 +1,7 @@
 README
 
     File : README.txt
-    Time-stamp : 2015-11-26T20:00 Jani Timonen
+    Time-stamp : 2015-12-04T21:30 Jani Timonen
     Description: Contains general information about the product and
                  releases.
 
