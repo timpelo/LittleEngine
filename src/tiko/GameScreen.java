@@ -5,6 +5,7 @@ import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
+import tiko.engine.gui.tilemap.TileMap;
 import tiko.engine.system.InputAdapter;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
@@ -60,9 +61,13 @@ public class GameScreen extends Screen {
         player.setPhysicsBody(playerBody);
         bomb.setPhysicsBody(bombBody);
 
-        bg = new GameObject(0, 0, "assets/bg.jpg");
+        //bg = new GameObject(0, 0, "assets/bg.jpg");
 
-        addObject(bg);
+        //addObject(bg);
+        TileMap board;
+        board = new TileMap(500, 500);
+        board.loadTiles("assets/");
+        board.drawMap(this);
         addObject(player);
         addObject(bomb);
 
