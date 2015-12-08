@@ -39,7 +39,6 @@ public class DemoGame extends GameAdapter {
 
         MainMenu menu = new MainMenu(getScreenManager(), this);
         GameScreen gameScreen = new GameScreen(getScreenManager(), this);
-        ChessBoard chessBoard = new ChessBoard(getScreenManager(), this);
 
         soundManager.addSound("indy.wav");
         Sound bgSound = new Sound("bg.wav");
@@ -48,8 +47,12 @@ public class DemoGame extends GameAdapter {
         //soundManager.playSound(1);
         //soundManager.playSound(0);
 
-        getScreenManager().addScreen(chessBoard);
+
         getScreenManager().addScreen(menu);
+        getScreenManager().addScreen(gameScreen);
+        gameScreen.setCamera(new Camera(2000, 1000, 1280, 720, 0, 650));
+
+        getScreenManager().changeScreen(0);
         getScreenManager().addScreen(gameScreen);
         gameScreen.setCamera(new Camera(2000, 1000, 1280, 720, 0, 650));
 

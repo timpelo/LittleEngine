@@ -1,4 +1,4 @@
-package tiko.ltiles;
+package tiko.assetEditor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,12 +26,12 @@ public class EditorArea extends JPanel{
     /**
      * List of all assets in editor.
      */
-    private LinkedList<Tile> tileList;
+    private LinkedList<Asset> assetList;
 
     /**
      * Index of selected asset.
      */
-    private Tile selectedTile;
+    private Asset selectedAsset;
 
     /**
      * Index of selected tool.
@@ -53,7 +53,7 @@ public class EditorArea extends JPanel{
      */
     public EditorArea(Editor host) {
         this.host = host;
-        tileList = new LinkedList<>();
+        assetList = new LinkedList<>();
         setFocusable(true);
         addMouseListener(new MouseAdapter() {
             @Override
@@ -66,7 +66,7 @@ public class EditorArea extends JPanel{
                         break;
                     case 2:
                         selectTile(e);
-                        tileList.remove(selectedTile);
+                        assetList.remove(selectedAsset);
                         repaint();
                         break;
                     case 0:
@@ -81,7 +81,7 @@ public class EditorArea extends JPanel{
              * @param e MouseEvent containing data from action.
              */
             public void mouseReleased(MouseEvent e) {
-                selectedTile = null;
+                selectedAsset = null;
             }
         });
 
@@ -93,11 +93,11 @@ public class EditorArea extends JPanel{
              * @param e MouseEvent containing data from action.
              */
             public void mouseDragged(MouseEvent e) {
-                System.out.println(selectedTile);
+                System.out.println(selectedAsset);
 
-                if (selectedTile != null) {
-                    selectedTile.setY(e.getY());
-                    selectedTile.setX(e.getX());
+                if (selectedAsset != null) {
+                    selectedAsset.setY(e.getY());
+                    selectedAsset.setX(e.getX());
                     repaint();
                 }
             }
@@ -115,20 +115,20 @@ public class EditorArea extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Tile tile: tileList) {
+        for (Asset asset : assetList) {
 
             g.drawImage(
-                    tile.getImage(),
-                    tile.getX() - (tile.getImage().getWidth() / 2),
-                    tile.getY() - (tile.getImage().getHeight() / 2),
+                    asset.getImage(),
+                    asset.getX() - (asset.getImage().getWidth() / 2),
+                    asset.getY() - (asset.getImage().getHeight() / 2),
                     null);
 
             System.out.println("drawed " +
-                    tile +
+                            asset +
                     " to " +
-                    tile.getX() +
+                    asset.getX() +
                     ", " +
-                    tile.getY()
+                    asset.getY()
             );
         }
     }
@@ -145,14 +145,14 @@ public class EditorArea extends JPanel{
      */
     private void addTile(int x, int y) {
 
-        Tile added = new Tile(
+        Asset added = new Asset(
                 x,
                 y,
                 host.getSelectedTile().getImage(),
                 host.getSelectedTile().getFilename()
         );
 
-        tileList.add(added);
+        assetList.add(added);
         repaint();
     }
 
@@ -166,24 +166,24 @@ public class EditorArea extends JPanel{
      */
     private void selectTile(MouseEvent e) {
         boolean found = false;
-        int index = tileList.size() - 1;
+        int index = assetList.size() - 1;
 
-        while (!found && index != tileList.size()) {
-            Tile tile = tileList.get(index);
-            System.out.println("tile:"  + tile);
+        while (!found && index != assetList.size()) {
+            Asset asset = assetList.get(index);
+            System.out.println("asset:"  + asset);
             Rectangle rect = new Rectangle(
-                    tile.getX() - (tile.getImage().getWidth() / 2),
-                    tile.getY() - (tile.getImage().getHeight() / 2),
-                    tile.getImage().getWidth(),
-                    tile.getImage().getHeight()
+                    asset.getX() - (asset.getImage().getWidth() / 2),
+                    asset.getY() - (asset.getImage().getHeight() / 2),
+                    asset.getImage().getWidth(),
+                    asset.getImage().getHeight()
             );
 
             Point point = new Point(e.getX(), e.getY());
 
             if (rect.contains(point)) {
-                selectedTile = tile;
+                selectedAsset = asset;
                 found = true;
-                System.out.println("selected" + selectedTile);
+                System.out.println("selected" + selectedAsset);
             }
 
             index--;
@@ -195,9 +195,9 @@ public class EditorArea extends JPanel{
      *
      * @return asset list containing all assets on screen.
      */
-    public LinkedList<Tile> getTileList() {
+    public LinkedList<Asset> getAssetList() {
 
-        return tileList;
+        return assetList;
     }
 
     /**

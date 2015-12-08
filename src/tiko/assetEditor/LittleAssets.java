@@ -1,4 +1,4 @@
-package tiko.ltiles;
+package tiko.assetEditor;
 
 /**
  * Launcher class for editor.
@@ -7,7 +7,7 @@ package tiko.ltiles;
  * @version 1.0
  * @since 1.8
  */
-public class LTiles{
+public class LittleAssets {
 
     /**
      * Contains main method for launching the editor.
@@ -16,6 +16,6 @@ public class LTiles{
      */
     public static void main(String[] args) {
 
-        Editor editor = new Editor("LTiles v.10");
+        Editor editor = new Editor("LittleAssets v.10");
     }
 }

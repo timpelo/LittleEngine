@@ -3,7 +3,7 @@ package tiko;
 import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
-import tiko.engine.gui.tilemap.TileMap;
+import tiko.engine.gui.assetmap.TileMap;
 
 /**
  * Class short description

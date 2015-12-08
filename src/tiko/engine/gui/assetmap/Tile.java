@@ -1,4 +1,4 @@
-package tiko.engine.gui.tilemap;
+package tiko.engine.gui.assetmap;
 
 import java.awt.image.BufferedImage;
 
