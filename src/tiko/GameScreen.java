@@ -5,7 +5,7 @@ import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
-import tiko.engine.gui.tilemap.TileMap;
+import tiko.engine.gui.assetmap.TileMap;
 import tiko.engine.system.InputAdapter;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;

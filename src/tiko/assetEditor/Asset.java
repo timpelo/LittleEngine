@@ -1,4 +1,4 @@
-package tiko.ltiles;
+package tiko.assetEditor;
 
 import java.awt.image.BufferedImage;
 
@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  * @version 1.0
  * @since 1.8
  */
-public class Tile {
+public class Asset {
 
     /**
      * Location in x-axis.
@@ -44,7 +44,7 @@ public class Tile {
      * @param image texture for asset.
      * @param filename filename has to match with texture file name.
      */
-    public Tile(int x, int y, BufferedImage image, String filename) {
+    public Asset(int x, int y, BufferedImage image, String filename) {
         this.x = x;
         this.y = y;
         this.image = image;

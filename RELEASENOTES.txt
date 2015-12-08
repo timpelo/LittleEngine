@@ -22,7 +22,7 @@ GENERAL INFO
     LittleEngine). It also has some minor bugs like menu bar not appearing
     before resizing of editor window.
 
-    Editor still is misusing word "tile" in many variables and class names.
+    Editor still is misusing word "asset" in many variables and class names.
     These will be fixed for next release.
 
 PLANNED FEATURES FROM PRODUCT BACKLOG

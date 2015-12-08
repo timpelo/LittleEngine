@@ -1,4 +1,4 @@
-package tiko.ltiles;
+package tiko.assetEditor;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -85,7 +85,7 @@ public class Editor extends JFrame {
     /**
      * List containing all loaded assets.
      */
-    LinkedList<Tile> assetList;
+    LinkedList<Asset> assetList;
 
     /**
      * Index of selected asset in list.
@@ -217,7 +217,7 @@ public class Editor extends JFrame {
                 File file = fc.getSelectedFile();
                 tile = ImageIO.read(file);
                 success = true;
-                assetList.add(new Tile(0, 0, tile, file.getName()));
+                assetList.add(new Asset(0, 0, tile, file.getName()));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -247,11 +247,11 @@ public class Editor extends JFrame {
             try(BufferedWriter writer = new BufferedWriter(
                     new FileWriter(file))) {
 
-                for (Tile tile: editorArea.getTileList()) {
+                for (Asset asset : editorArea.getAssetList()) {
                     String tileInfo =
-                            tile.getRealX() + ":" +
-                            tile.getRealY() + ":" +
-                            tile.getFilename() + ":";
+                            asset.getRealX() + ":" +
+                            asset.getRealY() + ":" +
+                            asset.getFilename() + ":";
                     writer.write(tileInfo);
                     writer.newLine();
                 }
@@ -286,7 +286,7 @@ public class Editor extends JFrame {
      *
      * @return index number of selected asset in list.
      */
-    public Tile getSelectedTile() {
+    public Asset getSelectedTile() {
         return assetList.get(selectedTile);
     }
 }
