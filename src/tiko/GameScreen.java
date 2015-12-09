@@ -48,9 +48,9 @@ public class GameScreen extends Screen {
 
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
-                2,
+                1.5f,
                 0,
-                0.7f,
+                0.5f,
                 false
         );
 
