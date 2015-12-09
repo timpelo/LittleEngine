@@ -9,6 +9,7 @@ import tiko.engine.gui.assetmap.TileMap;
 import tiko.engine.system.InputAdapter;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
+import tiko.engine.system.physics.World;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,7 @@ public class GameScreen extends Screen {
     GameObject player;
     GameObject bg;
     GameObject bomb;
+    World world;
 
     boolean rightPressed = false;
     boolean leftPressed = false;
@@ -35,6 +37,7 @@ public class GameScreen extends Screen {
      */
     public GameScreen(ScreenManager screenManager, DemoGame host) {
         super(screenManager);
+        world = new World();
         this.host = host;
 
 
@@ -44,7 +47,7 @@ public class GameScreen extends Screen {
 
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
-                0,
+                1,
                 0,
                 0,
                 false
@@ -55,7 +58,7 @@ public class GameScreen extends Screen {
                 0,
                 0,
                 0,
-                false
+                true
         );
 
         player.setPhysicsBody(playerBody);
@@ -70,6 +73,8 @@ public class GameScreen extends Screen {
         board.drawMap(this);
         addObject(player);
         addObject(bomb);
+        world.addObject(player);
+        world.addObject(bomb);
 
         getCanvas().addKeyListener(new InputAdapter() {
             @Override
@@ -118,6 +123,7 @@ public class GameScreen extends Screen {
 
     @Override
     public void run() {
+        world.physicsStep();
 
         if(player.getPhysicsBody().get().checkCollision(bomb.getPhysicsBody()
                 .get().getCollider())) {

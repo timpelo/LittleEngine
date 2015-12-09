@@ -21,27 +21,44 @@ public class World {
         objectList = new LinkedList<>();
     }
 
-    public void addObject(GameObject body) {
-        objectList.add(body);
+    public void addObject(GameObject o) {
+        objectList.add(o);
     }
 
-    public void removeObject(PhysicsBody body) {
-        objectList.remove(body);
+    public void removeObject(GameObject o) {
+        objectList.remove(o);
     }
 
     public void physicsStep() {
-
-
+        calcGravity();
     }
 
     private void calcGravity() {
 
-        for(GameObject body: objectList) {
+        for (GameObject o: objectList) {
 
-            if(body.getPhysicsBody().isPresent()) {
+            if (o.getPhysicsBody().isPresent()) {
+                PhysicsBody body = o.getPhysicsBody().get();
 
-                /// calcl gravity
+                if(!(body.checkCollision(body.getCollider())) && !body.isKinetic()) {
+                    o.setY(o.getY() - body.getMass());
+                    System.out.println("going down!");
+                }
             }
         }
+    }
+
+    private boolean checkCollision(Collider c) {
+        boolean result = false;
+
+        for (GameObject o: objectList) {
+            PhysicsBody body = o.getPhysicsBody().get();
+
+            if (body.checkCollision(c)) {
+                result = true;
+            }
+        }
+
+        return result;
     }
 }

@@ -6,6 +6,7 @@ package tiko;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.system.GameAdapter;
+import tiko.engine.system.physics.World;
 import tiko.engine.system.sound.Sound;
 import tiko.engine.system.sound.SoundManager;
 
