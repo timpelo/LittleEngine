@@ -46,6 +46,7 @@ public class PhysicsBody {
 
     private float verticalForce;
     private float horizontalForce;
+    private boolean inAir;
 
     /**
      * Default constructor.
@@ -59,9 +60,9 @@ public class PhysicsBody {
      * @param kinetic Is this object kinetic?
      */
     public PhysicsBody(Collider collider,
-                       int mass,
-                       int drag,
-                       int bounciness,
+                       float mass,
+                       float drag,
+                       float bounciness,
                        boolean kinetic) {
 
         this.mass = mass;
@@ -73,6 +74,7 @@ public class PhysicsBody {
 
         horizontalForce = 0;
         verticalForce = 0;
+        inAir = true;
 
     }
 
@@ -227,5 +229,14 @@ public class PhysicsBody {
 
     public void setHorizontalForce(float force) {
         horizontalForce = force;
+    }
+
+    public boolean isInAir() {
+        return inAir;
+    }
+
+    public void setInAir(boolean inAir) {
+        this.inAir = inAir;
+        System.out.println(inAir);
     }
 }

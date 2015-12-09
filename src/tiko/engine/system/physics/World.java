@@ -44,31 +44,50 @@ public class World {
             if (o.getPhysicsBody().isPresent()) {
                 PhysicsBody body = o.getPhysicsBody().get();
 
-                if(!checkCollision(body) && !body.isKinetic()) {
-                    o.setY(o.getY() +
-                            (int)body.getMass() +
-                            (int)body.getForceV());
-                    body.addForce(0.05f, true);
+                o.setY(o.getY() +
+                        (int)body.getMass() *
+                        (int)body.getForceV());
+
+                if (!checkCollision(body) && !body.isKinetic()) {
+                    body.addForce(0.05f * body.getMass(), true);
                 } else {
-                    body.setVerticalForce(0f);
+
+                    if (!body.isKinetic()) {
+                        calcJump(o);
+                    }
                 }
             }
         }
     }
 
-    private void calcJump() {
+    private void calcJump(GameObject o) {
+        PhysicsBody body = o.getPhysicsBody().get();
+        body.setVerticalForce(-body.getForceV() * body.getBounciness());
+        System.out.println("JUMP!");
+        System.out.println(body.getForceV());
 
+        if (body.getForceV() < 0.25f * body.getMass() &&
+                body.getForceV() > -0.25f * body.getMass()) {
+
+            body.setVerticalForce(0f);
+        } else {
+            o.setY(o.getY() - 1);
+        }
     }
 
-    private boolean checkCollision(PhysicsBody other) {
+    private boolean checkCollision(PhysicsBody body) {
         boolean result = false;
 
         for (GameObject o: objectList) {
-            PhysicsBody body = o.getPhysicsBody().get();
+            PhysicsBody other = o.getPhysicsBody().get();
 
-            if (body.checkCollision(other.getCollider()) &&
-                    !body.equals(other)) {
+            if (other.checkCollision(body.getCollider()) &&
+                    !other.equals(body)) {
+
+                body.setInAir(false);
                 result = true;
+            } else {
+                body.setInAir(true);
             }
         }
 

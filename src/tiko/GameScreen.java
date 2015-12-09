@@ -50,7 +50,7 @@ public class GameScreen extends Screen {
                 new Collider(new Rectangle(100, 650, 100, 100)),
                 2,
                 0,
-                0,
+                0.7f,
                 false
         );
 
@@ -173,10 +173,7 @@ public class GameScreen extends Screen {
 
         }
 
-        if(upPressed) {
-
-            //player.setY(player.getY() - player.getSpeed());
-            player.setY(player.getY() - 2);
+        if(upPressed && !(player.getPhysicsBody().get().isInAir())) {
             player.getPhysicsBody().get().setVerticalForce(-5f);
             Camera camera = host.activeScreen.getCamera();
 
