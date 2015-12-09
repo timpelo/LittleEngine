@@ -22,17 +22,17 @@ public class PhysicsBody {
     /**
      * Mass used for physics calculations.
      */
-    private int mass;
+    private float mass;
 
     /**
      * Drag used for physics calculations.
      */
-    private int drag;
+    private float drag;
 
     /**
      * Bounciness used for physics calculations.
      */
-    private int bounciness;
+    private float bounciness;
 
     /**
      * Boolean to represent does different forces apply to this PhysicsBody.
@@ -43,6 +43,9 @@ public class PhysicsBody {
      * Layer of this PhysicsBody. Used for enhanced collision detection (NYI)
      */
     private String layer;
+
+    private float verticalForce;
+    private float horizontalForce;
 
     /**
      * Default constructor.
@@ -67,6 +70,10 @@ public class PhysicsBody {
         this.kinetic = kinetic;
         this.collider = collider;
         layer = "default";
+
+        horizontalForce = 0;
+        verticalForce = 0;
+
     }
 
     /**
@@ -87,6 +94,15 @@ public class PhysicsBody {
         }
 
         return result;
+    }
+
+    public void addForce(float amount, boolean direction) {
+
+        if(!direction) {
+            horizontalForce += amount;
+        } else {
+            verticalForce += amount;
+        }
     }
 
     /**
@@ -148,7 +164,7 @@ public class PhysicsBody {
      *
      * @return bounciness of this PhysicsBody.
      */
-    public int getBounciness() {
+    public float getBounciness() {
         return bounciness;
     }
 
@@ -157,7 +173,7 @@ public class PhysicsBody {
      *
      * @param bounciness bounciness of PhysicsBody.
      */
-    public void setBounciness(int bounciness) {
+    public void setBounciness(float bounciness) {
         this.bounciness = bounciness;
     }
 
@@ -166,7 +182,7 @@ public class PhysicsBody {
      *
      * @return drag of this PhysicsBody.
      */
-    public int getDrag() {
+    public float getDrag() {
         return drag;
     }
 
@@ -175,7 +191,7 @@ public class PhysicsBody {
      *
      * @param drag drag of this PhysicsBody.
      */
-    public void setDrag(int drag) {
+    public void setDrag(float drag) {
         this.drag = drag;
     }
 
@@ -184,7 +200,7 @@ public class PhysicsBody {
      *
      * @return  mass of this PhysicsBody.
      */
-    public int getMass() {
+    public float getMass() {
         return mass;
     }
 
@@ -193,7 +209,23 @@ public class PhysicsBody {
      *
      * @param mass mass of this PhysicsBody.
      */
-    public void setMass(int mass) {
+    public void setMass(float mass) {
         this.mass = mass;
+    }
+
+    public float getForceH() {
+        return horizontalForce;
+    }
+
+    public float getForceV() {
+        return verticalForce;
+    }
+
+    public void setVerticalForce(float force) {
+        verticalForce = force;
+    }
+
+    public void setHorizontalForce(float force) {
+        horizontalForce = force;
     }
 }

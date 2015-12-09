@@ -44,16 +44,20 @@ public class World {
             if (o.getPhysicsBody().isPresent()) {
                 PhysicsBody body = o.getPhysicsBody().get();
 
-                System.out.println(
-                        "collision " + checkCollision(body));
-                System.out.println("kinetic " + body.isKinetic());
-
                 if(!checkCollision(body) && !body.isKinetic()) {
-                    o.setY(o.getY() + body.getMass());
-                    System.out.println("going down!");
+                    o.setY(o.getY() +
+                            (int)body.getMass() +
+                            (int)body.getForceV());
+                    body.addForce(0.05f, true);
+                } else {
+                    body.setVerticalForce(0f);
                 }
             }
         }
+    }
+
+    private void calcJump() {
+
     }
 
     private boolean checkCollision(PhysicsBody other) {

@@ -21,7 +21,7 @@ public class GameScreen extends Screen {
 
     DemoGame host;
     GameObject player;
-    GameObject bg;
+    GameObject ground;
     GameObject bomb;
     World world;
 
@@ -43,11 +43,12 @@ public class GameScreen extends Screen {
 
         player = new GameObject(100,650, "assets/hat.png");
         bomb = new GameObject(600, 600, "assets/bomb.png");
+        ground = new GameObject(0, 900, "assets/ground.jpg");
 
 
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
-                1,
+                2,
                 0,
                 0,
                 false
@@ -61,8 +62,17 @@ public class GameScreen extends Screen {
                 true
         );
 
+        PhysicsBody groundBody = new PhysicsBody(
+                new Collider(new Rectangle(0, 900, 2000, 100)),
+                0,
+                0,
+                0,
+                true
+        );
+
         player.setPhysicsBody(playerBody);
         bomb.setPhysicsBody(bombBody);
+        ground.setPhysicsBody(groundBody);
 
         //bg = new GameObject(0, 0, "assets/bg.jpg");
 
@@ -73,8 +83,10 @@ public class GameScreen extends Screen {
         board.drawMap(this);
         addObject(player);
         addObject(bomb);
+        addObject(ground);
         world.addObject(player);
         world.addObject(bomb);
+        world.addObject(ground);
 
         getCanvas().addKeyListener(new InputAdapter() {
             @Override
@@ -163,7 +175,9 @@ public class GameScreen extends Screen {
 
         if(upPressed) {
 
-            player.setY(player.getY() - player.getSpeed());
+            //player.setY(player.getY() - player.getSpeed());
+            player.setY(player.getY() - 2);
+            player.getPhysicsBody().get().setVerticalForce(-5f);
             Camera camera = host.activeScreen.getCamera();
 
             Point cameraCenter = camera.getCenter();
