@@ -37,7 +37,7 @@ public class GameScreen extends Screen {
      */
     public GameScreen(ScreenManager screenManager, DemoGame host) {
         super(screenManager);
-        world = new World();
+        world = new World(this);
         this.host = host;
 
 

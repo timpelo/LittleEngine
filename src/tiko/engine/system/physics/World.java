@@ -1,6 +1,7 @@
 package tiko.engine.system.physics;
 
 import tiko.engine.gameobject.GameObject;
+import tiko.engine.gui.Screen;
 
 import java.util.LinkedList;
 
@@ -16,8 +17,10 @@ import java.util.LinkedList;
  */
 public class World {
     LinkedList<GameObject> objectList;
+    Screen host;
 
-    public World() {
+    public World(Screen host) {
+        this.host = host;
         objectList = new LinkedList<>();
     }
 
@@ -31,6 +34,7 @@ public class World {
 
     public void physicsStep() {
         calcGravity();
+        host.getCanvas().repaint();
     }
 
     private void calcGravity() {
@@ -40,21 +44,26 @@ public class World {
             if (o.getPhysicsBody().isPresent()) {
                 PhysicsBody body = o.getPhysicsBody().get();
 
-                if(!(body.checkCollision(body.getCollider())) && !body.isKinetic()) {
-                    o.setY(o.getY() - body.getMass());
+                System.out.println(
+                        "collision " + checkCollision(body));
+                System.out.println("kinetic " + body.isKinetic());
+
+                if(!checkCollision(body) && !body.isKinetic()) {
+                    o.setY(o.getY() + body.getMass());
                     System.out.println("going down!");
                 }
             }
         }
     }
 
-    private boolean checkCollision(Collider c) {
+    private boolean checkCollision(PhysicsBody other) {
         boolean result = false;
 
         for (GameObject o: objectList) {
             PhysicsBody body = o.getPhysicsBody().get();
 
-            if (body.checkCollision(c)) {
+            if (body.checkCollision(other.getCollider()) &&
+                    !body.equals(other)) {
                 result = true;
             }
         }
