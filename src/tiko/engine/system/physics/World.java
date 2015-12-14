@@ -75,6 +75,13 @@ public class World {
         }
     }
 
+    private void calcDrag(GameObject o) {
+        PhysicsBody body = o.getPhysicsBody().get();
+
+        //o.setX(5);
+
+    }
+
     private boolean checkCollision(PhysicsBody body) {
         boolean result = false;
 
