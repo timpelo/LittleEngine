@@ -49,7 +49,7 @@ public class GameScreen extends Screen {
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
                 1.5f,
-                0,
+                0.2f,
                 0.5f,
                 false
         );
@@ -144,7 +144,9 @@ public class GameScreen extends Screen {
 
 
         if(rightPressed) {
-            player.setX(player.getX() + player.getSpeed());
+            PhysicsBody body = player.getPhysicsBody().get();
+            body.setHorizontalForce(body.getForceH() + 0.1f);
+
             Camera camera = host.activeScreen.getCamera();
 
             Point cameraCenter = camera.getCenter();
@@ -158,8 +160,9 @@ public class GameScreen extends Screen {
         }
 
         if(leftPressed) {
+            PhysicsBody body = player.getPhysicsBody().get();
+            body.setHorizontalForce(body.getForceH() - 0.1f);
 
-            player.setX(player.getX() - player.getSpeed());
             Camera camera = host.activeScreen.getCamera();
 
             Point cameraCenter = camera.getCenter();

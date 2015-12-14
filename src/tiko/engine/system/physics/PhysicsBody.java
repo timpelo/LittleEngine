@@ -237,6 +237,5 @@ public class PhysicsBody {
 
     public void setInAir(boolean inAir) {
         this.inAir = inAir;
-        System.out.println(inAir);
     }
 }

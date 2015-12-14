@@ -45,8 +45,8 @@ public class World {
                 PhysicsBody body = o.getPhysicsBody().get();
 
                 o.setY(o.getY() +
-                        (int)body.getMass() *
-                        (int)body.getForceV());
+                        (int) body.getMass() *
+                        (int) body.getForceV());
 
                 if (!checkCollision(body) && !body.isKinetic()) {
                     body.addForce(0.05f * body.getMass(), true);
@@ -54,6 +54,7 @@ public class World {
 
                     if (!body.isKinetic()) {
                         calcJump(o);
+                        calcDrag(o);
                     }
                 }
             }
@@ -63,8 +64,6 @@ public class World {
     private void calcJump(GameObject o) {
         PhysicsBody body = o.getPhysicsBody().get();
         body.setVerticalForce(-body.getForceV() * body.getBounciness());
-        System.out.println("JUMP!");
-        System.out.println(body.getForceV());
 
         if (body.getForceV() < 0.25f * body.getMass() &&
                 body.getForceV() > -0.25f * body.getMass()) {
@@ -77,8 +76,23 @@ public class World {
 
     private void calcDrag(GameObject o) {
         PhysicsBody body = o.getPhysicsBody().get();
+        if (body.getForceH() < 0.25f * body.getMass() &&
+                body.getForceH() > -0.25f * body.getMass()) {
 
-        //o.setX(5);
+            body.setHorizontalForce(0f);
+        }
+        System.out.println(body.getForceH());
+        o.setX(o.getX() + (int)(body.getForceH() * body.getMass()));
+
+        if(body.getForceH() > 0) {
+            body.setHorizontalForce(body.getForceH() -
+                    body.getDrag());
+        }
+
+        else if(body.getForceH() < 0) {
+            body.setHorizontalForce(body.getForceH() +
+                    body.getDrag());
+        }
 
     }
 
