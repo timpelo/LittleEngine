@@ -46,7 +46,13 @@ public class World {
 
                 o.setY(o.getY() +
                         (int) body.getMass() *
-                        (int) body.getForceV());
+                                (int) body.getForceV());
+
+                o.setX(o.getX() +
+                        (int) (body.getForceH() *
+                                (int) body.getMass()));
+
+                calcDrag(o);
 
                 if (!checkCollision(body) && !body.isKinetic()) {
                     body.addForce(0.05f * body.getMass(), true);
@@ -54,7 +60,6 @@ public class World {
 
                     if (!body.isKinetic()) {
                         calcJump(o);
-                        calcDrag(o);
                     }
                 }
             }
@@ -75,23 +80,35 @@ public class World {
     }
 
     private void calcDrag(GameObject o) {
+
+        // If force is significant small, it will be set to zero.
         PhysicsBody body = o.getPhysicsBody().get();
         if (body.getForceH() < 0.25f * body.getMass() &&
                 body.getForceH() > -0.25f * body.getMass()) {
 
             body.setHorizontalForce(0f);
         }
-        System.out.println(body.getForceH());
-        o.setX(o.getX() + (int)(body.getForceH() * body.getMass()));
 
+        // If force is positive, calculate new force. Drag effects more to
+        // force if object is in air.
         if(body.getForceH() > 0) {
-            body.setHorizontalForce(body.getForceH() -
-                    body.getDrag());
+            float newForce = body.getForceH() - body.getDrag();
+
+            if(body.isInAir()) {
+                newForce = body.getForceH() - (body.getDrag() * 0.02f);
+            }
+            body.setHorizontalForce(newForce);
         }
 
+        // If force is negative, calculate new force. Drag effects more to
+        // force if object is in air.
         else if(body.getForceH() < 0) {
-            body.setHorizontalForce(body.getForceH() +
-                    body.getDrag());
+            float newForce = body.getForceH() + body.getDrag();
+
+            if(body.isInAir()) {
+                newForce = body.getForceH() + (body.getDrag() * 0.02f);
+            }
+            body.setHorizontalForce(newForce);
         }
 
     }

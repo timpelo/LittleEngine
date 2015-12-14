@@ -145,7 +145,7 @@ public class GameScreen extends Screen {
 
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
-            body.setHorizontalForce(body.getForceH() + 0.1f);
+            body.setHorizontalForce(body.getForceH() + 0.4f);
 
             Camera camera = host.activeScreen.getCamera();
 
@@ -161,7 +161,7 @@ public class GameScreen extends Screen {
 
         if(leftPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
-            body.setHorizontalForce(body.getForceH() - 0.1f);
+            body.setHorizontalForce(body.getForceH() - 0.4f);
 
             Camera camera = host.activeScreen.getCamera();
 
