@@ -13,6 +13,7 @@ import tiko.engine.system.physics.World;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Jani on 25.11.2015.
@@ -22,7 +23,6 @@ public class GameScreen extends Screen {
     DemoGame host;
     GameObject player;
     GameObject ground;
-    GameObject bomb;
     World world;
 
     boolean rightPressed = false;
@@ -41,7 +41,6 @@ public class GameScreen extends Screen {
 
 
         player = new GameObject(100,650, "assets/hat.png");
-        bomb = new GameObject(600, 600, "assets/bomb.png");
         ground = new GameObject(0, 900, "assets/ground.jpg");
 
 
@@ -55,9 +54,9 @@ public class GameScreen extends Screen {
 
         PhysicsBody bombBody = new PhysicsBody(
                 new Collider(new Rectangle(600, 600, 100, 100)),
-                0,
-                0,
-                0,
+                1f,
+                0.75f,
+                0.5f,
                 true
         );
 
@@ -69,9 +68,8 @@ public class GameScreen extends Screen {
                 true
         );
 
-        playerBody.setMaxHorizontalForce(2f);
+        playerBody.setMaxHorizontalForce(3f);
         player.setPhysicsBody(playerBody);
-        bomb.setPhysicsBody(bombBody);
         ground.setPhysicsBody(groundBody);
 
         //bg = new GameObject(0, 0, "assets/bg.jpg");
@@ -82,10 +80,8 @@ public class GameScreen extends Screen {
         board.loadTiles("assets/");
         board.drawMap(this);
         addObject(player);
-        addObject(bomb);
         addObject(ground);
         world.addObject(player);
-        world.addObject(bomb);
         world.addObject(ground);
 
         getCanvas().addKeyListener(new InputAdapter() {
@@ -123,18 +119,23 @@ public class GameScreen extends Screen {
                 }
             }
         });
+
+        getCanvas().addMouseListener(new InputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                if(e.getButton() == MouseEvent.BUTTON1) {
+                    createBall();
+                }
+            }
+        });
     }
 
     @Override
     public void run() {
         world.physicsStep();
         updateCamera();
-
-        if(player.getPhysicsBody().get().checkCollision(bomb.getPhysicsBody()
-                .get().getCollider())) {
-            System.out.println("BUM!!!");
-        }
-
 
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
@@ -162,12 +163,12 @@ public class GameScreen extends Screen {
         Point playerCenter = player.getCenter();
 
         if(playerCenter.getX() > cameraCenter.getX()) {
-            camera.moveCameraX((int)playerCenter.getX() -
+            camera.moveCameraX((int) playerCenter.getX() -
                     camera.getCameraWidth() / 2);
         }
 
         if(playerCenter.getX() < cameraCenter.getX()) {
-            camera.moveCameraX((int)playerCenter.getX() -
+            camera.moveCameraX((int) playerCenter.getX() -
                     camera.getCameraWidth() / 2);
         }
 
@@ -180,6 +181,37 @@ public class GameScreen extends Screen {
             camera.moveCameraY((int) playerCenter.getY() -
                     camera.getCameraHeight() / 2);
         }
+
+    }
+
+    public void createBall() {
+        GameObject ball = new GameObject(
+                player.getX() + player.getTexture().getWidth() + 5,
+                player.getY() - 1,
+                "assets/ball.png"
+        );
+
+        Collider collider = new Collider(
+                new Rectangle(ball.getX(),
+                        ball.getY(),
+                        ball.getTexture().getWidth(),
+                        ball.getTexture().getHeight())
+        );
+
+        PhysicsBody ballBody = new PhysicsBody(
+                collider,
+                1f,
+                0.2f,
+                0.5f,
+                false
+        );
+
+        ballBody.setHorizontalForce(7f);
+        ballBody.setVerticalForce(-5f);
+
+        ball.setPhysicsBody(ballBody);
+        addObject(ball);
+        world.addObject(ball);
 
     }
 }
