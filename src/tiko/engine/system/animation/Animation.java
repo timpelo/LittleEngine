@@ -57,5 +57,14 @@ public class Animation {
     public void update() {
         timer += Time.deltaTime();
 
+        if(timer > animationSpeed) {
+            currentIndex++;
+
+            if(currentIndex == animationList.length) {
+                currentIndex = 0;
+            }
+
+            host.setTexture(animationList[currentIndex]);
+        }
     }
 }
