@@ -68,8 +68,11 @@ public class GameScreen extends Screen {
                 true
         );
 
-        playerBody.setMaxHorizontalForce(3f);
+        playerBody.setMaxHorizontalForce(2f);
+        groundBody.setLayer("Ground");
+
         player.setPhysicsBody(playerBody);
+        bomb.setPhysicsBody(bombBody);
         ground.setPhysicsBody(groundBody);
 
         //bg = new GameObject(0, 0, "assets/bg.jpg");
@@ -166,6 +169,8 @@ public class GameScreen extends Screen {
             camera.moveCameraX((int) playerCenter.getX() -
                     camera.getCameraWidth() / 2);
         }
+            player.getPhysicsBody().get().setInAir(true);
+            host.activeScreen.getCanvas().repaint();
 
         if(playerCenter.getX() < cameraCenter.getX()) {
             camera.moveCameraX((int) playerCenter.getX() -
