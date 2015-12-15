@@ -1,5 +1,6 @@
 package tiko.engine.gameobject;
 
+import tiko.engine.system.animation.Animation;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
 
@@ -47,6 +48,8 @@ public class GameObject implements Drawable {
      */
     private Optional<PhysicsBody> physicsBody;
 
+    private Optional<Animation> animation;
+
     /**
      * Constructor for this class using BufferedImage as texture.
      *
@@ -58,6 +61,8 @@ public class GameObject implements Drawable {
         this.x = x;
         this.y = y;
         this.texture = texture;
+        physicsBody = Optional.ofNullable(null);
+        animation = Optional.ofNullable(null);
     }
 
     /**
@@ -71,6 +76,7 @@ public class GameObject implements Drawable {
         this.x = x;
         this.y = y;
         physicsBody = Optional.ofNullable(null);
+        animation = Optional.ofNullable(null);
 
         try {
             BufferedImage texture = ImageIO.read(new File(textureSource));
