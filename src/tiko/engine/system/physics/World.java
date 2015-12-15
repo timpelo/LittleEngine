@@ -67,9 +67,13 @@ public class World {
     }
 
     private void calcJump(GameObject o) {
+
+        // Calculates new vertical force according bounciness and current
+        // force of game object.
         PhysicsBody body = o.getPhysicsBody().get();
         body.setVerticalForce(-body.getForceV() * body.getBounciness());
 
+        // If force is significant small, it well be set to zero.
         if (body.getForceV() < 0.25f * body.getMass() &&
                 body.getForceV() > -0.25f * body.getMass()) {
 
@@ -121,11 +125,11 @@ public class World {
 
             if (other.checkCollision(body.getCollider()) &&
                     !other.equals(body)) {
-
-                body.setInAir(false);
                 result = true;
-            } else {
-                body.setInAir(true);
+
+                if(other.getLayer() == "Ground") {
+                    body.setInAir(false);
+                }
             }
         }
 

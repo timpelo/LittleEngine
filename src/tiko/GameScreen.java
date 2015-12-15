@@ -71,6 +71,8 @@ public class GameScreen extends Screen {
         );
 
         playerBody.setMaxHorizontalForce(2f);
+        groundBody.setLayer("Ground");
+
         player.setPhysicsBody(playerBody);
         bomb.setPhysicsBody(bombBody);
         ground.setPhysicsBody(groundBody);
@@ -137,6 +139,7 @@ public class GameScreen extends Screen {
     @Override
     public void run() {
         world.physicsStep();
+        System.out.println(player.getPhysicsBody().get().isInAir());
 
         if(player.getPhysicsBody().get().checkCollision(bomb.getPhysicsBody()
                 .get().getCollider())) {
@@ -188,6 +191,7 @@ public class GameScreen extends Screen {
                 camera.moveCameraY(camera.getY() - player.getSpeed());
             }
 
+            player.getPhysicsBody().get().setInAir(true);
             host.activeScreen.getCanvas().repaint();
 
         }
