@@ -49,7 +49,7 @@ public class GameScreen extends Screen {
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
                 1.5f,
-                0.2f,
+                0.75f,
                 0.5f,
                 false
         );
@@ -70,6 +70,7 @@ public class GameScreen extends Screen {
                 true
         );
 
+        playerBody.setMaxHorizontalForce(2f);
         player.setPhysicsBody(playerBody);
         bomb.setPhysicsBody(bombBody);
         ground.setPhysicsBody(groundBody);

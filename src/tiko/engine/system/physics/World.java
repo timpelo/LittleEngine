@@ -95,7 +95,7 @@ public class World {
             float newForce = body.getForceH() - body.getDrag();
 
             if(body.isInAir()) {
-                newForce = body.getForceH() - (body.getDrag() * 0.02f);
+                newForce = body.getForceH() - (body.getDrag() * 0.2f);
             }
             body.setHorizontalForce(newForce);
         }
@@ -106,7 +106,7 @@ public class World {
             float newForce = body.getForceH() + body.getDrag();
 
             if(body.isInAir()) {
-                newForce = body.getForceH() + (body.getDrag() * 0.02f);
+                newForce = body.getForceH() + (body.getDrag() * 0.2f);
             }
             body.setHorizontalForce(newForce);
         }

@@ -46,7 +46,10 @@ public class PhysicsBody {
 
     private float verticalForce;
     private float horizontalForce;
+    private float maxVerticalForce;
+    private float maxHorizontalForce;
     private boolean inAir;
+
 
     /**
      * Default constructor.
@@ -74,6 +77,8 @@ public class PhysicsBody {
 
         horizontalForce = 0;
         verticalForce = 0;
+        maxHorizontalForce = 0;
+        maxVerticalForce = 0;
         inAir = true;
 
     }
@@ -224,11 +229,37 @@ public class PhysicsBody {
     }
 
     public void setVerticalForce(float force) {
-        verticalForce = force;
+
+        if(maxVerticalForce == 0f) {
+            verticalForce = force;
+        } else {
+
+            if(force > maxVerticalForce) {
+                verticalForce = maxVerticalForce;
+            }
+            else if(force < -maxVerticalForce) {
+                verticalForce = -maxVerticalForce;
+            } else {
+                verticalForce = force;
+            }
+        }
     }
 
     public void setHorizontalForce(float force) {
-        horizontalForce = force;
+
+        if(maxHorizontalForce == 0f) {
+            horizontalForce = force;
+        } else {
+
+            if(force > maxHorizontalForce) {
+                horizontalForce = maxHorizontalForce;
+            }
+            else if(force < -maxHorizontalForce) {
+                horizontalForce = -maxHorizontalForce;
+            } else {
+                horizontalForce = force;
+            }
+        }
     }
 
     public boolean isInAir() {
@@ -237,5 +268,21 @@ public class PhysicsBody {
 
     public void setInAir(boolean inAir) {
         this.inAir = inAir;
+    }
+
+    public float getMaxVerticalForce() {
+        return maxVerticalForce;
+    }
+
+    public void setMaxVerticalForce(float maxVerticalForce) {
+        this.maxVerticalForce = maxVerticalForce;
+    }
+
+    public float getMaxHorizontalForce() {
+        return maxHorizontalForce;
+    }
+
+    public void setMaxHorizontalForce(float maxHorizontalForce) {
+        this.maxHorizontalForce = maxHorizontalForce;
     }
 }
