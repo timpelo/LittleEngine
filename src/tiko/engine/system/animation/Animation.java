@@ -17,10 +17,34 @@ import java.util.ArrayList;
 public class Animation {
 
     GameObject host;
-    ArrayList<BufferedImage> animationList;
-    BufferedImage spriteSheet;
+    BufferedImage[] animationList;
+    boolean playing = false;
 
     public void Animation(GameObject host) {
         this.host = host;
+    }
+
+    public void splitSheet(BufferedImage spriteSheet,
+                           int height,
+                           int width,
+                           int rows,
+                           int columns) {
+
+        animationList = new BufferedImage[rows * columns];
+
+        for (int r = 0; r < rows; r++) {
+
+            for (int c = 0; c < columns; c++) {
+
+                BufferedImage subImage = spriteSheet.getSubimage(
+                        r * width,
+                        c * height,
+                        width,
+                        height
+                );
+
+                animationList[r * columns] = subImage;
+            }
+        }
     }
 }
