@@ -1,6 +1,7 @@
 package tiko.engine.system.animation;
 
 import tiko.engine.gameobject.GameObject;
+import tiko.engine.system.Time;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -19,9 +20,15 @@ public class Animation {
     GameObject host;
     BufferedImage[] animationList;
     boolean playing = false;
+    private float animationSpeed;
+    private float timer;
+    private int currentIndex;
 
     public void Animation(GameObject host) {
         this.host = host;
+        animationSpeed = 0;
+        timer = 0;
+        currentIndex = 0;
     }
 
     public void splitSheet(BufferedImage spriteSheet,
@@ -35,7 +42,6 @@ public class Animation {
         for (int r = 0; r < rows; r++) {
 
             for (int c = 0; c < columns; c++) {
-
                 BufferedImage subImage = spriteSheet.getSubimage(
                         r * width,
                         c * height,
@@ -46,5 +52,10 @@ public class Animation {
                 animationList[r * columns] = subImage;
             }
         }
+    }
+
+    public void update() {
+        timer += Time.deltaTime();
+
     }
 }

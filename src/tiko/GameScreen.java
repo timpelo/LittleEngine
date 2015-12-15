@@ -5,8 +5,10 @@ import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
+import tiko.engine.gui.assetmap.Tile;
 import tiko.engine.gui.assetmap.TileMap;
 import tiko.engine.system.InputAdapter;
+import tiko.engine.system.Time;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
 import tiko.engine.system.physics.World;
@@ -125,6 +127,7 @@ public class GameScreen extends Screen {
 
     @Override
     public void run() {
+        Time.update();
         world.physicsStep();
         updateCamera();
 
