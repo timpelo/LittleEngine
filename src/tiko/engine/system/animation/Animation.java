@@ -22,7 +22,8 @@ public class Animation {
 
     GameObject host;
     BufferedImage[] animationList;
-    boolean playing = false;
+    boolean isPlaying = false;
+    boolean loop = false;
     private float animationSpeed;
     private float timer;
     private int currentIndex;

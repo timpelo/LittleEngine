@@ -48,14 +48,13 @@ FEATURES NOT IMPLEMENTED
 
 PLANNED FEATURES FOR NEXT RELEASE
 
-    - Dynamic 2d light for physics engine.
-    - Enhanced 2d physics for collision detection (bouncing and gravity).
-    - Animations for game objects.
-    - Fix editor variable and class names.
+    - Enhanced 2d physics for collision detection (bouncing and gravity).!!
+    - Animations for game objects.!!
+    - Fix editor variable and class names.!!
     - Map editor shows names of assets.
-    - Layers for collision detection.
-    - Developer has access to two example games.
-    - Developer has access to screencast of demo game.
+    - Layers for collision detection.!!
+    - Developer has access to two example games.!!
+    - Developer has access to screencast of demo game.!!
 
     Product backlog (PRODUCTBACKLOG.txt) has been updated to
     correspond to the new situation.
