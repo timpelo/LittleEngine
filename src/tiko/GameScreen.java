@@ -28,7 +28,6 @@ public class GameScreen extends Screen {
     boolean rightPressed = false;
     boolean leftPressed = false;
     boolean upPressed = false;
-    boolean downPressed = false;
 
     /**
      * Constructor for this class.
@@ -102,10 +101,6 @@ public class GameScreen extends Screen {
                     leftPressed = true;
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    downPressed = true;
-                }
-
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     upPressed = true;
                 }
@@ -123,10 +118,6 @@ public class GameScreen extends Screen {
                     leftPressed = false;
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    downPressed = false;
-                }
-
                 if (e.getKeyCode() == KeyEvent.VK_UP) {
                     upPressed = false;
                 }
@@ -137,6 +128,7 @@ public class GameScreen extends Screen {
     @Override
     public void run() {
         world.physicsStep();
+        updateCamera();
 
         if(player.getPhysicsBody().get().checkCollision(bomb.getPhysicsBody()
                 .get().getCollider())) {
@@ -147,65 +139,47 @@ public class GameScreen extends Screen {
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
             body.setHorizontalForce(body.getForceH() + 0.4f);
-
-            Camera camera = host.activeScreen.getCamera();
-
-            Point cameraCenter = camera.getCenter();
-            Point playerCenter = player.getCenter();
-
-            if(playerCenter.getX() > cameraCenter.getX()) {
-                camera.moveCameraX(camera.getX() + player.getSpeed());
-            }
-
             host.activeScreen.getCanvas().repaint();
         }
 
         if(leftPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
             body.setHorizontalForce(body.getForceH() - 0.4f);
-
-            Camera camera = host.activeScreen.getCamera();
-
-            Point cameraCenter = camera.getCenter();
-            Point playerCenter = player.getCenter();
-
-            if(playerCenter.getX() < cameraCenter.getX()) {
-                camera.moveCameraX(camera.getX() - player.getSpeed());
-            }
-
             host.activeScreen.getCanvas().repaint();
 
         }
 
         if(upPressed && !(player.getPhysicsBody().get().isInAir())) {
             player.getPhysicsBody().get().setVerticalForce(-5f);
-            Camera camera = host.activeScreen.getCamera();
-
-            Point cameraCenter = camera.getCenter();
-            Point playerCenter = player.getCenter();
-
-            if(playerCenter.getY() < cameraCenter.getY()) {
-                camera.moveCameraY(camera.getY() - player.getSpeed());
-            }
-
             host.activeScreen.getCanvas().repaint();
+        }
+    }
 
+    public void updateCamera() {
+        Camera camera = host.activeScreen.getCamera();
+
+        Point cameraCenter = camera.getCenter();
+        Point playerCenter = player.getCenter();
+
+        if(playerCenter.getX() > cameraCenter.getX()) {
+            camera.moveCameraX((int)playerCenter.getX() -
+                    camera.getCameraWidth() / 2);
         }
 
-        if(downPressed) {
-
-            player.setY(player.getY() + player.getSpeed());
-            Camera camera = host.activeScreen.getCamera();
-
-            Point cameraCenter = camera.getCenter();
-            Point playerCenter = player.getCenter();
-
-            if(playerCenter.getY() > cameraCenter.getY()) {
-                camera.moveCameraY(camera.getY() + player.getSpeed());
-            }
-
-            host.activeScreen.getCanvas().repaint();
-
+        if(playerCenter.getX() < cameraCenter.getX()) {
+            camera.moveCameraX((int)playerCenter.getX() -
+                    camera.getCameraWidth() / 2);
         }
+
+        if(playerCenter.getY() < cameraCenter.getY()) {
+            camera.moveCameraY((int) playerCenter.getY() -
+                    camera.getCameraHeight() / 2);
+        }
+
+        if(playerCenter.getY() < cameraCenter.getY()) {
+            camera.moveCameraY((int) playerCenter.getY() -
+                    camera.getCameraHeight() / 2);
+        }
+
     }
 }
