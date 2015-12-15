@@ -47,17 +47,9 @@ public class GameScreen extends Screen {
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
                 1.5f,
-                0.75f,
+                0.5f,
                 0.5f,
                 false
-        );
-
-        PhysicsBody bombBody = new PhysicsBody(
-                new Collider(new Rectangle(600, 600, 100, 100)),
-                1f,
-                0.75f,
-                0.5f,
-                true
         );
 
         PhysicsBody groundBody = new PhysicsBody(
@@ -68,16 +60,12 @@ public class GameScreen extends Screen {
                 true
         );
 
-        playerBody.setMaxHorizontalForce(2f);
+        playerBody.setMaxHorizontalForce(4f);
         groundBody.setLayer("Ground");
 
         player.setPhysicsBody(playerBody);
-        bomb.setPhysicsBody(bombBody);
         ground.setPhysicsBody(groundBody);
 
-        //bg = new GameObject(0, 0, "assets/bg.jpg");
-
-        //addObject(bg);
         TileMap board;
         board = new TileMap(500, 500);
         board.loadTiles("assets/");
@@ -128,7 +116,7 @@ public class GameScreen extends Screen {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
-                if(e.getButton() == MouseEvent.BUTTON1) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
                     createBall();
                 }
             }
@@ -142,19 +130,21 @@ public class GameScreen extends Screen {
 
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
-            body.setHorizontalForce(body.getForceH() + 0.4f);
+            body.setHorizontalForce(body.getForceH() + 2f);
+            System.out.println("new h-force:" + body.getForceH());
             host.activeScreen.getCanvas().repaint();
         }
 
         if(leftPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
-            body.setHorizontalForce(body.getForceH() - 0.4f);
+            body.setHorizontalForce(body.getForceH() - 2f);
             host.activeScreen.getCanvas().repaint();
 
         }
 
         if(upPressed && !(player.getPhysicsBody().get().isInAir())) {
             player.getPhysicsBody().get().setVerticalForce(-5f);
+            player.getPhysicsBody().get().setInAir(true);
             host.activeScreen.getCanvas().repaint();
         }
     }
@@ -169,8 +159,6 @@ public class GameScreen extends Screen {
             camera.moveCameraX((int) playerCenter.getX() -
                     camera.getCameraWidth() / 2);
         }
-            player.getPhysicsBody().get().setInAir(true);
-            host.activeScreen.getCanvas().repaint();
 
         if(playerCenter.getX() < cameraCenter.getX()) {
             camera.moveCameraX((int) playerCenter.getX() -
