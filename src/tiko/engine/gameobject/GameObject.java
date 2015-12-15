@@ -209,6 +209,14 @@ public class GameObject implements Drawable {
         return physicsBody;
     }
 
+    public void setAnimation(Animation animation) {
+        this.animation = Optional.ofNullable(animation);
+    }
+
+    public Optional<Animation> getAnimation() {
+        return animation;
+    }
+
     /**
      * Destroys texture of GameObject.
      *

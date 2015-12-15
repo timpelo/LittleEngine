@@ -21,5 +21,6 @@ public abstract class Time {
     public static void update() {
         deltaTime = startTime - System.nanoTime() / 10000000;
         startTime = System.nanoTime();
+        System.out.println(deltaTime);
     }
 }
