@@ -11,16 +11,17 @@ package tiko.engine.system;
  */
 public abstract class Time {
 
-    private static float deltaTime = 0;
-    private static float startTime = 0;
+    private static float delta = 0;
+    private static float last = 0;
+    private static float now;
 
     public static float deltaTime() {
-        return deltaTime;
+        return delta;
     }
 
     public static void update() {
-        deltaTime = startTime - System.nanoTime() / 10000000;
-        startTime = System.nanoTime();
-        System.out.println(deltaTime);
+        now = System.nanoTime();
+        delta = (now - last) / 1000000;
+        last = now;
     }
 }

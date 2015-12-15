@@ -50,6 +50,7 @@ public class Animation {
         }
 
         animationList = new BufferedImage[rows * columns];
+        int index = 0;
 
         for (int r = 0; r < rows; r++) {
 
@@ -67,24 +68,24 @@ public class Animation {
                         height
                 );
 
-                animationList[r * c] = subImage;
+                animationList[index] = subImage;
+                index++;
             }
         }
     }
 
     public void update() {
         timer += Time.deltaTime();
+        System.out.println(timer);
 
         if(timer > animationSpeed) {
-
 
             if(currentIndex == animationList.length) {
                 currentIndex = 0;
             }
-
-            System.out.println(currentIndex);
             host.setTexture(animationList[currentIndex]);
             currentIndex++;
+            timer = 0f;
 
         }
     }

@@ -62,7 +62,7 @@ public class GameScreen extends Screen {
                 true
         );
 
-        Animation playerAnimation = new Animation(player, 1000000f);
+        Animation playerAnimation = new Animation(player, 100f);
         playerAnimation.splitSheet(
                 "assets/hatsheet.png",
                 220 / 2,
