@@ -69,4 +69,8 @@ public class Canvas extends JPanel implements Dimensional {
     public void addObject(GameObject o) {
         objectList.add(o);
     }
+
+    public LinkedList getObjectList() {
+        return objectList;
+    }
 }

@@ -1,6 +1,7 @@
 package tiko;
 
 
+import tiko.engine.gameobject.Drawable;
 import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
@@ -129,6 +130,7 @@ public class GameScreen extends Screen {
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     createBall();
+                    host.soundManager.playSound(2);
                 }
             }
         });
@@ -212,6 +214,7 @@ public class GameScreen extends Screen {
                 false
         );
 
+        ballBody.setLayer("ball");
         ballBody.setHorizontalForce(7f);
         ballBody.setVerticalForce(-5f);
 
@@ -219,5 +222,12 @@ public class GameScreen extends Screen {
         addObject(ball);
         world.addObject(ball);
 
+    }
+
+    public void removeBalls() {
+
+        for(Object o: world.getObjectList()) {
+
+        }
     }
 }

@@ -3,6 +3,7 @@ package tiko.engine.system.physics;
 import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Screen;
 
+import javax.sound.sampled.Line;
 import java.util.LinkedList;
 
 /**
@@ -134,5 +135,9 @@ public class World {
         }
 
         return result;
+    }
+
+    public LinkedList getObjectList() {
+        return objectList;
     }
 }
