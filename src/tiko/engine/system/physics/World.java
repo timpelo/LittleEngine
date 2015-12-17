@@ -148,7 +148,7 @@ public class World {
         return result;
     }
 
-    public LinkedList getObjectList() {
+    public LinkedList<GameObject> getObjectList() {
         return objectList;
     }
 }

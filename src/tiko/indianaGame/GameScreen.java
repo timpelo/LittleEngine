@@ -1,7 +1,6 @@
-package tiko;
+package tiko.indianaGame;
 
 
-import tiko.engine.gameobject.Drawable;
 import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
@@ -28,8 +27,11 @@ public class GameScreen extends Screen {
     DemoGame host;
     GameObject player;
     GameObject ground;
+    Boss boss;
     World world;
     PhysicsLayer ballLayer;
+    private float timer = 0.00f;
+    private float last = System.nanoTime();
 
     boolean rightPressed = false;
     boolean leftPressed = false;
@@ -48,9 +50,17 @@ public class GameScreen extends Screen {
         ballLayer.ignoreLayer(ballLayer);
 
 
-        player = new GameObject(100,650, "assets/hat.png");
+        player = new GameObject(100,670, "assets/hat.png");
         ground = new GameObject(0, 900, "assets/ground.jpg");
+        boss = new Boss(1000, 650, "assets/boss.png", this);
 
+        PhysicsBody bossBody = new PhysicsBody(
+                new Collider(new Rectangle(1000, 670, 130, 240)),
+                0f,
+                0f,
+                0f,
+                true
+        );
 
         PhysicsBody playerBody = new PhysicsBody(
                 new Collider(new Rectangle(100, 650, 100, 100)),
@@ -82,6 +92,7 @@ public class GameScreen extends Screen {
         player.setPhysicsBody(playerBody);
         player.setAnimation(playerAnimation);
         ground.setPhysicsBody(groundBody);
+        boss.setPhysicsBody(bossBody);
 
         TileMap board;
         board = new TileMap(500, 500);
@@ -89,8 +100,11 @@ public class GameScreen extends Screen {
         board.drawMap(this);
         addObject(player);
         addObject(ground);
+        addObject(boss);
         world.addObject(player);
         world.addObject(ground);
+        world.addObject(boss);
+        boss.createHealthBar();
 
         getCanvas().addKeyListener(new InputAdapter() {
             @Override
@@ -144,9 +158,18 @@ public class GameScreen extends Screen {
     @Override
     public void run() {
         Time.update();
+        timer = timer + (System.nanoTime() - last);
+        last = System.nanoTime();
+
+
+        System.out.println("TIMER: " + (int)(timer / 1000000000));
         player.getAnimation().get().update();
         world.physicsStep();
         updateCamera();
+
+        if(boss != null) {
+            checkHits();
+        }
 
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
@@ -227,5 +250,34 @@ public class GameScreen extends Screen {
         addObject(ball);
         world.addObject(ball);
 
+    }
+
+    public void checkHits() {
+
+        LinkedList<GameObject> list = world.getObjectList();
+
+        for(int i = 0; i < list.size(); i++) {
+
+            GameObject o = list.get(i);
+
+            if(o.getPhysicsBody().isPresent()) {
+
+                PhysicsBody body = o.getPhysicsBody().get();
+                PhysicsBody bossB = boss.getPhysicsBody().get();
+
+                if(body.getLayer().getName().equals("ball")) {
+
+                    if(body.checkCollision(bossB.getCollider())) {
+
+                        list.remove(o);
+                        removeObject(o);
+                        o.destroyTexture();
+
+                        System.out.println("destroyed: " + o);
+                        boss.setHealth(boss.getHealth() - 1);
+                    }
+                }
+            }
+        }
     }
 }

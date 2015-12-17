@@ -73,6 +73,10 @@ public abstract class Screen {
         canvas.addObject(o);
     }
 
+    public void removeObject(GameObject o) {
+        canvas.getObjectList().remove(o);
+    }
+
     /**
      * Returns active status of this screen.
      *

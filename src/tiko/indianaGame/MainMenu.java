@@ -1,4 +1,4 @@
-package tiko;
+package tiko.indianaGame;
 
 import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Screen;

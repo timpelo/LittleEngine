@@ -1,4 +1,4 @@
-package tiko;
+package tiko.indianaGame;
 
 import tiko.engine.gui.ScreenManager;
 
