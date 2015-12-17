@@ -132,13 +132,16 @@ public class World {
 
                 result = true;
 
-                if(other.getLayer().isIgnored(body.getLayer())) {
-                    result = false;
-                }
-
                 // Sets object to not be in air if it hits ground.
                 if(other.getLayer().getName().equals("ground")) {
                     body.setInAir(false);
+                }
+
+                // Checks if collision has happened with ground. This
+                // prevents objects falling through ground layer.
+                if(other.getLayer().isIgnored(body.getLayer())
+                        && body.isInAir()) {
+                    result = false;
                 }
             }
         }
