@@ -132,8 +132,12 @@ public class World {
 
                 result = true;
 
+                if(other.getLayer().isIgnored(body.getLayer())) {
+                    result = false;
+                }
+
                 // Sets object to not be in air if it hits ground.
-                if(other.getLayer() == "Ground") {
+                if(other.getLayer().getName().equals("ground")) {
                     body.setInAir(false);
                 }
             }

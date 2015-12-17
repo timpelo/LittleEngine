@@ -12,6 +12,7 @@ import tiko.engine.system.Time;
 import tiko.engine.system.animation.Animation;
 import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
+import tiko.engine.system.physics.PhysicsLayer;
 import tiko.engine.system.physics.World;
 
 import java.awt.*;
@@ -28,6 +29,7 @@ public class GameScreen extends Screen {
     GameObject player;
     GameObject ground;
     World world;
+    PhysicsLayer ballLayer;
 
     boolean rightPressed = false;
     boolean leftPressed = false;
@@ -42,6 +44,8 @@ public class GameScreen extends Screen {
         super(screenManager);
         world = new World(this);
         this.host = host;
+        ballLayer = new PhysicsLayer("ball");
+        ballLayer.ignoreLayer(ballLayer);
 
 
         player = new GameObject(100,650, "assets/hat.png");
@@ -73,7 +77,7 @@ public class GameScreen extends Screen {
                 4);
 
         playerBody.setMaxHorizontalForce(4f);
-        groundBody.setLayer("Ground");
+        groundBody.setLayer(new PhysicsLayer("ground"));
 
         player.setPhysicsBody(playerBody);
         player.setAnimation(playerAnimation);
@@ -215,7 +219,7 @@ public class GameScreen extends Screen {
                 false
         );
 
-        ballBody.setLayer("ball");
+        ballBody.setLayer(ballLayer);
         ballBody.setHorizontalForce(7f);
         ballBody.setVerticalForce(-5f);
 

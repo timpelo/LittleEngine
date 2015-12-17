@@ -42,7 +42,7 @@ public class PhysicsBody {
     /**
      * Layer of this PhysicsBody. Used for enhanced collision detection (NYI)
      */
-    private String layer;
+    private PhysicsLayer layer;
 
     private float verticalForce;
     private float horizontalForce;
@@ -73,7 +73,7 @@ public class PhysicsBody {
         this. bounciness = bounciness;
         this.kinetic = kinetic;
         this.collider = collider;
-        layer = "default";
+        layer = new PhysicsLayer("default");
 
         horizontalForce = 0;
         verticalForce = 0;
@@ -135,7 +135,7 @@ public class PhysicsBody {
      *
      * @return layer name as String.
      */
-    public String getLayer() {
+    public PhysicsLayer getLayer() {
         return layer;
     }
 
@@ -144,7 +144,7 @@ public class PhysicsBody {
      *
      * @param layer layer of this PhysicsBody
      */
-    public void setLayer(String layer) {
+    public void setLayer(PhysicsLayer layer) {
         this.layer = layer;
     }
 
