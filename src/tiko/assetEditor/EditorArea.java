@@ -148,8 +148,8 @@ public class EditorArea extends JPanel{
         Asset added = new Asset(
                 x,
                 y,
-                host.getSelectedTile().getImage(),
-                host.getSelectedTile().getFilename()
+                host.getSelectedAsset().getImage(),
+                host.getSelectedAsset().getFilename()
         );
 
         assetList.add(added);
@@ -207,5 +207,24 @@ public class EditorArea extends JPanel{
      */
     public void setTool(int tool) {
         this.tool = tool;
+
+        switch (tool) {
+
+            case 0:
+                host.addTool.setBackground(Color.yellow);
+                host.deleteTool.setBackground(Color.lightGray);
+                host.moveTool.setBackground(Color.lightGray);
+                break;
+            case 1:
+                host.addTool.setBackground(Color.lightGray);
+                host.deleteTool.setBackground(Color.lightGray);
+                host.moveTool.setBackground(Color.yellow);
+                break;
+            case 2:
+                host.addTool.setBackground(Color.lightGray);
+                host.deleteTool.setBackground(Color.yellow);
+                host.moveTool.setBackground(Color.lightGray);
+                break;
+        }
     }
 }

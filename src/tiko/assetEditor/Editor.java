@@ -82,6 +82,8 @@ public class Editor extends JFrame {
      */
     JTable assetWheel;
 
+    JTextArea selectedAssetName;
+
     /**
      * List containing all loaded assets.
      */
@@ -90,7 +92,7 @@ public class Editor extends JFrame {
     /**
      * Index of selected asset in list.
      */
-    int selectedTile = 0;
+    int selectedAsset = 0;
 
     /**
      * Amount of loaded assets.
@@ -123,7 +125,8 @@ public class Editor extends JFrame {
         moveTool = new JButton("Move Tool");
         deleteTool = new JButton("Delete Tool");
         addTool = new JButton("Add Tool");
-
+        selectedAssetName = new JTextArea("selected");
+        selectedAssetName.setEditable(false);
         load.addActionListener(e -> loadFile(e));
         open.addActionListener(e -> addTile(e));
         save.addActionListener(e -> saveFile(e));
@@ -136,6 +139,10 @@ public class Editor extends JFrame {
         menu.add(moveTool);
         menu.add(deleteTool);
         menu.add(addTool);
+        menu.add(selectedAssetName);
+        addTool.setBackground(Color.yellow);
+        deleteTool.setBackground(Color.lightGray);
+        moveTool.setBackground(Color.lightGray);
 
         // Create tile list.
         assets = new JScrollPane();
@@ -164,7 +171,7 @@ public class Editor extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                pickTile(e);
+                pickAsset(e);
             }
         });
         assets.add(assetWheel);
@@ -269,14 +276,17 @@ public class Editor extends JFrame {
      *
      * @param e MouseEvent from mouse click.
      */
-    public void pickTile(MouseEvent e) {
+    public void pickAsset(MouseEvent e) {
 
         if (e.getClickCount() == 1) {
 
             final JTable target = (JTable)e.getSource();
             final int index = target.getSelectedColumn();
-            selectedTile = index;
+            selectedAsset = index;
             System.out.println("Selected tile is" + index);
+
+            String selected = (String)target.getValueAt(0, index);
+            selectedAssetName.setText(selected);
         }
     }
 
@@ -285,7 +295,7 @@ public class Editor extends JFrame {
      *
      * @return index number of selected asset in list.
      */
-    public Asset getSelectedTile() {
-        return assetList.get(selectedTile);
+    public Asset getSelectedAsset() {
+        return assetList.get(selectedAsset);
     }
 }
