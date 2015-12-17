@@ -41,13 +41,16 @@ public abstract class SaveManager {
     public void saveToFile(String[][] saveArray) {
 
         try {
+
             FileOutputStream save =
                     new FileOutputStream(new File(defaultDirectory + filename));
-
+            System.out.println("Stream made!");
             ObjectOutputStream out = new ObjectOutputStream(save);
-
+            System.out.println("Object Stream made!");
             SaveObject saveObject = new SaveObject(saveArray);
+            System.out.println("SaveObject done!");
             out.writeObject(saveObject);
+            System.out.println("Save successful!");
         } catch (IOException e) {
             System.out.println("Save was not successful");
             e.printStackTrace();

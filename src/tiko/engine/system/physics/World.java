@@ -40,7 +40,8 @@ public class World {
 
     private void calcGravity() {
 
-        for (GameObject o: objectList) {
+        for (int i = 0; i < objectList.size(); i++){
+            GameObject o = objectList.get(i);
 
             if (o.getPhysicsBody().isPresent()) {
                 PhysicsBody body = o.getPhysicsBody().get();

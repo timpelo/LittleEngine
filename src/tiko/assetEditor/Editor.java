@@ -210,11 +210,12 @@ public class Editor extends JFrame {
 
         final JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
+        File file = null;
 
         if (e.getSource() == open) {
 
             try {
-                File file = fc.getSelectedFile();
+                file = fc.getSelectedFile();
                 tile = ImageIO.read(file);
                 success = true;
                 assetList.add(new Asset(0, 0, tile, file.getName()));
@@ -224,7 +225,7 @@ public class Editor extends JFrame {
         }
 
         if (success) {
-            assetWheel.setValueAt(listIndex + 1, 0, listIndex);
+            assetWheel.setValueAt(file.getName(), 0, listIndex);
             listIndex++;
         }
     }
@@ -273,9 +274,7 @@ public class Editor extends JFrame {
         if (e.getClickCount() == 1) {
 
             final JTable target = (JTable)e.getSource();
-            final int row = target.getSelectedRow();
-            final int col = target.getSelectedColumn();
-            final int index = (int)target.getValueAt(row, col) - 1;
+            final int index = target.getSelectedColumn();
             selectedTile = index;
             System.out.println("Selected tile is" + index);
         }

@@ -13,6 +13,7 @@ import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
 import tiko.engine.system.physics.PhysicsLayer;
 import tiko.engine.system.physics.World;
+import tiko.engine.system.save.SaveManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -30,8 +31,10 @@ public class GameScreen extends Screen {
     Boss boss;
     World world;
     PhysicsLayer ballLayer;
+    Saver save;
     private float timer = 0.00f;
     private float last = System.nanoTime();
+    boolean END_OF_GAME = false;
 
     boolean rightPressed = false;
     boolean leftPressed = false;
@@ -48,7 +51,7 @@ public class GameScreen extends Screen {
         this.host = host;
         ballLayer = new PhysicsLayer("ball");
         ballLayer.ignoreLayer(ballLayer);
-
+        save = new Saver("score.sav");
 
         player = new GameObject(100,670, "assets/hat.png");
         ground = new GameObject(0, 900, "assets/ground.jpg");
@@ -161,20 +164,23 @@ public class GameScreen extends Screen {
         timer = timer + (System.nanoTime() - last);
         last = System.nanoTime();
 
-
-        System.out.println("TIMER: " + (int)(timer / 1000000000));
         player.getAnimation().get().update();
         world.physicsStep();
         updateCamera();
 
         if(boss != null) {
             checkHits();
+        } else {
+            if(!END_OF_GAME) {
+                System.out.println("end of game made!");
+                saveScore();
+                END_OF_GAME = true;
+            }
         }
 
         if(rightPressed) {
             PhysicsBody body = player.getPhysicsBody().get();
             body.setHorizontalForce(body.getForceH() + 2f);
-            System.out.println("new h-force:" + body.getForceH());
             host.activeScreen.getCanvas().repaint();
         }
 
@@ -182,7 +188,6 @@ public class GameScreen extends Screen {
             PhysicsBody body = player.getPhysicsBody().get();
             body.setHorizontalForce(body.getForceH() - 2f);
             host.activeScreen.getCanvas().repaint();
-
         }
 
         if(upPressed && !(player.getPhysicsBody().get().isInAir())) {
@@ -272,12 +277,23 @@ public class GameScreen extends Screen {
                         list.remove(o);
                         removeObject(o);
                         o.destroyTexture();
-
-                        System.out.println("destroyed: " + o);
                         boss.setHealth(boss.getHealth() - 1);
                     }
                 }
             }
         }
+
+        if(boss.getHealth() <= 0) {
+            boss = null;
+        }
+    }
+
+    public void saveScore() {
+
+        float saveTime = (int)(timer / 1000000000);
+        System.out.println("save time was: " + saveTime);
+        String[][] scoreArray = {{"score" , "" + saveTime}};
+
+        save.saveToFile(scoreArray);
     }
 }

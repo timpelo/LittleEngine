@@ -56,12 +56,6 @@ public class Animation {
         for (int r = 0; r < rows; r++) {
 
             for (int c = 0; c < columns; c++) {
-
-                /*System.out.println("x:" + r*height);
-                System.out.println("y:" + c*width );
-                System.out.println("width:" + width );
-                System.out.println("height:" + height);*/
-
                 BufferedImage subImage = spriteSheet.getSubimage(
                         c * width,
                         r * height,
@@ -77,7 +71,6 @@ public class Animation {
 
     public void update() {
         timer += Time.deltaTime();
-        System.out.println(timer);
 
         if(timer > animationSpeed) {
 
