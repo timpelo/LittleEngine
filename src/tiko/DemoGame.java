@@ -26,7 +26,7 @@ public class DemoGame extends GameAdapter {
 
     @Override
     public void run() {
-        doStep(100);
+        doStep(500);
         while(true) {
             doStep(10);
             activeScreen = getScreenManager().getActiveScreen();

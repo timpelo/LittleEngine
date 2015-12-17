@@ -17,6 +17,7 @@ import tiko.engine.system.physics.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 /**
  * Created by Jani on 25.11.2015.
@@ -208,9 +209,9 @@ public class GameScreen extends Screen {
 
         PhysicsBody ballBody = new PhysicsBody(
                 collider,
-                1f,
+                1.5f,
                 0.2f,
-                0.5f,
+                0.65f,
                 false
         );
 
@@ -222,12 +223,5 @@ public class GameScreen extends Screen {
         addObject(ball);
         world.addObject(ball);
 
-    }
-
-    public void removeBalls() {
-
-        for(Object o: world.getObjectList()) {
-
-        }
     }
 }

@@ -45,23 +45,25 @@ public class World {
             if (o.getPhysicsBody().isPresent()) {
                 PhysicsBody body = o.getPhysicsBody().get();
 
+                // Moves object according it forces (horizontal and vertical).
                 o.setY(o.getY() +
-                        (int) body.getMass() *
-                                (int) body.getForceV());
+                        (int)body.getMass() *
+                                (int)body.getForceV());
 
                 o.setX(o.getX() +
-                        (int) (body.getForceH() *
-                                (int) body.getMass()));
+                        (int)(body.getForceH() *
+                                (int)body.getMass()));
 
                 calcDrag(o);
 
-                if (!checkCollision(body) && !body.isKinetic()) {
-                    body.addForce(0.05f * body.getMass(), true);
-                } else {
+                // If object is not kinetic, it will get increased velocity.
+                if (!body.isKinetic()) {
+                    body.addForce(0.10f * body.getMass(), true);
+                }
 
-                    if (!body.isKinetic()) {
+                // Hitting something will calculate jump force of object.
+                if (checkCollision(body) && !body.isKinetic()) {
                         calcJump(o);
-                    }
                 }
             }
         }
@@ -124,16 +126,18 @@ public class World {
         for (GameObject o: objectList) {
             PhysicsBody other = o.getPhysicsBody().get();
 
+            // Checks if object does collide with anything else than itself.
             if (other.checkCollision(body.getCollider()) &&
                     !other.equals(body)) {
+
                 result = true;
 
+                // Sets object to not be in air if it hits ground.
                 if(other.getLayer() == "Ground") {
                     body.setInAir(false);
                 }
             }
         }
-
         return result;
     }
 
