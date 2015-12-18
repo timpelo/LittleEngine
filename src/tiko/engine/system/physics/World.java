@@ -12,33 +12,57 @@ import java.util.LinkedList;
  * Class contains all info needed for physics world. It calculates physics
  * for objects having PhysicsBody.
  *
- * @author Jani
+ * @author Jani Timonen
  * @version 1.0
  * @since 1.8
  */
 public class World {
+
+    /**
+     * List of game objects in this world.
+     */
     LinkedList<GameObject> objectList;
+
+    /**
+     * Game screen where this world is located.
+     */
     Screen host;
 
+    /**
+     * Default constructor
+     *
+     * @param host screen where this world is located.
+     */
     public World(Screen host) {
         this.host = host;
         objectList = new LinkedList<>();
     }
 
+    /**
+     * Adds game object to this world.
+     *
+     * @param o game object to this world.
+     */
     public void addObject(GameObject o) {
         objectList.add(o);
     }
 
+    /**
+     * Removes game object from this world.
+     *
+     * @param o game object from this world.
+     */
     public void removeObject(GameObject o) {
         objectList.remove(o);
     }
 
+    /**
+     * Does phobics step for world.
+     *
+     * Physics step will calculate all forces and check collision of objects.
+     * It will move their position according these forces.
+     */
     public void physicsStep() {
-        calcGravity();
-        host.getCanvas().repaint();
-    }
-
-    private void calcGravity() {
 
         for (int i = 0; i < objectList.size(); i++){
             GameObject o = objectList.get(i);
@@ -68,8 +92,15 @@ public class World {
                 }
             }
         }
+
+        host.getCanvas().repaint();
     }
 
+    /**
+     * Calculates jump force of object.
+     *
+     * @param o object which jump will be calculated.
+     */
     private void calcJump(GameObject o) {
 
         // Calculates new vertical force according bounciness and current
@@ -87,6 +118,11 @@ public class World {
         }
     }
 
+    /**
+     * Calculates drag of object. If object is in air, drag will be smaller.
+     *
+     * @param o object which drag will be calculated.
+     */
     private void calcDrag(GameObject o) {
 
         // If force is significant small, it will be set to zero.
@@ -121,6 +157,16 @@ public class World {
 
     }
 
+    /**
+     * Checks if collision has happened with any object.
+     *
+     * Collision detection uses PhysicsLayers. they can be set to ignore
+     * other layers if wanted. In this case collision will return false as
+     * result.
+     *
+     * @param body body which collision want to be checked.
+     * @return true - object does collide, false - object does not collide.
+     */
     private boolean checkCollision(PhysicsBody body) {
         boolean result = false;
 
@@ -149,6 +195,11 @@ public class World {
         return result;
     }
 
+    /**
+     * Returns object list of this world.
+     *
+     * @return object list of this world.
+     */
     public LinkedList<GameObject> getObjectList() {
         return objectList;
     }

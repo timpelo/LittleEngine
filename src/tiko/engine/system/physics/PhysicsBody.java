@@ -44,10 +44,29 @@ public class PhysicsBody {
      */
     private PhysicsLayer layer;
 
+    /**
+     * Vertical force of body.
+     */
     private float verticalForce;
+
+    /**
+     * Horizontal force of body.
+     */
     private float horizontalForce;
+
+    /**
+     * Maximum vertical force of body. Zero means unlimited force.
+     */
     private float maxVerticalForce;
+
+    /**
+     * Maximum horizontal force of body. Zero means unlimited force.
+     */
     private float maxHorizontalForce;
+
+    /**
+     * Indicates if this body is not touching ground layer.
+     */
     private boolean inAir;
 
 
@@ -103,6 +122,12 @@ public class PhysicsBody {
         return result;
     }
 
+    /**
+     * Adds force to this body.
+     *
+     * @param amount amount of force for this body.
+     * @param direction true - force for horizontal, false - force for vertical.
+     */
     public void addForce(float amount, boolean direction) {
 
         if(!direction) {
@@ -220,23 +245,41 @@ public class PhysicsBody {
         this.mass = mass;
     }
 
+    /**
+     * Returns horizontal force.
+     *
+      * @return horizontal force.
+     */
     public float getForceH() {
         return horizontalForce;
     }
 
+    /**
+     * Returns vertical force.
+     *
+     * @return vertical force.
+     */
     public float getForceV() {
         return verticalForce;
     }
 
+    /**
+     * Sets vertical force. Also checks that force won't be over maximum force.
+     *
+     * @param force new vertical force.
+     */
     public void setVerticalForce(float force) {
 
+        // Checks if force does not have limit.
         if(maxVerticalForce == 0f) {
             verticalForce = force;
         } else {
 
+            // Too high positive force will be set to max positive force.
             if(force > maxVerticalForce) {
                 verticalForce = maxVerticalForce;
             }
+            // Too high negative force will be set to max negative force.
             else if(force < -maxVerticalForce) {
                 verticalForce = -maxVerticalForce;
             } else {
@@ -245,15 +288,24 @@ public class PhysicsBody {
         }
     }
 
+    /**
+     * Sets horizontal force. Also checks that force won't be over maximum
+     * force.
+     *
+     * @param force new horizontal force.
+     */
     public void setHorizontalForce(float force) {
 
+        // Checks if force does not have limit.
         if(maxHorizontalForce == 0f) {
             horizontalForce = force;
         } else {
 
+            // Too high positive force will be set to max positive force.
             if(force > maxHorizontalForce) {
                 horizontalForce = maxHorizontalForce;
             }
+            // Too high negative force will be set to max negative force.
             else if(force < -maxHorizontalForce) {
                 horizontalForce = -maxHorizontalForce;
             } else {
@@ -262,26 +314,56 @@ public class PhysicsBody {
         }
     }
 
+    /**
+     * Returns if this object is in the air.
+     *
+     * @return true - in air, false - not in air.
+     */
     public boolean isInAir() {
         return inAir;
     }
 
+    /**
+     * Sets if this object is in the air.
+     *
+     * @param inAir true - in air, false - not in air.
+     */
     public void setInAir(boolean inAir) {
         this.inAir = inAir;
     }
 
+    /**
+     * Returns maximum vertical force.
+     *
+     * @return maximum vertical force.
+     */
     public float getMaxVerticalForce() {
         return maxVerticalForce;
     }
 
+    /**
+     * Sets maximum vertical force.
+     *
+     * @param maxVerticalForce maximum vertical force.
+     */
     public void setMaxVerticalForce(float maxVerticalForce) {
         this.maxVerticalForce = maxVerticalForce;
     }
 
+    /**
+     * Returns maximum horizontal force.
+     *
+     * @return maximum horizontal force.
+     */
     public float getMaxHorizontalForce() {
         return maxHorizontalForce;
     }
 
+    /**
+     * Sets maximum horizontal force.
+     *
+     * @param maxHorizontalForce maximum horizontal force.
+     */
     public void setMaxHorizontalForce(float maxHorizontalForce) {
         this.maxHorizontalForce = maxHorizontalForce;
     }
