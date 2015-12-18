@@ -55,6 +55,7 @@ public class Canvas extends JPanel implements Dimensional {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.black);
 
+        // Iterates object list and draws all objects to correct places.
         for (int i = 0; i < objectList.size(); i++) {
 
             Drawable o = objectList.get(i);

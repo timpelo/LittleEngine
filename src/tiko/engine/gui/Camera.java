@@ -58,9 +58,12 @@ public class Camera {
                   int cameraWidth, int cameraHeight,
                   int positionX, int positionY) {
 
+        // Offsets are used to check that camera won't move over edges of
+        // game world.
         offsetMaxX = worldSizeWidth - cameraWidth;
         offsetMaxY = worldSizeHeight - cameraHeight;
 
+        // Height and width are used to specify viewport of camera.
         this.cameraHeight = cameraHeight;
         this.cameraWidth = cameraWidth;
 
@@ -78,6 +81,7 @@ public class Camera {
      */
     public void moveCameraX(int x) {
 
+        // Moves camera but checks that it won't move over given offset.
         if (x < 0) {
             this.x = 0;
         } else if (x > offsetMaxX) {
@@ -96,6 +100,8 @@ public class Camera {
      * @param y new position of camera in x-axis.
      */
     public void moveCameraY(int y) {
+
+        // Moves camera but checks that it won't move over given offset.
         if (y < 0) {
             this.y = 0;
         } else if (y > offsetMaxY) {

@@ -41,6 +41,8 @@ public abstract class Screen {
      */
     public Screen(ScreenManager screenManager) {
         this.screenManager = screenManager;
+
+        // Creates new canvas according frame size.
         canvas = new Canvas(this);
         canvas.setBounds(0, 0,
                 screenManager.getFrame().getWidth(),

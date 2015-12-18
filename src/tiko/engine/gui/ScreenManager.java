@@ -73,11 +73,18 @@ public class ScreenManager {
                 0);
 
         screenList = new ArrayList<>();
-        frame = new JFrame("LittleEngine v1.1");
+
+        // Gives frame a title.
+        frame = new JFrame("LittleEngine v1.3");
+        // Sets bounds for frame.
         frame.setBounds(0, 0, width, height);
+        // Sets frame to middle of the screen.
         frame.setLocationRelativeTo(null);
+        // Makes frame non resizable.
         frame.setResizable(false);
+        // Makes frame visible.
         frame.setVisible(true);
+        // Determinate what happens after close button of frame is pressed.
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         game.begin(this);
