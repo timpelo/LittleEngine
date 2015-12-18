@@ -44,11 +44,8 @@ public abstract class SaveManager {
 
             FileOutputStream save =
                     new FileOutputStream(new File(defaultDirectory + filename));
-            System.out.println("Stream made!");
             ObjectOutputStream out = new ObjectOutputStream(save);
-            System.out.println("Object Stream made!");
             SaveObject saveObject = new SaveObject(saveArray);
-            System.out.println("SaveObject done!");
             out.writeObject(saveObject);
             System.out.println("Save successful!");
         } catch (IOException e) {
@@ -72,9 +69,10 @@ public abstract class SaveManager {
                     new FileInputStream(new File(defaultDirectory + filename));
 
             ObjectInputStream in = new ObjectInputStream(load);
-
+            // Gets object from input stream.
             Object obj = in.readObject();
 
+            // Converts object to SaveObject and loads data from it.
             if (obj instanceof SaveObject) {
                 SaveObject loadObject = (SaveObject) obj;
                 loadArray = loadObject.toArray();

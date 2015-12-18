@@ -207,7 +207,9 @@ public class EditorArea extends JPanel{
     }
 
     /**
-     * Sets selected tool for editor. Also changes colors of the buttons to
+     * Sets selected tool for editor.
+     *
+     * Also changes colors of the buttons to
      * show what tool is currently selected (with yellow color).
      *
      * @param tool selected tool: 0 - add, 1 - select, 2 - delete

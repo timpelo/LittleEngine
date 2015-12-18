@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * AssetMap used to locate and draw assets from file.
  *
- * AssetMap contains all infor for assets. It contains info of position
+ * AssetMap contains all info for assets. It contains info of position
  * and drawing.
  *
  * @author Jani
@@ -118,6 +118,7 @@ public class AssetMap {
                 counter++;
             }
         }
+
         return new Asset(x, y, image);
     }
 

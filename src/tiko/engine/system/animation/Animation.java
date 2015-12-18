@@ -122,7 +122,7 @@ public class Animation {
      */
     public void update() {
 
-        if(isPlaying) {
+        if (isPlaying) {
             timer += Time.deltaTime();
 
             if (timer > animationSpeed) {

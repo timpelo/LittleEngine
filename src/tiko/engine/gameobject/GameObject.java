@@ -48,6 +48,9 @@ public class GameObject implements Drawable {
      */
     private Optional<PhysicsBody> physicsBody;
 
+    /**
+     * Optional Animation for this object.
+     */
     private Optional<Animation> animation;
 
     /**

@@ -73,6 +73,11 @@ public class Canvas extends JPanel implements Dimensional {
         objectList.add(o);
     }
 
+    /**
+     * Returns object list of this game screen.
+     *
+     * @return object list of this game screen.
+     */
     public LinkedList getObjectList() {
         return objectList;
     }

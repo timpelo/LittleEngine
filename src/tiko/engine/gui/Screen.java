@@ -75,6 +75,11 @@ public abstract class Screen {
         canvas.addObject(o);
     }
 
+    /**
+     * Removes object from this game screen.
+     *
+     * @param o object from this game screen.
+     */
     public void removeObject(GameObject o) {
         canvas.getObjectList().remove(o);
     }

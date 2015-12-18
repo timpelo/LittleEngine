@@ -29,7 +29,7 @@ public class World {
     Screen host;
 
     /**
-     * Default constructor
+     * Default constructor.
      *
      * @param host screen where this world is located.
      */
@@ -64,7 +64,7 @@ public class World {
      */
     public void physicsStep() {
 
-        for (int i = 0; i < objectList.size(); i++){
+        for (int i = 0; i < objectList.size(); i++) {
             GameObject o = objectList.get(i);
 
             if (o.getPhysicsBody().isPresent()) {
@@ -127,6 +127,7 @@ public class World {
 
         // If force is significant small, it will be set to zero.
         PhysicsBody body = o.getPhysicsBody().get();
+
         if (body.getForceH() < 0.25f * body.getMass() &&
                 body.getForceH() > -0.25f * body.getMass()) {
 
@@ -135,26 +136,25 @@ public class World {
 
         // If force is positive, calculate new force. Drag effects more to
         // force if object is in air.
-        if(body.getForceH() > 0) {
+        if (body.getForceH() > 0) {
             float newForce = body.getForceH() - body.getDrag();
 
-            if(body.isInAir()) {
+            if (body.isInAir()) {
                 newForce = body.getForceH() - (body.getDrag() * 0.2f);
             }
-            body.setHorizontalForce(newForce);
-        }
 
-        // If force is negative, calculate new force. Drag effects more to
-        // force if object is in air.
-        else if(body.getForceH() < 0) {
+            body.setHorizontalForce(newForce);
+        } else {
+            // If force is negative, calculate new force. Drag effects more to
+            // force if object is in air.
             float newForce = body.getForceH() + body.getDrag();
 
-            if(body.isInAir()) {
+            if (body.isInAir()) {
                 newForce = body.getForceH() + (body.getDrag() * 0.2f);
             }
+
             body.setHorizontalForce(newForce);
         }
-
     }
 
     /**
@@ -180,18 +180,19 @@ public class World {
                 result = true;
 
                 // Sets object to not be in air if it hits ground.
-                if(other.getLayer().getName().equals("ground")) {
+                if (other.getLayer().getName().equals("ground")) {
                     body.setInAir(false);
                 }
 
                 // Checks if collision has happened with ground. This
                 // prevents objects falling through ground layer.
-                if(other.getLayer().isIgnored(body.getLayer())
+                if (other.getLayer().isIgnored(body.getLayer())
                         && body.isInAir()) {
                     result = false;
                 }
             }
         }
+
         return result;
     }
 

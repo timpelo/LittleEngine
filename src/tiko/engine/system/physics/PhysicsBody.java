@@ -69,7 +69,6 @@ public class PhysicsBody {
      */
     private boolean inAir;
 
-
     /**
      * Default constructor.
      *
@@ -99,7 +98,6 @@ public class PhysicsBody {
         maxHorizontalForce = 0;
         maxVerticalForce = 0;
         inAir = true;
-
     }
 
     /**
@@ -130,7 +128,7 @@ public class PhysicsBody {
      */
     public void addForce(float amount, boolean direction) {
 
-        if(!direction) {
+        if (!direction) {
             horizontalForce += amount;
         } else {
             verticalForce += amount;
@@ -248,7 +246,7 @@ public class PhysicsBody {
     /**
      * Returns horizontal force.
      *
-      * @return horizontal force.
+     * @return horizontal force.
      */
     public float getForceH() {
         return horizontalForce;
@@ -271,16 +269,15 @@ public class PhysicsBody {
     public void setVerticalForce(float force) {
 
         // Checks if force does not have limit.
-        if(maxVerticalForce == 0f) {
+        if (maxVerticalForce == 0f) {
             verticalForce = force;
         } else {
 
             // Too high positive force will be set to max positive force.
-            if(force > maxVerticalForce) {
+            if (force > maxVerticalForce) {
                 verticalForce = maxVerticalForce;
-            }
-            // Too high negative force will be set to max negative force.
-            else if(force < -maxVerticalForce) {
+            } else if (force < -maxVerticalForce) {
+                // Too high negative force will be set to max negative force.
                 verticalForce = -maxVerticalForce;
             } else {
                 verticalForce = force;
@@ -289,24 +286,24 @@ public class PhysicsBody {
     }
 
     /**
-     * Sets horizontal force. Also checks that force won't be over maximum
-     * force.
+     * Sets horizontal force.
+     *
+     * Also checks that force won't be over maximum force.
      *
      * @param force new horizontal force.
      */
     public void setHorizontalForce(float force) {
 
         // Checks if force does not have limit.
-        if(maxHorizontalForce == 0f) {
+        if (maxHorizontalForce == 0f) {
             horizontalForce = force;
         } else {
 
             // Too high positive force will be set to max positive force.
-            if(force > maxHorizontalForce) {
+            if (force > maxHorizontalForce) {
                 horizontalForce = maxHorizontalForce;
-            }
-            // Too high negative force will be set to max negative force.
-            else if(force < -maxHorizontalForce) {
+            } else if (force < -maxHorizontalForce) {
+                // Too high negative force will be set to max negative force.
                 horizontalForce = -maxHorizontalForce;
             } else {
                 horizontalForce = force;

@@ -27,6 +27,7 @@ public class GameScreen extends Screen {
     DemoGame host;
     GameObject player;
     GameObject ground;
+    Lava lava;
     Boss boss;
     World world;
     PhysicsLayer ballLayer;
@@ -55,6 +56,7 @@ public class GameScreen extends Screen {
         player = new GameObject(100,670, "assets/hat.png");
         ground = new GameObject(0, 900, "assets/ground.jpg");
         boss = new Boss(1000, 650, "assets/boss.png", this);
+        lava = new Lava(100, 890, "assets/lava.png");
 
         PhysicsBody bossBody = new PhysicsBody(
                 new Collider(new Rectangle(1000, 670, 130, 240)),
@@ -103,6 +105,7 @@ public class GameScreen extends Screen {
         addObject(player);
         addObject(ground);
         addObject(boss);
+        addObject(lava);
         world.addObject(player);
         world.addObject(ground);
         world.addObject(boss);
@@ -165,6 +168,7 @@ public class GameScreen extends Screen {
 
         player.getAnimation().get().update();
         world.physicsStep();
+        lava.moveLava();
         updateCamera();
 
         if(boss != null) {

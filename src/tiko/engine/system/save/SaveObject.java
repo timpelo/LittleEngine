@@ -36,6 +36,7 @@ public class SaveObject implements Serializable {
 
         for (int i = 0; i < saveList.length; i++) {
 
+            // Creates info in correct format for save object.
             String saveString = saveList[i][0] + ":" + saveList[i][1];
             list.add(saveString);
         }
@@ -51,11 +52,13 @@ public class SaveObject implements Serializable {
         int index = 0;
 
         for (String s : list) {
+            // Sets empty values.
             String header = "";
             String value;
             String temp = "";
             s.trim();
 
+            // Splits info from position of mark (:).
             for (int i = 0; i < s.length(); i++) {
 
                 if (s.charAt(i) == ':') {
@@ -66,6 +69,7 @@ public class SaveObject implements Serializable {
                 }
             }
 
+            // Adds generated value to array.
             value = temp;
             result[index][0] = header;
             result[index][1] = value;
