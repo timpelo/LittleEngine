@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * selected tile. It handles tool selector for editor.
  *
  * @author Jani
- * @version 1.0
+ * @version 1.3
  * @since 1.8
  */
 public class EditorArea extends JPanel{
@@ -56,21 +56,28 @@ public class EditorArea extends JPanel{
         assetList = new LinkedList<>();
         setFocusable(true);
         addMouseListener(new MouseAdapter() {
+
+            /**
+             * Executes when mouse button is pressed.
+             *
+             * @param e MouseEvent containing data from action.
+             */
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
 
+                // Changes tool to correspond pressed tool button.
                 switch (tool) {
                     case 1:
-                        selectTile(e);
+                        selectAsset(e);
                         break;
                     case 2:
-                        selectTile(e);
+                        selectAsset(e);
                         assetList.remove(selectedAsset);
                         repaint();
                         break;
                     case 0:
-                        addTile(e.getX(), e.getY());
+                        addAsset(e.getX(), e.getY());
                         break;
                 }
             }
@@ -95,6 +102,8 @@ public class EditorArea extends JPanel{
             public void mouseDragged(MouseEvent e) {
                 System.out.println(selectedAsset);
 
+                // If there is selected asset, ti will be dragged according
+                // mouse pointer movement.
                 if (selectedAsset != null) {
                     selectedAsset.setY(e.getY());
                     selectedAsset.setX(e.getX());
@@ -117,18 +126,12 @@ public class EditorArea extends JPanel{
 
         for (Asset asset : assetList) {
 
+            // Draws all assets from the list to editor area.
             g.drawImage(
                     asset.getImage(),
                     asset.getX() - (asset.getImage().getWidth() / 2),
                     asset.getY() - (asset.getImage().getHeight() / 2),
-                    null);
-
-            System.out.println("drawed " +
-                            asset +
-                    " to " +
-                    asset.getX() +
-                    ", " +
-                    asset.getY()
+                    null
             );
         }
     }
@@ -143,15 +146,15 @@ public class EditorArea extends JPanel{
      * @param x x-coordinate for asset.
      * @param y y-coordinate for asset.
      */
-    private void addTile(int x, int y) {
+    private void addAsset(int x, int y) {
 
+        // Adds new asset to drawing area according what selected asset is.
         Asset added = new Asset(
                 x,
                 y,
                 host.getSelectedAsset().getImage(),
                 host.getSelectedAsset().getFilename()
         );
-
         assetList.add(added);
         repaint();
     }
@@ -164,13 +167,14 @@ public class EditorArea extends JPanel{
      *
      * @param e MouseEvent from mouse listener.
      */
-    private void selectTile(MouseEvent e) {
+    private void selectAsset(MouseEvent e) {
         boolean found = false;
         int index = assetList.size() - 1;
 
+        // Selects asset from the list and draws rectangle to it for mouse
+        // pointer detection.
         while (!found && index != assetList.size()) {
             Asset asset = assetList.get(index);
-            System.out.println("asset:"  + asset);
             Rectangle rect = new Rectangle(
                     asset.getX() - (asset.getImage().getWidth() / 2),
                     asset.getY() - (asset.getImage().getHeight() / 2),
@@ -178,6 +182,8 @@ public class EditorArea extends JPanel{
                     asset.getImage().getHeight()
             );
 
+            // Checks if mouse pointer has asset under it. If asset is found, it
+            // will be set to selected asset.
             Point point = new Point(e.getX(), e.getY());
 
             if (rect.contains(point)) {
@@ -201,7 +207,8 @@ public class EditorArea extends JPanel{
     }
 
     /**
-     * Sets selected tool for editor.
+     * Sets selected tool for editor. Also changes colors of the buttons to
+     * show what tool is currently selected (with yellow color).
      *
      * @param tool selected tool: 0 - add, 1 - select, 2 - delete
      */
