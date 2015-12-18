@@ -78,6 +78,7 @@ public class GameObject implements Drawable {
         physicsBody = Optional.ofNullable(null);
         animation = Optional.ofNullable(null);
 
+        // Loads image for texture by using source to the file (String).
         try {
             BufferedImage texture = ImageIO.read(new File(textureSource));
             this.texture = texture;
@@ -103,6 +104,7 @@ public class GameObject implements Drawable {
     public void setX(int x) {
         this.x = x;
 
+        // If object has PhysicsBody, it will be moved with object.
         if (physicsBody.isPresent()) {
             PhysicsBody body = physicsBody.get();
             body.getCollider().setX(x);
@@ -126,6 +128,7 @@ public class GameObject implements Drawable {
     public void setY(int y) {
         this.y = y;
 
+        // If object has PhysicsBody, it will be moved with object.
         if (physicsBody.isPresent()) {
             PhysicsBody body = physicsBody.get();
             body.getCollider().setY(y);
@@ -209,10 +212,20 @@ public class GameObject implements Drawable {
         return physicsBody;
     }
 
+    /**
+     * Sets animation for this game object.
+     *
+     * @param animation animation for this game object.
+     */
     public void setAnimation(Animation animation) {
         this.animation = Optional.ofNullable(animation);
     }
 
+    /**
+     * Returns animation of this object as optional variable.
+     *
+     * @return animation of this object as optional variable.
+     */
     public Optional<Animation> getAnimation() {
         return animation;
     }

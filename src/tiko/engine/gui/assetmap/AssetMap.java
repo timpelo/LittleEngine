@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @since 1.8
  *
  */
-public class TileMap {
+public class AssetMap {
 
     /**
      * Width of asset map.
@@ -34,7 +34,7 @@ public class TileMap {
     /**
      * List containing all assets in map.
      */
-    private ArrayList<Tile> tileList;
+    private ArrayList<Asset> assetList;
 
     /**
      * Default constructor.
@@ -42,8 +42,8 @@ public class TileMap {
      * @param width width of map
      * @param height height of map
      */
-    public TileMap(int width, int height) {
-        tileList = new ArrayList<>();
+    public AssetMap(int width, int height) {
+        assetList = new ArrayList<>();
         this.width = width;
         this.height = height;
     }
@@ -65,7 +65,7 @@ public class TileMap {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                tileList.add(createTile(line));
+                assetList.add(createTile(line));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class TileMap {
      * @param tileInfo tile info in form x:y:image:.
      * @return created Asset.
      */
-    public Tile createTile(String tileInfo) {
+    public Asset createTile(String tileInfo) {
         int x = 0;
         int y = 0;
         BufferedImage image = null;
@@ -94,7 +94,7 @@ public class TileMap {
                 temp += tileInfo.charAt(i);
             } else {
 
-                // Places right value to right variable for tile creation.
+                // Places correct value to correct variable for asset creation.
                 switch (counter) {
                     case 0:
                         x = Integer.parseInt(temp);
@@ -118,8 +118,7 @@ public class TileMap {
                 counter++;
             }
         }
-        // System.out.println(image);
-        return new Tile(x, y, image);
+        return new Asset(x, y, image);
     }
 
     /**
@@ -131,11 +130,13 @@ public class TileMap {
      */
     public void drawMap(Screen screen) {
 
-        for (Tile tile: tileList) {
+        // Iterates asset list and draws assets according their coordinates
+        // and textures.
+        for (Asset asset : assetList) {
             screen.addObject(new GameObject(
-                    tile.getX(),
-                    tile.getY(),
-                    tile.getImage()));
+                    asset.getX(),
+                    asset.getY(),
+                    asset.getImage()));
         }
 
         screen.getCanvas().repaint();

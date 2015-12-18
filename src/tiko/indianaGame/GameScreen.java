@@ -5,7 +5,7 @@ import tiko.engine.gameobject.GameObject;
 import tiko.engine.gui.Camera;
 import tiko.engine.gui.Screen;
 import tiko.engine.gui.ScreenManager;
-import tiko.engine.gui.assetmap.TileMap;
+import tiko.engine.gui.assetmap.AssetMap;
 import tiko.engine.system.InputAdapter;
 import tiko.engine.system.Time;
 import tiko.engine.system.animation.Animation;
@@ -13,7 +13,6 @@ import tiko.engine.system.physics.Collider;
 import tiko.engine.system.physics.PhysicsBody;
 import tiko.engine.system.physics.PhysicsLayer;
 import tiko.engine.system.physics.World;
-import tiko.engine.system.save.SaveManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -97,8 +96,8 @@ public class GameScreen extends Screen {
         ground.setPhysicsBody(groundBody);
         boss.setPhysicsBody(bossBody);
 
-        TileMap board;
-        board = new TileMap(500, 500);
+        AssetMap board;
+        board = new AssetMap(500, 500);
         board.loadTiles("assets/");
         board.drawMap(this);
         addObject(player);

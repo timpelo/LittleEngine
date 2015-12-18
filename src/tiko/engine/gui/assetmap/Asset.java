@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * @version 1.0
  * @since 1.8
  */
-public class Tile {
+public class Asset {
 
     /**
      * Position in x-axis.
@@ -37,7 +37,7 @@ public class Tile {
      * @param y position in y-axis.
      * @param image texture of asset.
      */
-    public Tile(int x, int y, BufferedImage image) {
+    public Asset(int x, int y, BufferedImage image) {
         this.x = x;
         this.y = y;
         this.image = image;
