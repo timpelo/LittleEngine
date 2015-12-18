@@ -128,7 +128,7 @@ public class Editor extends JFrame {
         selectedAssetName = new JTextArea("selected");
         selectedAssetName.setEditable(false);
         load.addActionListener(e -> loadFile(e));
-        open.addActionListener(e -> addTile(e));
+        open.addActionListener(e -> addAsset(e));
         save.addActionListener(e -> saveFile(e));
         moveTool.addActionListener(e -> editorArea.setTool(1));
         deleteTool.addActionListener(e -> editorArea.setTool(2));
@@ -144,7 +144,7 @@ public class Editor extends JFrame {
         deleteTool.setBackground(Color.lightGray);
         moveTool.setBackground(Color.lightGray);
 
-        // Create tile list.
+        // Create asset list.
         assets = new JScrollPane();
 
         // Create non editable table.
@@ -211,26 +211,30 @@ public class Editor extends JFrame {
      *
      * @param e ActionEvent from button.
      */
-    public void addTile(ActionEvent e) {
+    public void addAsset(ActionEvent e) {
         boolean success = false;
-        BufferedImage tile;
+        BufferedImage asset;
 
+        // Opens file chooser with open button.
         final JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         File file = null;
 
         if (e.getSource() == open) {
 
+            // Gets selected file from file chooser and adds it to asset list.
             try {
                 file = fc.getSelectedFile();
-                tile = ImageIO.read(file);
+                asset = ImageIO.read(file);
                 success = true;
-                assetList.add(new Asset(0, 0, tile, file.getName()));
+                assetList.add(new Asset(0, 0, asset, file.getName()));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
 
+        // If asset is found, set it to asset wheel with name of loaded asset
+        // file name.
         if (success) {
             assetWheel.setValueAt(file.getName(), 0, listIndex);
             listIndex++;
@@ -246,6 +250,8 @@ public class Editor extends JFrame {
      * @param e ActionEvent from button.
      */
     public void saveFile(ActionEvent e) {
+
+        // Opens file chooser with save button.
         final JFileChooser fc = new JFileChooser();
         fc.showSaveDialog(this);
 
@@ -255,6 +261,8 @@ public class Editor extends JFrame {
             try(BufferedWriter writer = new BufferedWriter(
                     new FileWriter(file))) {
 
+                // Generates save file to contain all info of assets and
+                // their placements on the map.
                 for (Asset asset : editorArea.getAssetList()) {
                     String tileInfo =
                             asset.getRealX() + ":" +
@@ -280,6 +288,9 @@ public class Editor extends JFrame {
 
         if (e.getClickCount() == 1) {
 
+            // Checks what cell of JTable has been clicked. If it has asset,
+            // it will be made to selected asset and shown in right up corner
+            // of editor.
             final JTable target = (JTable)e.getSource();
             final int index = target.getSelectedColumn();
             selectedAsset = index;
