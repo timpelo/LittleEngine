@@ -3,58 +3,54 @@ RELEASE NOTES
     File       : RELEASENOTES.txt
     Time-stamp : 2015-12-04T21:30 Jani Timonen
 
-    Description: Release notes for release 2.
+    Description: Release notes for release 3.
 
 GENERAL INFO
 
-    Release 2 is the second release if LittleEngine. This release went quite
-    as planned. Only change made was tiled maps. Due misunderstanding of the
-    nature of tiled maps, there was implemented simple level map editor. This
-    editor can be used to make simple game maps by loading assets (image
-    files) and moving them in editor. LittleEngine has functionality to read
-    file made by editor and build game level by reading the file.
+    Release 3 is the third and final release of LittleEngine. Overall I am
+    quite happy with results and I think it has nice collection of useful
+    features for making simple 2d games.
 
-    Editor has simple functionality. It can load assets from image files.
-    User can add these assets to game canvas, move them and delete them. User
-    can save map and load it to LittleEngine. Editor is in early stage and it
-    does not yet show name of assets in selection wheel, only index numbers.
-    It also can't yet load premade map (map can still be loaded to
-    LittleEngine). It also has some minor bugs like menu bar not appearing
-    before resizing of editor window.
+    Original plan was to try implement simple 2d light but I just didn't have
+    time for that due being busy with physics, animations and example game.
 
-    Editor still is misusing word "asset" in many variables and class names.
-    These will be fixed for next release.
+    Physics works quite well. I had to invest a lot of information due never
+    being studying physics for games and also lack of physics courses on my
+    earlier education. Physics are not "as-real-as-it-can-be" but I think it
+    suites quite well simple games.
 
 PLANNED FEATURES FROM PRODUCT BACKLOG
 
     Following features where planned for this release:
 
-    - Support for tiled maps.
-    - Simple collision detection for 2d objects.
-    - Possibility to add sounds.
-    - Developer can make transitions between screens.
+    - Simple 2d dynamic light.
+    - Enhanced 2d physics for collision detection (bouncing and gravity).
+    - Animations for game objects.
+    - Fix editor variable and class names.
+    - Map editor shows names of assets.
+    - Layers for collision detection.
+    - Developer has access to two example games.
+    - Developer has access to screencast of demo game.
 
 IMPLEMENTED FEATURES
 
-    - Support for premade maps.
-    - Editor to create maps.
-    - Simple collision detection for 2d objects.
-    - Possibility to add sounds.
-    - Developer can make transitions between screens.
+    - Enhanced 2d physics for collision detection (bouncing and gravity).
+    - Animations for game objects.
+    - Fix editor variable and class names.
+    - Map editor shows names of assets.
+    - Layers for collision detection.
+    - Developer has access to one example game.
+    - Developer has access to screencast of demo game.
 
 FEATURES NOT IMPLEMENTED
 
-    - Support for tiled maps (replaced with map editor).
+    - Simple 2d dynamic light (not enough time to implement).
+    - One example game (In my opinion this one game demos all necessary
+    features of LittleEngine.
 
 PLANNED FEATURES FOR NEXT RELEASE
 
-    - Enhanced 2d physics for collision detection (bouncing and gravity).!!
-    - Animations for game objects.!!
-    - Fix editor variable and class names.!!
-    - Map editor shows names of assets.
-    - Layers for collision detection.!!
-    - Developer has access to two example games.!!
-    - Developer has access to screencast of demo game.!!
+    - This is the final release of LittleEngine. No new features planned.
 
     Product backlog (PRODUCTBACKLOG.txt) has been updated to
     correspond to the new situation.

@@ -4,7 +4,7 @@ import java.io.*;
 
 /**
  * Class which can handle saving and loading data from persistent storage.
- * <p>
+ *
  * Class can write and load SaveObjects from given location. Default directory
  * is set to root/save but it can be changed.
  *

@@ -45,8 +45,8 @@ public class DemoGame extends GameAdapter {
         bgSound.setLoop(true);
         soundManager.addSound(bgSound);
         soundManager.addSound("blop.wav");
-        soundManager.playSound(1);
-        soundManager.playSound(0);
+        //soundManager.playSound(1);
+        //soundManager.playSound(0);
 
 
         getScreenManager().addScreen(menu);
